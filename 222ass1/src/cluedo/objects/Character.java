@@ -1,5 +1,5 @@
-package cluedo.characters;
+package cluedo.objects;
 
 public interface Character {
-
+	
 }

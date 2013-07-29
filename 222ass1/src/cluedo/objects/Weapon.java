@@ -1,4 +1,4 @@
-package cluedo.weapons;
+package cluedo.objects;
 
 public interface Weapon {
 

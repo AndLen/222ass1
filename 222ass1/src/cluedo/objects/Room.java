@@ -1,4 +1,4 @@
-package cluedo.rooms;
+package cluedo.objects;
 
 public interface Room {
 
