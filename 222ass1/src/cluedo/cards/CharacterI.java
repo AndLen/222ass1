@@ -1,5 +1,9 @@
 package cluedo.cards;
-
+/**
+ * 
+ * @author Michael
+ *
+ */
 public interface CharacterI extends Card {
 	public static String[] CHARACTERS = {
 		"Kasandra Scarlett", "Jack Mustard", "Diane White", "Jacob Green", "Eleanor Peacock", "Victor Plum"

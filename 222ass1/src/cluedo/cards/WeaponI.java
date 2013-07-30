@@ -1,5 +1,9 @@
 package cluedo.cards;
-
+/**
+ * 
+ * @author Michael
+ *
+ */
 public interface WeaponI extends Card {
 
 	public static enum WEAPONS {

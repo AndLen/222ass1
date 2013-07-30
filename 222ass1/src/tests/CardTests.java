@@ -1,7 +1,6 @@
 package tests;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import cluedo.cards.Card;
@@ -12,6 +11,11 @@ import cluedo.cards.RoomI;
 import cluedo.cards.WeaponI;
 import cluedo.cards.Weapon;
 
+/**
+ * 
+ * @author Michael
+ *
+ */
 public class CardTests {
 
 	@Test

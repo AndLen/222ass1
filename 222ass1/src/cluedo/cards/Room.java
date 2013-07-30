@@ -1,5 +1,9 @@
 package cluedo.cards;
-
+/**
+ * 
+ * @author Michael
+ *
+ */
 public class Room implements RoomI {
 
 	private String room;

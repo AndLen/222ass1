@@ -1,5 +1,10 @@
 package cluedo.cards;
 
+/**
+ * 
+ * @author Michael
+ *
+ */
 public class Character implements CharacterI{
 
 	
