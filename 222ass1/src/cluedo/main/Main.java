@@ -45,8 +45,6 @@ public class Main {
 		numPlayers = numPlayers2;
 		System.out.println("Starting a game with " + numPlayers + " players.");
 
-		
-
 		generateSolution();
 		generatePlayers();
 		generateBoard();
@@ -84,13 +82,49 @@ public class Main {
 	 */
 	private void generatePlayers() {
 		// TODO Auto-generated method stub
-		List<cluedo.cards.Character> characters = new ArrayList<>();
+
+	}
+
+	/**
+	 * creates all the character cards and shuffles the pile
+	 * 
+	 * @param characters the list to be returned
+	 */
+	private void setUpCharCards(List<cluedo.cards.Character> characters) {
 
 		for (String s : CharacterI.CHARACTERS) {
 			characters.add(new cluedo.cards.Character(s));
 		}
-		
+
 		Collections.shuffle(characters);
+	}
+	
+	/**
+	 * creates all the weapons cards and shuffles the pile
+	 * 
+	 * @param weapons the list to be returned
+	 */
+	private void setUpWeapCards(List<cluedo.cards.Weapon> weapons) {
+
+		for (String s : WeaponI.WEAPONS) {
+			weapons.add(new cluedo.cards.Weapon(s));
+		}
+
+		Collections.shuffle(weapons);
+	}
+	
+	/**
+	 * creates all the weapons cards and shuffles the pile
+	 * 
+	 * @param weapons the list to be returned
+	 */
+	private void setUpRoomCards(List<cluedo.cards.Room> rooms) {
+
+		for (String s : RoomI.ROOMS) {
+			rooms.add(new cluedo.cards.Room(s));
+		}
+
+		Collections.shuffle(rooms);
 	}
 
 	/**
