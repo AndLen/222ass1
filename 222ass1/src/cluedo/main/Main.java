@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import cluedo.cards.*;
+import cluedo.cards.Character;
 
 /**
  * Controls the running of the game, including the main data structures and
@@ -88,43 +89,48 @@ public class Main {
 	/**
 	 * creates all the character cards and shuffles the pile
 	 * 
-	 * @param characters the list to be returned
+	 * @param characters
+	 *            the list to be returned
 	 */
-	private void setUpCharCards(List<cluedo.cards.Character> characters) {
-
+	private void setUpCharCards() {
+		List<Character> characters  = new ArrayList<Character>();
 		for (String s : CharacterI.CHARACTERS) {
 			characters.add(new cluedo.cards.Character(s));
 		}
 
 		Collections.shuffle(characters);
 	}
-	
+
 	/**
 	 * creates all the weapons cards and shuffles the pile
 	 * 
-	 * @param weapons the list to be returned
+	 * @return weapons the list to be returned
 	 */
-	private void setUpWeapCards(List<cluedo.cards.Weapon> weapons) {
-
+	private List<Weapon> setUpWeapCards() {
+		List<Weapon> weapons = new ArrayList<Weapon>();
 		for (String s : WeaponI.WEAPONS) {
 			weapons.add(new cluedo.cards.Weapon(s));
 		}
 
 		Collections.shuffle(weapons);
+		return weapons;
 	}
-	
+
 	/**
 	 * creates all the weapons cards and shuffles the pile
 	 * 
-	 * @param weapons the list to be returned
+	 * @param weapons
+	 *            the list to be returned
+	 * @return
 	 */
-	private void setUpRoomCards(List<cluedo.cards.Room> rooms) {
-
+	private List<Room> setUpRoomCards() {
+		List<Room> rooms = new ArrayList<Room>();
 		for (String s : RoomI.ROOMS) {
 			rooms.add(new cluedo.cards.Room(s));
 		}
 
 		Collections.shuffle(rooms);
+		return rooms;
 	}
 
 	/**
