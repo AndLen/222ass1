@@ -17,4 +17,12 @@ public class Character implements CharacterI{
 		return card;
 	}
 
+	@Override
+	/**
+	 * @return the first letter and the letter after the underscore converted to lower case
+	 */
+	public String getSymbol() {
+		return card.charAt(0) + "" + java.lang.Character.toLowerCase(card.charAt(card.lastIndexOf(" ") + 1));
+	}
+
 }

@@ -9,6 +9,8 @@ public interface CharacterI extends Card {
 		Kasandra_Scarlett, Jack_Mustard, Diane_White, Jacob_Green, Eleanor_Peacock, Victor_Plum
 	};
 	
+
+
 	
 	
 

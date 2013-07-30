@@ -2,11 +2,11 @@ package cluedo.cards;
 
 public class Room implements RoomI {
 
-	private String card;
+	private String room;
 	
 	
-	public Room(int i){
-		this.card = RoomI.ROOMS[i];
+	public Room(String s){
+		this.room = s;
 		
 	}
 	
@@ -16,6 +16,16 @@ public class Room implements RoomI {
 	public String getCard() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+
+	@Override
+	/**
+	 * @ retrun the first 2 letters capitalised
+	 */
+	public String getSymbol() {
+		return room.charAt(0) + "" + java.lang.Character.toUpperCase(room.charAt(1));
 	}
 
 }
