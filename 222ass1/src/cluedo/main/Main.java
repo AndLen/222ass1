@@ -1,6 +1,11 @@
 package cluedo.main;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
+
+import cluedo.cards.*;
 
 /**
  * Controls the running of the game, including the main data structures and
@@ -40,6 +45,8 @@ public class Main {
 		numPlayers = numPlayers2;
 		System.out.println("Starting a game with " + numPlayers + " players.");
 
+		
+
 		generateSolution();
 		generatePlayers();
 		generateBoard();
@@ -61,7 +68,7 @@ public class Main {
 		for (int i = 0; i < BOARD_WIDTH; i++) {
 			for (int j = 0; j < BOARD_WIDTH; j++) {
 				if (board[i][j] == 0) {
-					//Nothing interesting here
+					// Nothing interesting here
 					System.out.print(" ");
 				}
 			}
@@ -77,7 +84,13 @@ public class Main {
 	 */
 	private void generatePlayers() {
 		// TODO Auto-generated method stub
+		List<cluedo.cards.Character> characters = new ArrayList<>();
 
+		for (String s : CharacterI.CHARACTERS) {
+			characters.add(new cluedo.cards.Character(s));
+		}
+		
+		Collections.shuffle(characters);
 	}
 
 	/**

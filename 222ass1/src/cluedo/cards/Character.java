@@ -6,8 +6,8 @@ public class Character implements CharacterI{
 	private String card;
 	
 	
-	public Character(int i){
-		this.card = CharacterI.CHARACTERS[i];
+	public Character(String s){
+		this.card = s;
 		
 	}
 	
