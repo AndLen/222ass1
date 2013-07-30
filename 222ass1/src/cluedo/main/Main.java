@@ -89,16 +89,17 @@ public class Main {
 	/**
 	 * creates all the character cards and shuffles the pile
 	 * 
-	 * @param characters
+	 * @return characters
 	 *            the list to be returned
 	 */
-	private void setUpCharCards() {
-		List<Character> characters  = new ArrayList<Character>();
+	private List<Character> setUpCharCards() {
+		List<Character> characters = new ArrayList<Character>();
 		for (String s : CharacterI.CHARACTERS) {
 			characters.add(new cluedo.cards.Character(s));
 		}
 
 		Collections.shuffle(characters);
+		return characters;
 	}
 
 	/**
@@ -117,11 +118,9 @@ public class Main {
 	}
 
 	/**
-	 * creates all the weapons cards and shuffles the pile
+	 * creates all the room cards and shuffles the pile
 	 * 
-	 * @param weapons
-	 *            the list to be returned
-	 * @return
+	 * @return rooms the list to be returned
 	 */
 	private List<Room> setUpRoomCards() {
 		List<Room> rooms = new ArrayList<Room>();
