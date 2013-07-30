@@ -18,8 +18,7 @@ public class Room implements RoomI {
 	
 	@Override
 	public String getCard() {
-		// TODO Auto-generated method stub
-		return null;
+		return room;
 	}
 
 

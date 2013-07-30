@@ -19,8 +19,7 @@ public class Weapon implements WeaponI {
 
 	@Override
 	public String getCard() {
-		// TODO Auto-generated method stub
-		return null;
+		return weapon;
 	}
 
 	@Override

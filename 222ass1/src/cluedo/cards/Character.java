@@ -18,7 +18,6 @@ public class Character implements CharacterI{
 	
 	@Override
 	public String getCard() {
-		// TODO Auto-generated method stub
 		return card;
 	}
 
