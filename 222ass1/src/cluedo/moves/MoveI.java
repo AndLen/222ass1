@@ -18,8 +18,10 @@ public interface MoveI {
 	/**
 	 * 
 	 * @return true if the move is allowed to be made, false if not
+	 * @throws Exception 
+	 * @throws CluedoException 
 	 */
-	public boolean isValid(Board board);
+	public boolean isValid(Board board) throws CluedoException;
 
 	/**
 	 * applies the move

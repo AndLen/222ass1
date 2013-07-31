@@ -11,6 +11,16 @@ package cluedo.main;
 public class Location {
 	private int x;
 	private int y;
+
+
+	public Location(Location l) {
+		this.x = l.x;
+		this.y = l.y;
+	}
+
+	public Location() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	/*
 	 * (non-Javadoc)
@@ -77,12 +87,4 @@ public class Location {
 		this.y = y;
 	}
 
-	public Location(Location l) {
-		this.x = l.x;
-		this.y = l.y;
-	}
-
-	public Location() {
-		// TODO Auto-generated constructor stub
-	}
 }

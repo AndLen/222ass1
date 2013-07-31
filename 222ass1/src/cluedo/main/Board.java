@@ -105,15 +105,18 @@ public class Board {
 		return i + " ";
 	}
 
-	
 	/**
 	 * gets all moves that are on board ignoring walls and doors
+	 * 
 	 * 
 	 * @param oldPosition
 	 * @param dice
 	 * @return a list of all poistions on board where a player may move
 	 */
 	public static List<Location> getMovesTo(Location oldPosition, int dice) {
+		// TODO need to implement it so not only the max amount of moves is
+		// possible(at the moment player must move dice squares and not back and
+		// forward)
 		List<Location> list = new ArrayList<Location>();
 		Location newPosition = new Location();
 
