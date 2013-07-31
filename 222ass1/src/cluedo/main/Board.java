@@ -1,5 +1,8 @@
 package cluedo.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author lensenandr
  * 
@@ -69,36 +72,69 @@ public class Board {
 	/*
 	 * Used to print the board :-)
 	 */
-	public String toString(){
-		//More efficient using a StrBlder.
+	public String toString() {
+		// More efficient using a StrBlder.
 		StringBuilder sb = new StringBuilder();
-		//Extra to compensate for shift due to vertical axis.
+		// Extra to compensate for shift due to vertical axis.
 		sb.append("   ");
-		//Print x-coords across the top
-		for(int a = 0; a <BOARD_WIDTH; a++){
+		// Print x-coords across the top
+		for (int a = 0; a < BOARD_WIDTH; a++) {
 			sb.append(digitToString(a));
 		}
 		sb.append("\n");
-		for(int i = 0; i < BOARD_HEIGHT; i++){
-			//Print y axis labels
+		for (int i = 0; i < BOARD_HEIGHT; i++) {
+			// Print y axis labels
 			sb.append(digitToString(i));
-			for(int j = 0; j < BOARD_WIDTH; j++){
-				if(board [j][i] == null){
+			for (int j = 0; j < BOARD_WIDTH; j++) {
+				if (board[j][i] == null) {
 					sb.append("   ");
-				}
-				else sb.append(board[j][i].toString() + " ");
+				} else
+					sb.append(board[j][i].toString() + " ");
 			}
-			//End of row
+			// End of row
 			sb.append("\n");
 		}
 		return sb.toString();
 	}
 
 	private String digitToString(int i) {
-		//Needs additional space
+		// Needs additional space
 		if (i < 10) {
 			return i + "  ";
 		}
 		return i + " ";
+	}
+
+	
+	/**
+	 * gets all moves that are on board ignoring walls and doors
+	 * 
+	 * @param oldPosition
+	 * @param dice
+	 * @return a list of all poistions on board where a player may move
+	 */
+	public static List<Location> getMovesTo(Location oldPosition, int dice) {
+		List<Location> list = new ArrayList<Location>();
+		Location newPosition = new Location();
+
+		for (int i = 0, j = dice; i <= dice; i++, j--) {
+
+			newPosition.setX(i);
+			newPosition.setY(j);
+
+			if (newPosition.getX() < 0 || newPosition.getX() > BOARD_WIDTH) {
+				continue;
+			}
+
+			if (newPosition.getY() < 0 || newPosition.getY() > BOARD_HEIGHT) {
+				continue;
+			}
+			// this position is on the board
+			list.add(new Location(newPosition));
+
+		}
+
+		return list;
+
 	}
 }

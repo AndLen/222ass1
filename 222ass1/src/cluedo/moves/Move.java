@@ -1,6 +1,7 @@
 package cluedo.moves;
 
 import cluedo.main.Board;
+import cluedo.main.Location;
 import cluedo.main.Tile;
 
 /**
@@ -13,8 +14,9 @@ public class Move implements MoveI {
 
 	private int x;
 	private int y;
-	private Tile tile;
+	private Location oldPosition;
 	private int diceRoll;
+	private Location newPosition;
 	
 	/**
 	 * 
@@ -31,11 +33,12 @@ public class Move implements MoveI {
 	
 	/**
 	 * 
-	 * @param tile the tile to be moved to
+	 * @param oldPosition the tile to be moved to
 	 * @param diceRoll the number rolled on the dice
 	 */
-	public Move(Tile tile, int diceRoll){
-		this.tile = tile;
+	public Move(Location oldPosition, Location newPosition, int diceRoll){
+		this.oldPosition = oldPosition;
+		this.newPosition = newPosition;
 		this.diceRoll = diceRoll;
 	}
 	
@@ -45,6 +48,9 @@ public class Move implements MoveI {
 		// TODO Auto-generated method stub
 		// can we jump over a player? i know they cant when they are blocking a
 		// door, but can they if the are in hallway
+		
+		
+		
 		return false;
 	}
 
