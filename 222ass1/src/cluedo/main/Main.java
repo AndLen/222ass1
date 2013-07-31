@@ -11,15 +11,14 @@ import cluedo.cards.Character;
 /**
  * Controls the running of the game, including the main data structures and
  * drawing of our board in ASCII representation on the command-line.
- * 
+ *
  * @author Andrew
- * 
+ *
  */
 public class Main {
 	private final int numPlayers;
 	private final Scanner input;
-	private char[][] board = new char[25][25];
-	private static final int BOARD_WIDTH = 25;
+	private Board board;
 
 	public Main() {
 		// Needed as we can't assign a final variable in a while(true)...
@@ -48,33 +47,8 @@ public class Main {
 
 		generateSolution();
 		generatePlayers();
-		generateBoard();
-		drawBoard();
-	}
-
-	/**
-	 * Initial board layout sans players.
-	 */
-	private void generateBoard() {
-		// Do stuff here with loading the rooms etc.
-
-	}
-
-	/**
-	 * Draws an ASCII representation of the board to our command-line output.
-	 */
-	private void drawBoard() {
-		for (int i = 0; i < BOARD_WIDTH; i++) {
-			for (int j = 0; j < BOARD_WIDTH; j++) {
-				if (board[i][j] == 0) {
-					// Nothing interesting here
-					System.out.print(" ");
-				}
-			}
-			// New line after each row.
-			System.out.println();
-		}
-
+		board = new Board();
+		System.out.print(board.toString());
 	}
 
 	/**
@@ -88,7 +62,7 @@ public class Main {
 
 	/**
 	 * creates all the character cards and shuffles the pile
-	 * 
+	 *
 	 * @return characters
 	 *            the list to be returned
 	 */
@@ -104,7 +78,7 @@ public class Main {
 
 	/**
 	 * creates all the weapons cards and shuffles the pile
-	 * 
+	 *
 	 * @return weapons the list to be returned
 	 */
 	private List<Weapon> setUpWeapCards() {
@@ -119,7 +93,7 @@ public class Main {
 
 	/**
 	 * creates all the room cards and shuffles the pile
-	 * 
+	 *
 	 * @return rooms the list to be returned
 	 */
 	private List<Room> setUpRoomCards() {
@@ -142,7 +116,7 @@ public class Main {
 
 	/**
 	 * Launch point.
-	 * 
+	 *
 	 * @param args
 	 *            Do nothing.
 	 */
