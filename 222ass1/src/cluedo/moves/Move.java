@@ -1,6 +1,7 @@
 package cluedo.moves;
 
 import cluedo.main.Board;
+import cluedo.main.Tile;
 
 /**
  * use to get where player may move to, enter room, walk along corridor...
@@ -10,9 +11,11 @@ import cluedo.main.Board;
  */
 public class Move implements MoveI {
 
-	private final int x;
-	private final int y;
-
+	private int x;
+	private int y;
+	private Tile tile;
+	private int diceRoll;
+	
 	/**
 	 * 
 	 * @param x
@@ -25,6 +28,17 @@ public class Move implements MoveI {
 		this.y = y;
 
 	}
+	
+	/**
+	 * 
+	 * @param tile the tile to be moved to
+	 * @param diceRoll the number rolled on the dice
+	 */
+	public Move(Tile tile, int diceRoll){
+		this.tile = tile;
+		this.diceRoll = diceRoll;
+	}
+	
 
 	@Override
 	public boolean isValid(Board board) {
