@@ -10,7 +10,7 @@ import java.util.List;
 public class Board {
 	private static final int BOARD_WIDTH = 24;
 	private static final int BOARD_HEIGHT = 29;
-	private static Tile[][] board = new Tile[BOARD_WIDTH][BOARD_HEIGHT];
+	public static Tile[][] board = new Tile[BOARD_WIDTH][BOARD_HEIGHT];
 
 	static {
 		// Spa
