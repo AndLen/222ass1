@@ -51,7 +51,6 @@ public class Main {
 		System.out.print(board.toString());
 	}
 
-
 	/**
 	 * Generates objects for the remaining players - excluding the objects
 	 * already used in the solution, obviously!
