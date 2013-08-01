@@ -74,7 +74,7 @@ public class Board {
 			// End of row
 			sb.append("\n");
 		}
-		//End of board.
+		// End of board.
 		sb.append("\n");
 		return sb.toString();
 	}
@@ -122,26 +122,27 @@ public class Board {
 		// TODO Does this allow diagonal moves or just straight lines?
 		// e.g. -> -> | or just -> -> ->
 		// v
-		// TODO it allows straight, and L shaped moves, but only around one ;corner'
-		
+		// TODO it allows straight, and L shaped moves, but only around one
+		// ;corner'
+
 		List<Location> list = new ArrayList<Location>();
 		Location newPosition = new Location();
 
-		for (int i = 0, j = dice; i <= dice; i++, j--) {
+		for (int i = 0; i <= dice; i++) {
+			for (int j = dice; j>= 0; j--) {
+				newPosition.setX(i);
+				newPosition.setY(j);
 
-			newPosition.setX(i);
-			newPosition.setY(j);
+				if (newPosition.getX() < 0 || newPosition.getX() > BOARD_WIDTH) {
+					continue;
+				}
 
-			if (newPosition.getX() < 0 || newPosition.getX() > BOARD_WIDTH) {
-				continue;
+				if (newPosition.getY() < 0 || newPosition.getY() > BOARD_HEIGHT) {
+					continue;
+				}
+				// this position is on the gameBoard
+				list.add(new Location(newPosition));
 			}
-
-			if (newPosition.getY() < 0 || newPosition.getY() > BOARD_HEIGHT) {
-				continue;
-			}
-			// this position is on the gameBoard
-			list.add(new Location(newPosition));
-
 		}
 
 		return list;

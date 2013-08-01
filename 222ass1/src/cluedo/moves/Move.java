@@ -45,7 +45,7 @@ public class Move implements MoveI {
 	 */
 	public Move(Location oldPosition, Location newPosition, int diceRoll,
 			Game game) {
-		if (!game.isDoorLocation(oldPosition)) {
+		if (!game.isCorridorLocation(oldPosition)) {
 			throw new IllegalArgumentException(
 					"oldPosition must be in a corridor");
 		}
