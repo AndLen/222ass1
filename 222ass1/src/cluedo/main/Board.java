@@ -200,7 +200,7 @@ public class Board {
 		fillRoom(0, 21, 5, 21, kitchen);
 		fillRoom(0, 22, 6, 28, kitchen);
 		gameBoard[6][22] = door;
-		
+
 		// Patio
 		Tile patio = new RoomTile("PA");
 		fillRoom(0, 10, 3, 18, patio);

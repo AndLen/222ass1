@@ -32,9 +32,9 @@ public class Enter implements MoveI {
 
 	@Override
 	public boolean isValid(Game game) {
-		// TODO 
+		// TODO
 
-		Move move = new Move(oldPosition, newPosition, diceRoll,game);
+		Move move = new Move(oldPosition, newPosition, diceRoll, game);
 		try {
 			move.isValid(game);
 			// if this return is reached the move does not end in a room
@@ -42,11 +42,11 @@ public class Enter implements MoveI {
 			return false;
 		}
 		// i want to recieve this exception (moves is likley to be valid)
-		catch (CluedoException e) {}
-		
+		catch (CluedoException e) {
+		}
+
 		// we can now check if a door was usedto enter this room
-		
-		
+
 		return false;
 	}
 

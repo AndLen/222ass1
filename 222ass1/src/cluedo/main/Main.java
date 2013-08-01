@@ -6,7 +6,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import cluedo.cards.*;
+import cluedo.cards.Card;
+import cluedo.cards.CharacterI;
+import cluedo.cards.RoomI;
+import cluedo.cards.WeaponI;
 import cluedo.structs.Location;
 import cluedo.structs.Player;
 import cluedo.structs.Solution;
@@ -100,7 +103,7 @@ public class Main {
 			}
 			players.add(new Player(myStart, myName, mySymbol, myCards));
 		}
-		Game newGame = new Game(board, sol,cardsLeft,players);
+		Game newGame = new Game(board, sol, cardsLeft, players);
 		return newGame;
 	}
 

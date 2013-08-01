@@ -35,27 +35,29 @@ public class Game {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public String boardToString() {
 		return gameBoard.toString(this);
 	}
 
-	public List<Player> getPlayers(){
+	public List<Player> getPlayers() {
 		return players;
 	}
 
 	public List<Location> getMovesTo(Location oldPosition, int diceRoll) {
 		return gameBoard.getMovesTo(oldPosition, diceRoll);
 	}
-	public boolean isCorridorLocation(Location newPosition){
-		return(gameBoard.tileAtLocation(newPosition) instanceof CorridorTile);
+
+	public boolean isCorridorLocation(Location newPosition) {
+		return (gameBoard.tileAtLocation(newPosition) instanceof CorridorTile);
 	}
+
 	public boolean isRoomLocation(Location newPosition) {
-		return(gameBoard.tileAtLocation(newPosition) instanceof RoomTile);
+		return (gameBoard.tileAtLocation(newPosition) instanceof RoomTile);
 	}
-	
-	public boolean isDoorLocation(Location newPosition){
-		return(gameBoard.tileAtLocation(newPosition) instanceof DoorTile);
+
+	public boolean isDoorLocation(Location newPosition) {
+		return (gameBoard.tileAtLocation(newPosition) instanceof DoorTile);
 	}
-	
+
 }

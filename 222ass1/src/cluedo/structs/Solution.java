@@ -1,6 +1,8 @@
 package cluedo.structs;
 
-import cluedo.cards.*;
+import cluedo.cards.CharacterI;
+import cluedo.cards.RoomI;
+import cluedo.cards.WeaponI;
 
 /**
  * The solution to win the game.

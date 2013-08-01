@@ -12,13 +12,12 @@ public class Location {
 	private int x;
 	private int y;
 
-
 	public Location(Location l) {
 		this.x = l.x;
 		this.y = l.y;
 	}
-	
-	public Location(int x, int y){
+
+	public Location(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -26,7 +25,7 @@ public class Location {
 	public Location() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 

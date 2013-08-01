@@ -3,19 +3,17 @@ package cluedo.cards;
 /**
  * 
  * @author Michael
- *
+ * 
  */
-public class Character implements CharacterI{
+public class Character implements CharacterI {
 
-	
 	private String card;
-	
-	
-	public Character(String s){
+
+	public Character(String s) {
 		this.card = s;
-		
+
 	}
-	
+
 	@Override
 	public String getCard() {
 		return card;
@@ -26,7 +24,10 @@ public class Character implements CharacterI{
 	 * @return the first letter and the letter after the underscore converted to lower case
 	 */
 	public String getSymbol() {
-		return card.charAt(0) + "" + java.lang.Character.toLowerCase(card.charAt(card.lastIndexOf(" ") + 1));
+		return card.charAt(0)
+				+ ""
+				+ java.lang.Character.toLowerCase(card.charAt(card
+						.lastIndexOf(" ") + 1));
 	}
 
 }

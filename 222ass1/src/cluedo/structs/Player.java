@@ -3,7 +3,7 @@ package cluedo.structs;
 import java.util.Iterator;
 import java.util.List;
 
-import cluedo.cards.*;
+import cluedo.cards.Card;
 
 /**
  * Represents a human player in the game. Should contain their current location,
@@ -25,10 +25,12 @@ public class Player {
 		return myName;
 	}
 
-	public String getMySymbol(){
+	public String getMySymbol() {
 		return mySymbol;
 	}
-	public Player(Location start, String myName,String mySymbol, List<Card> cards) {
+
+	public Player(Location start, String myName, String mySymbol,
+			List<Card> cards) {
 		this.myName = myName;
 		this.mySymbol = mySymbol;
 		myPosition = start;
@@ -42,12 +44,13 @@ public class Player {
 	public Location getLocation() {
 		return myPosition;
 	}
-	
+
 	/**
 	 * Use me to check if I have certain cards.
+	 * 
 	 * @return
 	 */
-	public Iterator<Card> myCardsIterator(){
+	public Iterator<Card> myCardsIterator() {
 		return myCards.iterator();
 	}
 
@@ -56,15 +59,15 @@ public class Player {
 		if (charName.equals("Kasandra Scarlett")) {
 			return new Location(28, 18);
 		} else if (charName.equals("Jack Mustard")) {
-			return new Location(28,7);
+			return new Location(28, 7);
 		} else if (charName.equals("Diane White")) {
-			return new Location(19,0);
+			return new Location(19, 0);
 		} else if (charName.equals("Jacob Green")) {
-			return new Location(9,0);
+			return new Location(9, 0);
 		} else if (charName.equals("Eleanor Peacock")) {
-			return new Location(0,6);
+			return new Location(0, 6);
 		} else if (charName.equals("Victor Plum")) {
-			return new Location(0,20);
+			return new Location(0, 20);
 		}
 		throw new IllegalArgumentException("Invalid Char name");
 	}
