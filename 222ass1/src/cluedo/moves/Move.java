@@ -3,8 +3,8 @@ package cluedo.moves;
 import java.util.List;
 
 import cluedo.main.Board;
-import cluedo.main.Location;
-import cluedo.main.Tile;
+import cluedo.structs.Location;
+import cluedo.structs.Tile;
 
 /**
  * a move is when the player is in the coridors (i.e. not in a room)

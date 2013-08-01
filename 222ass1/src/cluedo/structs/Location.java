@@ -1,4 +1,4 @@
-package cluedo.main;
+package cluedo.structs;
 
 /**
  * a pair of x and y coordinates

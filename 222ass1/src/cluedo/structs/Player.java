@@ -1,4 +1,6 @@
-package cluedo.main;
+package cluedo.structs;
+
+import java.util.List;
 
 import cluedo.cards.*;
 
@@ -13,39 +15,24 @@ import cluedo.cards.*;
  */
 public class Player {
 	private Location myPosition;
-	private final CharacterI myName;
+	private final String myName;
+	private final String mySymbol;
 
 	/* Cards that player has. Assumes can only hold one of each for now. */
-	private final CharacterI myCharCard;
-	private final RoomI myRoomCard;
-	private final WeaponI myWeapCard;
+	private List<Card> myCards;
 
 	public String getMyName() {
-		return myName.getCard();
+		return myName;
 	}
 
 	public String getMySymbol(){
-		return myName.getSymbol();
+		return mySymbol;
 	}
-	public Player(Location start, CharacterI myName, CharacterI characterI, RoomI roomI,
-			WeaponI weaponI) {
+	public Player(Location start, String myName,String mySymbol, List<Card> cards) {
 		this.myName = myName;
+		this.mySymbol = mySymbol;
 		myPosition = start;
-		myCharCard = characterI;
-		myRoomCard = roomI;
-		myWeapCard = weaponI;
-	}
-
-	public CharacterI getMyChar() {
-		return myCharCard;
-	}
-
-	public RoomI getMyRoomCard() {
-		return myRoomCard;
-	}
-
-	public WeaponI getMyWeap() {
-		return myWeapCard;
+		myCards = cards;
 	}
 
 	public void updatePosition(Location newPos) {
@@ -56,8 +43,7 @@ public class Player {
 		return myPosition;
 	}
 
-	public static Location startLocation(CharacterI charCard) {
-		String charName = charCard.getCard();
+	public static Location startLocation(String charName) {
 		// TODO: Can we use enums here? Would be prettier}
 		if (charName.equals("Kasandra Scarlett")) {
 			return new Location(28, 18);

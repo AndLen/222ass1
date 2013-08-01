@@ -1,19 +1,23 @@
 package cluedo.main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 import cluedo.cards.*;
 import cluedo.cards.Character;
+import cluedo.structs.Location;
+import cluedo.structs.Player;
+import cluedo.structs.Solution;
 
 /**
  * Controls the running of the game, including the main data structures and
  * drawing of our board in ASCII representation on the command-line.
- *
+ * 
  * @author Andrew
- *
+ * 
  */
 public class Main {
 	private final int numPlayers;
@@ -44,7 +48,7 @@ public class Main {
 		}
 		numPlayers = numPlayers2;
 		System.out.println("Starting a game with " + numPlayers + " players.");
-		
+
 		game = setupGame();
 		System.out.print(game.boardToString());
 		game.begin();
@@ -52,34 +56,58 @@ public class Main {
 	}
 
 	/**
-	 * Constructs our players and their appropriate cards, and adds this to the Board.
+	 * Constructs our players and their appropriate cards, and adds this to the
+	 * Board.
 	 */
 	private Game setupGame() {
-		
+
 		Board board = new Board();
-		//First, get all our cards in shuffled lists
+
+		// First, get all our cards in shuffled lists
+		List<String> names = Arrays.asList(CharacterI.CHARACTERS);
+		Collections.shuffle(names);
 		List<CharacterI> cCards = setUpCharCards();
 		List<WeaponI> wCards = setUpWeapCards();
 		List<RoomI> rCards = setUpRoomCards();
-		//Construct our solution. Has no name or location as not a "real" player!
-		Player solution = new Player(null,null,cCards.get(0),rCards.get(0),wCards.get(0));
-		//And finally our players.
-		for(int i = 1; i <= numPlayers; i++){
-			//TODO: Change it so players won't always get the same character as their card.
-			CharacterI myName = cCards.get(i);
+
+		// Construct our solution. Has no name or location as not a "real"
+		// player!
+		Solution sol = new Solution(cCards.remove(0), rCards.remove(0),
+				wCards.remove(0));
+
+		// Now merge all the cards
+		List<Card> cardsLeft = new ArrayList<Card>();
+		cardsLeft.addAll(cCards);
+		cardsLeft.addAll(wCards);
+		cardsLeft.addAll(rCards);
+		Collections.shuffle(cardsLeft);
+
+		// And finally our players.
+		int numCardsEach = numPlayers / cardsLeft.size();
+		for (int i = 0; i <= numPlayers; i++) {
+			String myName = names.get(i);
+			// 1st char in 1st name capitalised + 1st char in surname
+			// capitalised.
+			String mySymbol = myName.charAt(0)
+					+ ""
+					+ java.lang.Character.toLowerCase(myName.charAt(myName
+							.lastIndexOf(" ") + 1));
 			Location myStart = Player.startLocation(myName);
-			board.addPlayer(new Player(myStart,myName,cCards.get(i),rCards.get(i),wCards.get(i)));
+			List<Card> myCards = new ArrayList<Card>();
+			for (int j = 0; i < numCardsEach; j++) {
+				// Automatically shifts stuff down for next time as .remove().
+				myCards.add(cardsLeft.remove(j));
+			}
+			board.addPlayer(new Player(myStart, myName, mySymbol, myCards));
 		}
-		Game newGame = new Game(board, solution);
+		Game newGame = new Game(board, sol,cardsLeft);
 		return newGame;
 	}
 
-
 	/**
 	 * creates all the character cards and shuffles the pile
-	 *
-	 * @return characters
-	 *            the list to be returned
+	 * 
+	 * @return characters the list to be returned
 	 */
 	private List<CharacterI> setUpCharCards() {
 		List<CharacterI> characters = new ArrayList<CharacterI>();
@@ -93,7 +121,7 @@ public class Main {
 
 	/**
 	 * creates all the weapons cards and shuffles the pile
-	 *
+	 * 
 	 * @return weapons the list to be returned
 	 */
 	private List<WeaponI> setUpWeapCards() {
@@ -108,7 +136,7 @@ public class Main {
 
 	/**
 	 * creates all the room cards and shuffles the pile
-	 *
+	 * 
 	 * @return rooms the list to be returned
 	 */
 	private List<RoomI> setUpRoomCards() {
@@ -123,7 +151,7 @@ public class Main {
 
 	/**
 	 * Launch point.
-	 *
+	 * 
 	 * @param args
 	 *            Do nothing.
 	 */

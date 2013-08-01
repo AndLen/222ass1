@@ -3,6 +3,10 @@ package cluedo.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import cluedo.structs.Location;
+import cluedo.structs.Player;
+import cluedo.structs.Tile;
+
 /**
  * Represents the current "physical" board. Essentially the main data structure
  * for our program.
@@ -57,7 +61,7 @@ public class Board {
 			for (int j = 0; j < BOARD_WIDTH; j++) {
 				Player p = hasPlayer(i,j);
 				if (p != null) {
-					sb.append(p.getMySymbol() + "");
+					sb.append(p.getMySymbol() + " ");
 				} else if (gameBoard[j][i] == null) {
 					sb.append("   ");
 				} else

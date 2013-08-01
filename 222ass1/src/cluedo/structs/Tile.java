@@ -1,4 +1,4 @@
-package cluedo.main;
+package cluedo.structs;
 
 public class Tile {
 	private String stringRep;

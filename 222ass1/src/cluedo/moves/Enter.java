@@ -1,8 +1,8 @@
 package cluedo.moves;
 
 import cluedo.main.Board;
-import cluedo.main.Location;
-import cluedo.objects.Chamber;
+import cluedo.structs.Chamber;
+import cluedo.structs.Location;
 
 /**
  * when the player enters into a room
