@@ -71,7 +71,7 @@ public class Game {
 		return gameBoard.toString(this);
 	}
 
-	public List<Player> getPlayers() {
+	public final List<Player> getPlayers() {
 		return players;
 	}
 
