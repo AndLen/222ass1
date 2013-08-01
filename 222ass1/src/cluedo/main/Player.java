@@ -1,7 +1,6 @@
 package cluedo.main;
 
 import cluedo.cards.*;
-import cluedo.cards.Character;
 
 /**
  * Represents a human player in the game. Should contain their current location,
@@ -14,42 +13,39 @@ import cluedo.cards.Character;
  */
 public class Player {
 	private Location myPosition;
+	private final CharacterI myName;
 
 	/* Cards that player has. Assumes can only hold one of each for now. */
-	private CharacterI myChar;
-	private RoomI myRoomCard;
-	private WeaponI myWeap;
+	private final CharacterI myCharCard;
+	private final RoomI myRoomCard;
+	private final WeaponI myWeapCard;
 
-	public Player(Location start, CharacterI characterI, RoomI roomI,
+	public String getMyName() {
+		return myName.getCard();
+	}
+
+	public String getMySymbol(){
+		return myName.getSymbol();
+	}
+	public Player(Location start, CharacterI myName, CharacterI characterI, RoomI roomI,
 			WeaponI weaponI) {
+		this.myName = myName;
 		myPosition = start;
-		myChar = characterI;
+		myCharCard = characterI;
 		myRoomCard = roomI;
-		myWeap = weaponI;
+		myWeapCard = weaponI;
 	}
 
 	public CharacterI getMyChar() {
-		return myChar;
-	}
-
-	public void setMyChar(Character myChar) {
-		this.myChar = myChar;
+		return myCharCard;
 	}
 
 	public RoomI getMyRoomCard() {
 		return myRoomCard;
 	}
 
-	public void setMyRoomCard(Room myRoomCard) {
-		this.myRoomCard = myRoomCard;
-	}
-
 	public WeaponI getMyWeap() {
-		return myWeap;
-	}
-
-	public void setMyWeap(Weapon myWeap) {
-		this.myWeap = myWeap;
+		return myWeapCard;
 	}
 
 	public void updatePosition(Location newPos) {
@@ -60,9 +56,9 @@ public class Player {
 		return myPosition;
 	}
 
-	public static Location startLocation(CharacterI characterI) {
-		// TODO: Can we use enums here? Would be prettier
-		String charName = characterI.getCard();
+	public static Location startLocation(CharacterI charCard) {
+		String charName = charCard.getCard();
+		// TODO: Can we use enums here? Would be prettier}
 		if (charName.equals("Kasandra Scarlett")) {
 			return new Location(28, 18);
 		} else if (charName.equals("Jack Mustard")) {

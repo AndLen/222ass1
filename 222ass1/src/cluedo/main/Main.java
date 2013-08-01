@@ -61,12 +61,14 @@ public class Main {
 		List<CharacterI> cCards = setUpCharCards();
 		List<WeaponI> wCards = setUpWeapCards();
 		List<RoomI> rCards = setUpRoomCards();
-		
-		//Construct our solution
-		Player solution = new Player(null,cCards.get(0),rCards.get(0),wCards.get(0));
+		//Construct our solution. Has no name or location as not a "real" player!
+		Player solution = new Player(null,null,cCards.get(0),rCards.get(0),wCards.get(0));
 		//And finally our players.
 		for(int i = 1; i <= numPlayers; i++){
-			board.addPlayer(new Player(Player.startLocation(cCards.get(i)),cCards.get(i),rCards.get(i),wCards.get(i)));
+			//TODO: Change it so players won't always get the same character as their card.
+			CharacterI myName = cCards.get(i);
+			Location myStart = Player.startLocation(myName);
+			board.addPlayer(new Player(myStart,myName,cCards.get(i),rCards.get(i),wCards.get(i)));
 		}
 		Game newGame = new Game(board, solution);
 		return newGame;

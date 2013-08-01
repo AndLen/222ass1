@@ -24,8 +24,8 @@ public class Board {
 		players = new ArrayList<Player>();
 		populateBoard();
 	}
-	
-	public void addPlayer(Player p){
+
+	public void addPlayer(Player p) {
 		players.add(p);
 	}
 
@@ -55,7 +55,10 @@ public class Board {
 			// Print y axis labels
 			sb.append(digitToString(i));
 			for (int j = 0; j < BOARD_WIDTH; j++) {
-				if (gameBoard[j][i] == null) {
+				Player p = hasPlayer(i,j);
+				if (p != null) {
+					sb.append(p.getMySymbol() + "");
+				} else if (gameBoard[j][i] == null) {
 					sb.append("   ");
 				} else
 					sb.append(gameBoard[j][i].toString() + " ");
@@ -64,6 +67,24 @@ public class Board {
 			sb.append("\n");
 		}
 		return sb.toString();
+	}
+
+	/**
+	 * Inefficient...but only <=6 players, so less expensive than a map probably.
+	 * 
+	 * @param i
+	 * @param j
+	 * @return
+	 */
+	private Player hasPlayer(int i, int j) {
+		Location l = new Location(i, j);
+		for (Player p : players) {
+			if (p.getLocation().equals(l)) {
+				return p;
+			}
+		}
+		// No player found
+		return null;
 	}
 
 	private String digitToString(int i) {
@@ -120,49 +141,49 @@ public class Board {
 	 */
 	private void populateBoard() {
 		// Spa
-		Tile spa = new Tile("Sp");
+		Tile spa = new Tile("SP");
 		fillRoom(0, 0, 5, 5, spa);
 		fillRoom(0, 6, 4, 7, spa);
 
 		// Theatre
-		Tile theatre = new Tile("Th");
+		Tile theatre = new Tile("TH");
 		fillRoom(8, 0, 12, 7, theatre);
 
 		// Living Room
-		Tile livingRoom = new Tile("Li");
+		Tile livingRoom = new Tile("LI");
 		fillRoom(14, 0, 19, 7, livingRoom);
 		fillRoom(15, 8, 17, 8, livingRoom);
 
 		// Observatory
-		Tile observatory = new Tile("Ob");
+		Tile observatory = new Tile("OB");
 		fillRoom(22, 0, 23, 8, observatory);
 
 		// Hall
-		Tile hall = new Tile("Ha");
+		Tile hall = new Tile("HA");
 		fillRoom(19, 11, 23, 17, hall);
 
 		// Guest House
-		Tile guestHouse = new Tile("Gu");
+		Tile guestHouse = new Tile("GU");
 		fillRoom(20, 21, 23, 28, guestHouse);
 		fillRoom(21, 20, 23, 20, guestHouse);
 
 		// Dining room
-		Tile diningRoom = new Tile("Di");
+		Tile diningRoom = new Tile("DI");
 		fillRoom(10, 19, 15, 22, diningRoom);
 		fillRoom(9, 23, 16, 28, diningRoom);
 
 		// Kitchen
-		Tile kitchen = new Tile("Ki");
+		Tile kitchen = new Tile("KI");
 		fillRoom(0, 21, 5, 21, kitchen);
 		fillRoom(0, 22, 6, 28, kitchen);
 
 		// Patio
-		Tile patio = new Tile("Pa");
+		Tile patio = new Tile("PA");
 		fillRoom(0, 10, 3, 18, patio);
 		fillRoom(4, 11, 7, 17, patio);
 
 		// Pool
-		Tile pool = new Tile("Po");
+		Tile pool = new Tile("PO");
 		fillRoom(10, 11, 17, 16, pool);
 	}
 }
