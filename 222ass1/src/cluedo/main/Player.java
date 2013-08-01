@@ -14,20 +14,21 @@ import cluedo.cards.Character;
  */
 public class Player {
 	private Location myPosition;
-	
+
 	/* Cards that player has. Assumes can only hold one of each for now. */
-	private Character myChar;
-	private Room myRoomCard;
-	private Weapon myWeap;
-	
-	public Player(Location start, Character c, Room r, Weapon w) {
+	private CharacterI myChar;
+	private RoomI myRoomCard;
+	private WeaponI myWeap;
+
+	public Player(Location start, CharacterI characterI, RoomI roomI,
+			WeaponI weaponI) {
 		myPosition = start;
-		myChar = c;
-		myRoomCard = r;
-		myWeap = w;
+		myChar = characterI;
+		myRoomCard = roomI;
+		myWeap = weaponI;
 	}
 
-	public Character getMyChar() {
+	public CharacterI getMyChar() {
 		return myChar;
 	}
 
@@ -35,7 +36,7 @@ public class Player {
 		this.myChar = myChar;
 	}
 
-	public Room getMyRoomCard() {
+	public RoomI getMyRoomCard() {
 		return myRoomCard;
 	}
 
@@ -43,7 +44,7 @@ public class Player {
 		this.myRoomCard = myRoomCard;
 	}
 
-	public Weapon getMyWeap() {
+	public WeaponI getMyWeap() {
 		return myWeap;
 	}
 
@@ -57,5 +58,24 @@ public class Player {
 
 	public Location getLocation() {
 		return myPosition;
+	}
+
+	public static Location startLocation(CharacterI characterI) {
+		// TODO: Can we use enums here? Would be prettier
+		String charName = characterI.getCard();
+		if (charName.equals("Kasandra Scarlett")) {
+			return new Location(28, 18);
+		} else if (charName.equals("Jack Mustard")) {
+			return new Location(28,7);
+		} else if (charName.equals("Diane White")) {
+			return new Location(19,0);
+		} else if (charName.equals("Jacob Green")) {
+			return new Location(9,0);
+		} else if (charName.equals("Elanor Peacock")) {
+			return new Location(0,6);
+		} else if (charName.equals("Victor Plum")) {
+			return new Location(0,20);
+		}
+		throw new IllegalArgumentException("Invalid Char name");
 	}
 }

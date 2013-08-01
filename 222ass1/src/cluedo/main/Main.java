@@ -18,7 +18,7 @@ import cluedo.cards.Character;
 public class Main {
 	private final int numPlayers;
 	private final Scanner input;
-	private Board board;
+	private Game game;
 
 	public Main() {
 		// Needed as we can't assign a final variable in a while(true)...
@@ -44,21 +44,34 @@ public class Main {
 		}
 		numPlayers = numPlayers2;
 		System.out.println("Starting a game with " + numPlayers + " players.");
-
-		generateSolution();
-		generatePlayers();
-		board = new Board();
-		System.out.print(board.toString());
+		
+		game = setupGame();
+		System.out.print(game.boardToString());
+		game.begin();
+		System.out.println("Thanks for playing!");
 	}
 
 	/**
-	 * Generates objects for the remaining players - excluding the objects
-	 * already used in the solution, obviously!
+	 * Constructs our players and their appropriate cards, and adds this to the Board.
 	 */
-	private void generatePlayers() {
-		// TODO Auto-generated method stub
-
+	private Game setupGame() {
+		
+		Board board = new Board();
+		//First, get all our cards in shuffled lists
+		List<CharacterI> cCards = setUpCharCards();
+		List<WeaponI> wCards = setUpWeapCards();
+		List<RoomI> rCards = setUpRoomCards();
+		
+		//Construct our solution
+		Player solution = new Player(null,cCards.get(0),rCards.get(0),wCards.get(0));
+		//And finally our players.
+		for(int i = 1; i <= numPlayers; i++){
+			board.addPlayer(new Player(Player.startLocation(cCards.get(i)),cCards.get(i),rCards.get(i),wCards.get(i)));
+		}
+		Game newGame = new Game(board, solution);
+		return newGame;
 	}
+
 
 	/**
 	 * creates all the character cards and shuffles the pile
@@ -66,8 +79,8 @@ public class Main {
 	 * @return characters
 	 *            the list to be returned
 	 */
-	private List<Character> setUpCharCards() {
-		List<Character> characters = new ArrayList<Character>();
+	private List<CharacterI> setUpCharCards() {
+		List<CharacterI> characters = new ArrayList<CharacterI>();
 		for (String s : CharacterI.CHARACTERS) {
 			characters.add(new cluedo.cards.Character(s));
 		}
@@ -81,8 +94,8 @@ public class Main {
 	 *
 	 * @return weapons the list to be returned
 	 */
-	private List<Weapon> setUpWeapCards() {
-		List<Weapon> weapons = new ArrayList<Weapon>();
+	private List<WeaponI> setUpWeapCards() {
+		List<WeaponI> weapons = new ArrayList<WeaponI>();
 		for (String s : WeaponI.WEAPONS) {
 			weapons.add(new cluedo.cards.Weapon(s));
 		}
@@ -96,22 +109,14 @@ public class Main {
 	 *
 	 * @return rooms the list to be returned
 	 */
-	private List<Room> setUpRoomCards() {
-		List<Room> rooms = new ArrayList<Room>();
+	private List<RoomI> setUpRoomCards() {
+		List<RoomI> rooms = new ArrayList<RoomI>();
 		for (String s : RoomI.ROOMS) {
 			rooms.add(new cluedo.cards.Room(s));
 		}
 
 		Collections.shuffle(rooms);
 		return rooms;
-	}
-
-	/**
-	 * Constructs our random solution for this game.
-	 */
-	private void generateSolution() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Represents the current "physical" board. Essentially the main data structure
+ * for our program.
+ * 
  * @author lensenandr
  * 
  */
@@ -13,25 +16,29 @@ public class Board {
 	// This needs to stay private as it's not final. Not static anymore so
 	// should be easy to edit safely!
 	private Tile[][] gameBoard;
-	//Our players to draw.
+	// Our players to draw.
 	private List<Player> players;
 
 	public Board() {
-		board = new Tile[BOARD_WIDTH][BOARD_HEIGHT];
+		gameBoard = new Tile[BOARD_WIDTH][BOARD_HEIGHT];
 		populateBoard();
+	}
+	
+	public void addPlayer(Player p){
+		players.add(p);
 	}
 
 	private void fillRoom(int x, int y, int x2, int y2, Tile type) {
 		for (; x <= x2; x++) {
 			// Uses a second variable or else y gets massive, heh. Dumb bug.
 			for (int y1 = y; y1 <= y2; y1++) {
-				board[x][y1] = type;
+				gameBoard[x][y1] = type;
 			}
 		}
 	}
 
 	/*
-	 * Used to print the board :-)
+	 * Used to print the gameBoard :-)
 	 */
 	public String toString() {
 		// More efficient using a StrBlder.
@@ -47,10 +54,10 @@ public class Board {
 			// Print y axis labels
 			sb.append(digitToString(i));
 			for (int j = 0; j < BOARD_WIDTH; j++) {
-				if (board[j][i] == null) {
+				if (gameBoard[j][i] == null) {
 					sb.append("   ");
 				} else
-					sb.append(board[j][i].toString() + " ");
+					sb.append(gameBoard[j][i].toString() + " ");
 			}
 			// End of row
 			sb.append("\n");
@@ -67,12 +74,12 @@ public class Board {
 	}
 
 	/**
-	 * gets all moves that are on board ignoring walls and doors
+	 * gets all moves that are on gameBoard ignoring walls and doors
 	 * 
 	 * 
 	 * @param oldPosition
 	 * @param dice
-	 * @return a list of all poistions on board where a player may move
+	 * @return a list of all poistions on gameBoard where a player may move
 	 */
 	public List<Location> getMovesTo(Location oldPosition, int dice) {
 		// TODO need to implement it so not only the max amount of moves is
@@ -97,7 +104,7 @@ public class Board {
 			if (newPosition.getY() < 0 || newPosition.getY() > BOARD_HEIGHT) {
 				continue;
 			}
-			// this position is on the board
+			// this position is on the gameBoard
 			list.add(new Location(newPosition));
 
 		}
