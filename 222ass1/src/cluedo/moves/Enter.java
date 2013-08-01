@@ -1,6 +1,6 @@
 package cluedo.moves;
 
-import cluedo.main.Board;
+import cluedo.main.Game;
 import cluedo.structs.Chamber;
 import cluedo.structs.Location;
 
@@ -31,12 +31,12 @@ public class Enter implements MoveI {
 	}
 
 	@Override
-	public boolean isValid(Board board) {
+	public boolean isValid(Game game) {
 		// TODO 
 
-		Move move = new Move(oldPosition, newPosition, diceRoll);
+		Move move = new Move(oldPosition, newPosition, diceRoll,game);
 		try {
-			move.isValid(board);
+			move.isValid(game);
 			// if this return is reached the move does not end in a room
 			// therefore move is invalid
 			return false;
@@ -51,7 +51,7 @@ public class Enter implements MoveI {
 	}
 
 	@Override
-	public void apply(Board board) {
+	public void apply(Game game) {
 		// TODO Auto-generated method stub
 
 	}

@@ -1,6 +1,6 @@
-package cluedo.structs;
+package cluedo.tiles;
 
-public class Tile {
+public abstract class Tile {
 	private String stringRep;
 
 	public Tile(String s){

@@ -5,7 +5,10 @@ import java.util.List;
 
 import cluedo.structs.Location;
 import cluedo.structs.Player;
-import cluedo.structs.Tile;
+import cluedo.tiles.CorridorTile;
+import cluedo.tiles.DoorTile;
+import cluedo.tiles.RoomTile;
+import cluedo.tiles.Tile;
 
 /**
  * Represents the current "physical" board. Essentially the main data structure
@@ -24,6 +27,16 @@ public class Board {
 	public Board() {
 		gameBoard = new Tile[BOARD_WIDTH][BOARD_HEIGHT];
 		populateBoard();
+	}
+
+	/**
+	 * Gives what's at a certain place on the board.
+	 * 
+	 * @param l
+	 * @return
+	 */
+	public Tile tileAtLocation(Location l) {
+		return gameBoard[l.getX()][l.getY()];
 	}
 
 	private void fillRoom(int x, int y, int x2, int y2, Tile type) {
@@ -52,11 +65,9 @@ public class Board {
 			// Print y axis labels
 			sb.append(digitToString(i));
 			for (int j = 0; j < BOARD_WIDTH; j++) {
-				Player p = hasPlayer(i,j,g);
+				Player p = hasPlayer(i, j, g);
 				if (p != null) {
 					sb.append(p.getMySymbol() + " ");
-				} else if (gameBoard[j][i] == null) {
-					sb.append("   ");
 				} else
 					sb.append(gameBoard[j][i].toString() + " ");
 			}
@@ -67,7 +78,8 @@ public class Board {
 	}
 
 	/**
-	 * Inefficient...but only <=6 players, so less expensive than a map probably.
+	 * Inefficient...but only <=6 players, so less expensive than a map
+	 * probably.
 	 * 
 	 * @param i
 	 * @param j
@@ -137,50 +149,72 @@ public class Board {
 	 * all be 1x1 square and probably use " D ").
 	 */
 	private void populateBoard() {
+		// Fill everywhere with corridor to start with.
+		Tile corridor = new CorridorTile();
+		fillRoom(0, 0, BOARD_WIDTH - 1, BOARD_HEIGHT - 1, corridor);
+		Tile door = new DoorTile();
 		// Spa
-		Tile spa = new Tile("SP");
+		Tile spa = new RoomTile("SP");
 		fillRoom(0, 0, 5, 5, spa);
 		fillRoom(0, 6, 4, 7, spa);
+		gameBoard[5][5] = door;
 
 		// Theatre
-		Tile theatre = new Tile("TH");
+		Tile theatre = new RoomTile("TH");
 		fillRoom(8, 0, 12, 7, theatre);
+		gameBoard[10][7] = door;
 
 		// Living Room
-		Tile livingRoom = new Tile("LI");
+		Tile livingRoom = new RoomTile("LI");
 		fillRoom(14, 0, 19, 7, livingRoom);
 		fillRoom(15, 8, 17, 8, livingRoom);
+		gameBoard[16][8] = door;
 
 		// Observatory
-		Tile observatory = new Tile("OB");
+		Tile observatory = new RoomTile("OB");
 		fillRoom(22, 0, 23, 8, observatory);
+		gameBoard[22][7] = door;
 
 		// Hall
-		Tile hall = new Tile("HA");
+		Tile hall = new RoomTile("HA");
 		fillRoom(19, 11, 23, 17, hall);
+		gameBoard[19][13] = door;
+		gameBoard[19][14] = door;
+		gameBoard[22][11] = door;
 
 		// Guest House
-		Tile guestHouse = new Tile("GU");
+		Tile guestHouse = new RoomTile("GU");
 		fillRoom(20, 21, 23, 28, guestHouse);
 		fillRoom(21, 20, 23, 20, guestHouse);
+		gameBoard[20][20] = door;
 
 		// Dining room
-		Tile diningRoom = new Tile("DI");
+		Tile diningRoom = new RoomTile("DI");
 		fillRoom(10, 19, 15, 22, diningRoom);
 		fillRoom(9, 23, 16, 28, diningRoom);
+		gameBoard[12][19] = door;
+		gameBoard[15][21] = door;
 
 		// Kitchen
-		Tile kitchen = new Tile("KI");
+		Tile kitchen = new RoomTile("KI");
 		fillRoom(0, 21, 5, 21, kitchen);
 		fillRoom(0, 22, 6, 28, kitchen);
-
+		gameBoard[6][22] = door;
+		
 		// Patio
-		Tile patio = new Tile("PA");
+		Tile patio = new RoomTile("PA");
 		fillRoom(0, 10, 3, 18, patio);
 		fillRoom(4, 11, 7, 17, patio);
+		gameBoard[5][11] = door;
+		gameBoard[7][12] = door;
+		gameBoard[7][16] = door;
+		gameBoard[5][17] = door;
 
 		// Pool
-		Tile pool = new Tile("PO");
+		Tile pool = new RoomTile("PO");
 		fillRoom(10, 11, 17, 16, pool);
+		gameBoard[14][11] = door;
+		gameBoard[10][16] = door;
+		gameBoard[17][16] = door;
 	}
 }

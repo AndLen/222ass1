@@ -3,7 +3,7 @@
  */
 package cluedo.moves;
 
-import cluedo.main.Board;
+import cluedo.main.Game;
 
 /**
  * 
@@ -21,11 +21,11 @@ public interface MoveI {
 	 * @throws Exception 
 	 * @throws CluedoException 
 	 */
-	public boolean isValid(Board board) throws CluedoException;
+	public boolean isValid(Game game) throws CluedoException;
 
 	/**
 	 * applies the move
 	 */
-	public void apply(Board board);
+	public void apply(Game game);
 
 }

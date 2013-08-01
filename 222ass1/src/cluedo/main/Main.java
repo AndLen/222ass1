@@ -84,7 +84,7 @@ public class Main {
 		// And finally our players.
 		List<Player> players = new ArrayList<Player>();
 		int numCardsEach = numPlayers / cardsLeft.size();
-		for (int i = 0; i <= numPlayers; i++) {
+		for (int i = 0; i < numPlayers; i++) {
 			String myName = names.get(i);
 			// 1st char in 1st name capitalised + 1st char in surname
 			// capitalised.

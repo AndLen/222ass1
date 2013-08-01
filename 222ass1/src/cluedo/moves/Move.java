@@ -2,9 +2,8 @@ package cluedo.moves;
 
 import java.util.List;
 
-import cluedo.main.Board;
+import cluedo.main.Game;
 import cluedo.structs.Location;
-import cluedo.structs.Tile;
 
 /**
  * a move is when the player is in the coridors (i.e. not in a room)
@@ -42,8 +41,8 @@ public class Move implements MoveI {
 	 * @param diceRoll
 	 *            the number rolled on the dice
 	 */
-	public Move(Location oldPosition, Location newPosition, int diceRoll) {
-		if (!Board.board[oldPosition.getX()][oldPosition.getY()].equals(null)) {
+	public Move(Location oldPosition, Location newPosition, int diceRoll, Game game) {
+		if(!game.isDoorLocation(oldPosition)){
 			throw new IllegalArgumentException(
 					"oldPosition must be in a corridor");
 		}
@@ -53,15 +52,15 @@ public class Move implements MoveI {
 	}
 
 	@Override
-	public boolean isValid(Board board) throws CluedoException {
+	public boolean isValid(Game game) throws CluedoException {
 		// TODO
 		// can we jump over a player? i know they cant when they are blocking a
 		// door, but can they if the are in hallway
 
-		List<Location> moves = board.getMovesTo(oldPosition, diceRoll);
+		List<Location> moves = game.getMovesTo(oldPosition, diceRoll);
 
 		if (moves.contains(newPosition)) {
-			if (newPosition.isInRoom()) {
+			if (game.isRoomLocation(newPosition)) {
 				throw new EnteringRoomException(
 						"move is potentially valid but needs to be an EnterMove");
 			}
@@ -73,7 +72,7 @@ public class Move implements MoveI {
 	}
 
 	@Override
-	public void apply(Board board) {
+	public void apply(Game game) {
 		// TODO Auto-generated method stub
 
 	}
