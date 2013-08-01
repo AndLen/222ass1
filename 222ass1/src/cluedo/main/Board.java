@@ -123,7 +123,7 @@ public class Board {
 		// e.g. -> -> | or just -> -> ->
 		// v
 		// TODO it allows straight, and L shaped moves, but only around one
-		// ;corner'
+		// ;corner' this only becomes a problem when oldPos = a room and new pos = another room
 
 		List<Location> list = new ArrayList<Location>();
 		Location newPosition = new Location();
@@ -156,69 +156,70 @@ public class Board {
 		// Fill everywhere with corridor to start with.
 		Tile corridor = new CorridorTile();
 		fillRoom(0, 0, BOARD_WIDTH - 1, BOARD_HEIGHT - 1, corridor);
-		Tile door = new DoorTile();
+		//Tile door = new DoorTile();
 		// Spa
 		Tile spa = new RoomTile("SP");
 		fillRoom(0, 0, 5, 5, spa);
 		fillRoom(0, 6, 4, 7, spa);
-		gameBoard[5][5] = door;
+		gameBoard[5][5] = new DoorTile(0, 1);
 
 		// Theatre
 		Tile theatre = new RoomTile("TH");
 		fillRoom(8, 0, 12, 7, theatre);
-		gameBoard[10][7] = door;
+		gameBoard[10][7] = new DoorTile(0, 1);
 
 		// Living Room
 		Tile livingRoom = new RoomTile("LI");
 		fillRoom(14, 0, 19, 7, livingRoom);
 		fillRoom(15, 8, 17, 8, livingRoom);
-		gameBoard[16][8] = door;
+		gameBoard[16][8] = new DoorTile(0, 1);
 
 		// Observatory
 		Tile observatory = new RoomTile("OB");
 		fillRoom(22, 0, 23, 8, observatory);
-		gameBoard[22][7] = door;
+		gameBoard[22][7] = new DoorTile(-1, 0);
 
 		// Hall
 		Tile hall = new RoomTile("HA");
 		fillRoom(19, 11, 23, 17, hall);
-		gameBoard[19][13] = door;
-		gameBoard[19][14] = door;
-		gameBoard[22][11] = door;
+		gameBoard[19][13] = new DoorTile(-1, 0);
+		gameBoard[19][14] = new DoorTile(-1, 0);
+		gameBoard[22][11] = new DoorTile(0, -1);
 
 		// Guest House
 		Tile guestHouse = new RoomTile("GU");
 		fillRoom(20, 21, 23, 28, guestHouse);
 		fillRoom(21, 20, 23, 20, guestHouse);
-		gameBoard[20][20] = door;
-
+		gameBoard[20][21] = new DoorTile(0, -1);
+		gameBoard[21][20] = new DoorTile(-1, 0);
+		
 		// Dining room
 		Tile diningRoom = new RoomTile("DI");
 		fillRoom(10, 19, 15, 22, diningRoom);
 		fillRoom(9, 23, 16, 28, diningRoom);
-		gameBoard[12][19] = door;
-		gameBoard[15][21] = door;
+		gameBoard[12][19] = new DoorTile(0, -1);
+		gameBoard[15][21] = new DoorTile(1, 0);
 
 		// Kitchen
 		Tile kitchen = new RoomTile("KI");
 		fillRoom(0, 21, 5, 21, kitchen);
 		fillRoom(0, 22, 6, 28, kitchen);
-		gameBoard[6][22] = door;
+		gameBoard[6][22] = new DoorTile(0, -1);
 
 		// Patio
 		Tile patio = new RoomTile("PA");
 		fillRoom(0, 10, 3, 18, patio);
 		fillRoom(4, 11, 7, 17, patio);
-		gameBoard[5][11] = door;
-		gameBoard[7][12] = door;
-		gameBoard[7][16] = door;
-		gameBoard[5][17] = door;
+		gameBoard[5][11] = new DoorTile(0, -1);
+		gameBoard[7][12] = new DoorTile(1, 0);
+		gameBoard[7][16] = new DoorTile(1, 0);
+		gameBoard[5][17] = new DoorTile(0, 1);
 
 		// Pool
 		Tile pool = new RoomTile("PO");
 		fillRoom(10, 11, 17, 16, pool);
-		gameBoard[14][11] = door;
-		gameBoard[10][16] = door;
-		gameBoard[17][16] = door;
+		gameBoard[14][11] = new DoorTile(0, -1);
+		gameBoard[10][16] = new DoorTile(0, 1);
+		gameBoard[17][16] = new DoorTile(0, 1);
 	}
 }

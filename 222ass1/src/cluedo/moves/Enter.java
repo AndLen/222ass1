@@ -41,11 +41,18 @@ public class Enter implements MoveI {
 			// therefore move is invalid
 			return false;
 		}
-		// i want to recieve this exception (moves is likley to be valid)
+		// i want to recieve this exception (move is likley to be valid)
 		catch (CluedoException e) {
 		}
 
 		// we can now check if a door was usedto enter this room
+
+		// TODO if we count the taps back from each door of the room entered
+		// then check that that list contains the oldPosition
+
+		// i could -1 off dice make the oldpos one step outside of door (by
+		// using the x/y dirs from the doortile class) then calculate all
+		// positions possible.
 
 		return false;
 	}
