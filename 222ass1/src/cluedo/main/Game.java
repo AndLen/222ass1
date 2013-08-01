@@ -1,6 +1,7 @@
 package cluedo.main;
 
 import java.util.List;
+import java.util.Map;
 
 import cluedo.cards.Card;
 import cluedo.structs.Location;
@@ -22,6 +23,10 @@ public class Game {
 	private List<Card> cardsInPool;
 	// Our human players.
 	private List<Player> players;
+	/**
+	 * The entry is the next player clockwise after the key player.
+	 */
+	private Map<Player,Player> nextPlayer;
 
 	public Game(Board b, Solution s, List<Card> cardsLeft, List<Player> players) {
 		gameBoard = b;
@@ -32,8 +37,34 @@ public class Game {
 	}
 
 	public void beginGame() {
+		nextPlayer = getOrder();
 		// TODO Auto-generated method stub
 
+	}
+
+	/**
+	 * Constructs the order in which players take turns.
+	 * @return
+	 * TODO: Implement map return.
+	 */
+	private Map<Player, Player> getOrder() {
+		int highestRoll = 0;
+		Player highestRollPlayer = null;
+		//Find who rolled the highest number
+		for(Player p: players){
+			int roll = (int)(1+Math.random()*6);
+			System.out.println(p.getMyName() + " rolled a " + roll + "!");
+			if(roll > highestRoll){
+				highestRoll = roll;
+				highestRollPlayer = p;
+			}
+		}
+		System.out.println(highestRollPlayer.getMyName() + " goes first.");
+		return null;
+	}
+	
+	public Player nextPlayer(Player current){
+		return nextPlayer.get(current);
 	}
 
 	public String boardToString() {

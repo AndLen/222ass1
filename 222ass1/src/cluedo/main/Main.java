@@ -72,8 +72,7 @@ public class Main {
 		List<WeaponI> wCards = setUpWeapCards();
 		List<RoomI> rCards = setUpRoomCards();
 
-		// Construct our solution. Has no name or location as not a "real"
-		// player!
+		// Construct our solution from 1st cards in shuffled list
 		Solution sol = new Solution(cCards.remove(0), rCards.remove(0),
 				wCards.remove(0));
 
@@ -86,7 +85,7 @@ public class Main {
 
 		// And finally our players.
 		List<Player> players = new ArrayList<Player>();
-		int numCardsEach = numPlayers / cardsLeft.size();
+		int numCardsEach = cardsLeft.size()/numPlayers;
 		for (int i = 0; i < numPlayers; i++) {
 			String myName = names.get(i);
 			// 1st char in 1st name capitalised + 1st char in surname
@@ -97,9 +96,9 @@ public class Main {
 							.lastIndexOf(" ") + 1));
 			Location myStart = Player.startLocation(myName);
 			List<Card> myCards = new ArrayList<Card>();
-			for (int j = 0; i < numCardsEach; j++) {
+			for (int j = 0; j < numCardsEach; j++) {
 				// Automatically shifts stuff down for next time as .remove().
-				myCards.add(cardsLeft.remove(j));
+				myCards.add(cardsLeft.remove(0));
 			}
 			players.add(new Player(myStart, myName, mySymbol, myCards));
 		}

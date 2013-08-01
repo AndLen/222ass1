@@ -74,6 +74,8 @@ public class Board {
 			// End of row
 			sb.append("\n");
 		}
+		//End of board.
+		sb.append("\n");
 		return sb.toString();
 	}
 
@@ -145,8 +147,7 @@ public class Board {
 	}
 
 	/**
-	 * Adds all our doors and rooms TODO: Add doors at bottom of method (should
-	 * all be 1x1 square and probably use " D ").
+	 * Adds all our doors and rooms
 	 */
 	private void populateBoard() {
 		// Fill everywhere with corridor to start with.
