@@ -18,6 +18,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({ 
 	CardTests.class,
 	MoveTests.class,
+	BoardTests.class,
 // classtests.class,
 
 })
