@@ -18,11 +18,11 @@ import cluedo.tiles.RoomTile;
  * 
  */
 public class Game {
-	private Board gameBoard;
-	private Solution solution;
-	private List<Card> cardsInPool;
+	private final Board gameBoard;
+	private final Solution solution;
+	private final List<Card> cardsInPool;
 	// Our human players.
-	private List<Player> players;
+	private final List<Player> players;
 	/**
 	 * The entry is the next player clockwise after the key player.
 	 */
