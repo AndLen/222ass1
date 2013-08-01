@@ -71,7 +71,7 @@ public class Player {
 			return new Location(19,0);
 		} else if (charName.equals("Jacob Green")) {
 			return new Location(9,0);
-		} else if (charName.equals("Elanor Peacock")) {
+		} else if (charName.equals("Eleanor Peacock")) {
 			return new Location(0,6);
 		} else if (charName.equals("Victor Plum")) {
 			return new Location(0,20);

@@ -21,6 +21,7 @@ public class Board {
 
 	public Board() {
 		gameBoard = new Tile[BOARD_WIDTH][BOARD_HEIGHT];
+		players = new ArrayList<Player>();
 		populateBoard();
 	}
 	
