@@ -58,7 +58,7 @@ public class Move implements MoveI {
 		// can we jump over a player? i know they cant when they are blocking a
 		// door, but can they if the are in hallway
 
-		List<Location> moves = Board.getMovesTo(oldPosition, diceRoll);
+		List<Location> moves = board.getMovesTo(oldPosition, diceRoll);
 
 		if (moves.contains(newPosition)) {
 			if (newPosition.isInRoom()) {

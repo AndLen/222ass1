@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import cluedo.cards.*;
-import cluedo.cards.Character;
 import cluedo.structs.Location;
 import cluedo.structs.Player;
 import cluedo.structs.Solution;

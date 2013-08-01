@@ -13,6 +13,11 @@ package cluedo.moves;
  */
 public class EnteringRoomException extends CluedoException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public EnteringRoomException(String string) {
 		super(string);
 	}

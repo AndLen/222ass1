@@ -1,5 +1,6 @@
 package cluedo.structs;
 
+import java.util.Iterator;
 import java.util.List;
 
 import cluedo.cards.*;
@@ -18,7 +19,6 @@ public class Player {
 	private final String myName;
 	private final String mySymbol;
 
-	/* Cards that player has. Assumes can only hold one of each for now. */
 	private List<Card> myCards;
 
 	public String getMyName() {
@@ -35,12 +35,20 @@ public class Player {
 		myCards = cards;
 	}
 
-	public void updatePosition(Location newPos) {
+	public void updateLocation(Location newPos) {
 		myPosition = newPos;
 	}
 
 	public Location getLocation() {
 		return myPosition;
+	}
+	
+	/**
+	 * Use me to check if I have certain cards.
+	 * @return
+	 */
+	public Iterator<Card> myCardsIterator(){
+		return myCards.iterator();
 	}
 
 	public static Location startLocation(String charName) {
