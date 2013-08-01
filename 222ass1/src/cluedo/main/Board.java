@@ -12,7 +12,9 @@ public class Board {
 	private static final int BOARD_HEIGHT = 29;
 	// This needs to stay private as it's not final. Not static anymore so
 	// should be easy to edit safely!
-	private Tile[][] board;
+	private Tile[][] gameBoard;
+	//Our players to draw.
+	private List<Player> players;
 
 	public Board() {
 		board = new Tile[BOARD_WIDTH][BOARD_HEIGHT];
