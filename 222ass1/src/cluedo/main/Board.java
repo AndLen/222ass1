@@ -122,6 +122,8 @@ public class Board {
 		// TODO Does this allow diagonal moves or just straight lines?
 		// e.g. -> -> | or just -> -> ->
 		// v
+		// TODO it allows staight, and L shaped moves, but only around one ;corner'
+		
 		List<Location> list = new ArrayList<Location>();
 		Location newPosition = new Location();
 
