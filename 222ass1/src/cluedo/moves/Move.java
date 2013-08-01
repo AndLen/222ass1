@@ -4,6 +4,7 @@ import java.util.List;
 
 import cluedo.main.Game;
 import cluedo.structs.Location;
+import cluedo.structs.Player;
 
 /**
  * a move is when the player is in the coridors (i.e. not in a room)
@@ -37,7 +38,8 @@ public class Move implements MoveI {
 	/**
 	 * 
 	 * @param oldPosition
-	 *            the tile to be moved to
+	 *            the tile to be moved from
+	 * @param newPosition the tile to be moved to
 	 * @param diceRoll
 	 *            the number rolled on the dice
 	 */
@@ -59,6 +61,13 @@ public class Move implements MoveI {
 		// door, but can they if the are in hallway
 
 		List<Location> moves = game.getMovesTo(oldPosition, diceRoll);
+		for (Player p : game.getPlayers()) {
+			if (p.getLocation().equals(newPosition)) {
+
+				// player cannot land on another player
+				return false;
+			}
+		}
 
 		if (moves.contains(newPosition)) {
 			if (game.isRoomLocation(newPosition)) {
