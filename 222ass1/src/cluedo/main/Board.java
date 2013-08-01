@@ -20,17 +20,10 @@ public class Board {
 	// This needs to stay private as it's not final. Not static anymore so
 	// should be easy to edit safely!
 	private Tile[][] gameBoard;
-	// Our players to draw.
-	private List<Player> players;
 
 	public Board() {
 		gameBoard = new Tile[BOARD_WIDTH][BOARD_HEIGHT];
-		players = new ArrayList<Player>();
 		populateBoard();
-	}
-
-	public void addPlayer(Player p) {
-		players.add(p);
 	}
 
 	private void fillRoom(int x, int y, int x2, int y2, Tile type) {
@@ -45,7 +38,7 @@ public class Board {
 	/*
 	 * Used to print the gameBoard :-)
 	 */
-	public String toString() {
+	public String toString(Game g) {
 		// More efficient using a StrBlder.
 		StringBuilder sb = new StringBuilder();
 		// Extra to compensate for shift due to vertical axis.
@@ -59,7 +52,7 @@ public class Board {
 			// Print y axis labels
 			sb.append(digitToString(i));
 			for (int j = 0; j < BOARD_WIDTH; j++) {
-				Player p = hasPlayer(i,j);
+				Player p = hasPlayer(i,j,g);
 				if (p != null) {
 					sb.append(p.getMySymbol() + " ");
 				} else if (gameBoard[j][i] == null) {
@@ -80,9 +73,9 @@ public class Board {
 	 * @param j
 	 * @return
 	 */
-	private Player hasPlayer(int i, int j) {
+	private Player hasPlayer(int i, int j, Game g) {
 		Location l = new Location(i, j);
-		for (Player p : players) {
+		for (Player p : g.getPlayers()) {
 			if (p.getLocation().equals(l)) {
 				return p;
 			}

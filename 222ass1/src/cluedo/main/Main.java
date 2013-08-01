@@ -50,7 +50,7 @@ public class Main {
 
 		game = setupGame();
 		System.out.print(game.boardToString());
-		game.begin();
+		game.beginGame();
 		System.out.println("Thanks for playing!");
 	}
 
@@ -82,6 +82,7 @@ public class Main {
 		Collections.shuffle(cardsLeft);
 
 		// And finally our players.
+		List<Player> players = new ArrayList<Player>();
 		int numCardsEach = numPlayers / cardsLeft.size();
 		for (int i = 0; i <= numPlayers; i++) {
 			String myName = names.get(i);
@@ -97,9 +98,9 @@ public class Main {
 				// Automatically shifts stuff down for next time as .remove().
 				myCards.add(cardsLeft.remove(j));
 			}
-			board.addPlayer(new Player(myStart, myName, mySymbol, myCards));
+			players.add(new Player(myStart, myName, mySymbol, myCards));
 		}
-		Game newGame = new Game(board, sol,cardsLeft);
+		Game newGame = new Game(board, sol,cardsLeft,players);
 		return newGame;
 	}
 
