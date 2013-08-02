@@ -1,6 +1,7 @@
 package cluedo.moves;
 
 import java.util.List;
+import java.util.Set;
 
 import cluedo.main.Game;
 import cluedo.structs.Location;
@@ -60,7 +61,9 @@ public class Move implements MoveI {
 		// can we jump over a player? i know they cant when they are blocking a
 		// door, but can they if the are in hallway
 
-		List<Location> moves = game.getMovesTo(oldPosition, diceRoll);
+		Set<Location> moves = game.getMovesTo(oldPosition, diceRoll);
+		
+		
 		for (Player p : game.getPlayers()) {
 		
 			if (p.getLocation().equals(newPosition)) {
@@ -80,6 +83,24 @@ public class Move implements MoveI {
 		}
 
 		return false;
+	}
+
+	private void printMoves(Set<Location> moves) {
+		boolean a[][] = new boolean[26][26];
+		for(Location l : moves){
+			a[l.getX()][l.getY()] = true;
+		}
+		for(boolean[] ba : a){
+			for(boolean b : ba){
+				if(b){
+					System.out.print("x");
+				}
+				else{
+					System.out.print(" ");
+				}
+			}
+			System.out.print("\n");
+		}
 	}
 
 	@Override
