@@ -1,5 +1,7 @@
 package cluedo.structs;
 
+import cluedo.main.Board;
+
 /**
  * a pair of x and y coordinates
  * 
@@ -91,4 +93,14 @@ public class Location {
 		this.y = y;
 	}
 
+	/**
+	 * Checks if a given location is within the confines of the board.
+	 * 
+	 * @param l
+	 * @return
+	 */
+	public static boolean isValid(Location l) {
+		return (l.getX() > 0 && l.getX() < Board.BOARD_WIDTH && l.getY() > 0 && l
+				.getY() < Board.BOARD_HEIGHT);
+	}
 }

@@ -62,6 +62,7 @@ public class Move implements MoveI {
 
 		List<Location> moves = game.getMovesTo(oldPosition, diceRoll);
 		for (Player p : game.getPlayers()) {
+		
 			if (p.getLocation().equals(newPosition)) {
 
 				// player cannot land on another player
