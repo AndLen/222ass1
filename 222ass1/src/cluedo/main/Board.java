@@ -18,8 +18,8 @@ import cluedo.tiles.Tile;
  * 
  */
 public class Board {
-	private static final int BOARD_WIDTH = 24;
-	private static final int BOARD_HEIGHT = 29;
+	public static final int BOARD_WIDTH = 24;
+	public static final int BOARD_HEIGHT = 29;
 	// This needs to stay private as it's not final. Not static anymore so
 	// should be easy to edit safely!
 	private Tile[][] gameBoard;
@@ -133,11 +133,7 @@ public class Board {
 				newPosition.setX(i);
 				newPosition.setY(j);
 
-				if (newPosition.getX() < 0 || newPosition.getX() > BOARD_WIDTH) {
-					continue;
-				}
-
-				if (newPosition.getY() < 0 || newPosition.getY() > BOARD_HEIGHT) {
+				if (!Location.isValid(newPosition)){
 					continue;
 				}
 				// this position is on the gameBoard
