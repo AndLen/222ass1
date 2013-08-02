@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cluedo.main.Game;
-import cluedo.structs.Chamber;
 import cluedo.structs.Location;
 import cluedo.tiles.DoorTile;
 
