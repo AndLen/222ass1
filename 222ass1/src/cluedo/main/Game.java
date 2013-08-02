@@ -1,6 +1,8 @@
 package cluedo.main;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,36 +25,92 @@ public class Game {
 	private final Solution solution;
 	private final List<Card> cardsInPool;
 	// Our human players.
-	private final List<Player> players;
-	/**
-	 * The entry is the next player clockwise after the key player.
-	 */
-	private Map<Player, Player> nextPlayer;
+	private final Map<String, Player> players;
 
-	public Game(Board b, Solution s, List<Card> cardsLeft, List<Player> players) {
+	private Player nextPlayer;
+
+	// Used to find who the next person clockwise to go is!
+	private final Map<Player, Player> playerToNextPlayer;
+
+	public Game(Board b, Solution s, List<Card> cardsLeft,
+			List<Player> playersList) {
 		gameBoard = b;
 		solution = s;
 		// All our leftover cards get put in the middle.
 		cardsInPool = cardsLeft;
-		this.players = players;
+		
+		//Make maps.
+		players = new HashMap<String,Player>();
+		for(Player p: playersList){
+			players.put(p.getMyName(), p);
+		}
+		playerToNextPlayer = setUpMap();
+
+		//DEBUG - shows our mapping of next players.
+		//System.out.println(playerToNextPlayer.entrySet());
 	}
 
 	public void beginGame() {
 		nextPlayer = getOrder();
-		
 		// TODO Auto-generated method stub
 
 	}
+	
+	/*
+	 * Next three methods are used to initialising the map of player to next
+	 * player - surprisingly hard to code!
+	 */
+	private Map<Player, Player> setUpMap() {
+		Map<Player, Player> map = new HashMap<Player, Player>();
+		for (Player p : players.values()) {
+			Player next = nextPlayerSetup(p);
+			map.put(p, next);
+		}
+		return map;
+	}
+
+	private Player nextPlayerSetup(Player kas) {
+		Player next = null;
+		String nextString = kas.getMyName();
+		do {
+			nextString = nextPlayerString(nextString);
+
+		} while (players.get(nextString) == null);
+		next = players.get(nextString);
+		return next;
+	}
+
+	private String nextPlayerString(String charName) {
+		if (charName.equals("Kasandra Scarlett")) {
+			return "Jack Mustard";
+		} else if (charName.equals("Jack Mustard")) {
+			return "Diane White";
+		} else if (charName.equals("Diane White")) {
+			return "Jacob Green";
+		} else if (charName.equals("Jacob Green")) {
+			return "Eleanor Peacock";
+		} else if (charName.equals("Eleanor Peacock")) {
+			return "Victor Plum";
+		} else if (charName.equals("Victor Plum")) {
+			return "Kasandra Scarlett";
+		}
+		throw new IllegalArgumentException("Invalid Char name");
+	}
+
+	/* 
+	 * End map intialisation code.
+	 */
+
 	/**
 	 * Constructs the order in which players take turns.
 	 * 
 	 * @return TODO: Implement map return.
 	 */
-	private Map<Player, Player> getOrder() {
+	private Player getOrder() {
 		int highestRoll = 0;
 		Player highestRollPlayer = null;
 		// Find who rolled the highest number
-		for (Player p : players) {
+		for (Player p : players.values()) {
 			int roll = (int) (1 + Math.random() * 6);
 			System.out.println(p.getMyName() + " rolled a " + roll + "!");
 			if (roll > highestRoll) {
@@ -61,15 +119,13 @@ public class Game {
 			}
 		}
 		System.out.println(highestRollPlayer.getMyName() + " goes first.");
-		return null;
-	}
-
-	private Player nextPlayer(Player current) {
-		return nextPlayer.get(current);
+		return highestRollPlayer;
 	}
 
 	/**
-	 * Gives an ASCII representation of the board. Printing this out will print the board (with newlines and all)
+	 * Gives an ASCII representation of the board. Printing this out will print
+	 * the board (with newlines and all)
+	 * 
 	 * @return
 	 */
 	public String boardToString() {
@@ -94,7 +150,7 @@ public class Game {
 	 * @return
 	 */
 	private Player findPlayerAt(Location oldL) {
-		for (Player p : players) {
+		for (Player p : players.values()) {
 			if (p.getLocation().equals(oldL)) {
 				return p;
 			}
@@ -109,7 +165,8 @@ public class Game {
 	 * @return
 	 */
 	public final List<Player> getPlayers() {
-		return Collections.unmodifiableList(players);
+		return Collections.unmodifiableList(new ArrayList<Player>(players
+				.values()));
 	}
 
 	public List<Location> getMovesTo(Location oldPosition, int diceRoll) {

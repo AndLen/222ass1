@@ -71,4 +71,8 @@ public class Player {
 		}
 		throw new IllegalArgumentException("Invalid Char name");
 	}
+	
+	public String toString(){
+		return getMyName();
+	}
 }
