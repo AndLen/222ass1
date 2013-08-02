@@ -1,7 +1,10 @@
 package cluedo.main;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import cluedo.structs.Location;
 import cluedo.structs.Player;
@@ -23,6 +26,8 @@ public class Board {
 	// This needs to stay private as it's not final. Not static anymore so
 	// should be easy to edit safely!
 	private Tile[][] gameBoard;
+
+	private List<DoorTile> listOfDoors;
 
 	public Board() {
 		gameBoard = new Tile[BOARD_WIDTH][BOARD_HEIGHT];
@@ -114,7 +119,7 @@ public class Board {
 	 * @param dice
 	 * @return a list of all poistions on gameBoard where a player may move
 	 */
-	public List<Location> getMovesTo(Location oldPosition, int dice) {
+	public Set<Location> getMovesTo(Location oldPosition, int dice) {
 		// TODO need to implement it so not only the max amount of moves is
 		// possible(at the moment player must move dice squares and not back and
 		// forward)
@@ -126,25 +131,34 @@ public class Board {
 		// ;corner' this only becomes a problem when oldPos = a room and new pos
 		// = another room. need to check the code does actually check this now
 
-		List<Location> list = new ArrayList<Location>();
+		Set<Location> list = new TreeSet<Location>();
 		Location newPosition = new Location();
 
-		for (int i = 0; i <= dice; i++) {
-			for (int j = dice; j >= 0; j--) {
-				newPosition.setX(i);
-				newPosition.setY(j);
+		for (int i = -dice; i <= dice; i++) {
+			for (int j = dice; j >= -dice; j--) {
+				newPosition.setX(oldPosition.getX() + i);
+				newPosition.setY(oldPosition.getY() + j);
 
 				if (!Location.isValid(newPosition)) {
 					continue;
 				}
 				// this position is on the gameBoard
+				if (i + j > dice || i + j < -dice) {
+					continue;
+				}
+
+				if (Math.abs(i) + Math.abs(j) > dice) {
+					continue;
+				}
 				list.add(new Location(newPosition));
 
 				// i think this should recursively get the positions to allow
 				// multiple turns/corners to be made
-				if (i + j < dice) {
-					list.addAll(getMovesTo(newPosition, dice - (i + j)));
-				}
+				// no longer need to do this
+//				if (i + j < dice && i - j > -dice) {
+//					list.addAll(getMovesTo(newPosition, i + j));
+//				}
+
 			}
 		}
 
@@ -224,5 +238,23 @@ public class Board {
 		gameBoard[14][11] = new DoorTile(0, -1, 14, 11);
 		gameBoard[10][16] = new DoorTile(0, 1, 10, 16);
 		gameBoard[17][16] = new DoorTile(0, 1, 17, 16);
+
+		// add all doors to the list
+		listOfDoors = new ArrayList<DoorTile>();
+		for (Tile[] ta : gameBoard) {
+			for (Tile t : ta) {
+				if (t instanceof DoorTile) {
+					listOfDoors.add((DoorTile) t);
+				}
+			}
+		}
 	}
+
+	/**
+	 * @return the setOfDoors
+	 */
+	public List<DoorTile> getListOfDoors() {
+		return listOfDoors;
+	}
+
 }
