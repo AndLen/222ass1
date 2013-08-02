@@ -3,12 +3,14 @@ package cluedo.main;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
 import cluedo.cards.Card;
+import cluedo.moves.CluedoException;
 import cluedo.moves.Move;
 import cluedo.structs.Dice;
 import cluedo.structs.Location;
@@ -17,6 +19,7 @@ import cluedo.structs.Solution;
 import cluedo.tiles.CorridorTile;
 import cluedo.tiles.DoorTile;
 import cluedo.tiles.RoomTile;
+import cluedo.tiles.Tile;
 
 /**
  * Responsible for managing and running the game.
@@ -58,24 +61,113 @@ public class Game {
 
 	public void runGame() {
 		nextPlayer = getOrder();
-		while (!gameFinished) {
-			takeTurn(nextPlayer);
-			nextPlayer = playerToNextPlayer.get(nextPlayer);
-		}
+		while (true) {
+			boolean alive = takeTurn(nextPlayer);
 
+			// Did anyone win?
+			if (gameFinished) {
+				break;
+			}
+
+			nextPlayer = playerToNextPlayer.get(nextPlayer);
+			if (!alive) {
+				players.remove(nextPlayer.getMyName());
+				// And re-intialise the map
+				setUpMap();
+			}
+		}
+		System.out.println("Congrats to " + nextPlayer
+				+ "! You have won the game.");
 	}
 
-	private void takeTurn(Player p) {
+	/**
+	 * Returns true if the player is still alive <_<
+	 * 
+	 * @param p
+	 * @return
+	 */
+	private boolean takeTurn(Player p) {
 		int roll = die.getRoll();
 		System.out
 				.println("It is " + p + "'s turn!\n" + p + " rolls a " + roll);
-		System.out
-				.println("Please enter the x,y co-ordinates to move to in the form x,y:\n");
-		Location newLocation = getLocationInput();
-		
-		//TODO: Make this auto-select the right move! (probably in the move constructor).
-		new Move(p.getLocation(),newLocation, roll, this);
+
+		Move m;
+		boolean validMove = false;
+		// Okay, let's get the player to make a move that's valid.
+		do {
+			Location newLocation = getLocationInput();
+			// TODO: Make this auto-select the right move! (probably in the move
+			// constructor).
+			m = new Move(p.getLocation(), newLocation, roll, this);
+			try {
+				validMove = m.isValid(this);
+			} catch (CluedoException e) {
+				System.out.println("Invalid move: " + e.getMessage());
+				continue;
+			}
+			if (!validMove) {
+				System.out.println("Invalid move.");
+			}
+		} while (!validMove);
+		// Cool, we got a valid move.
+		m.apply(this);
 		System.out.print(gameBoard.toString(this));
+
+		// Print what cards you have
+		Iterator<Card> cardIt = p.myCardsIterator();
+		System.out.print("Your cards: ");
+		while (cardIt.hasNext()) {
+			System.out.print(cardIt.next().getCard() + ", ");
+		}
+		System.out.println();
+
+		// If we're in the pool, we can make an accusation, otherwise we are
+		// making an announcement
+		boolean canAccuse = inParticularRoomLocation(p.getLocation(), "Po");
+		boolean wantsToSpeak = getAnnounceInput(canAccuse);
+		
+		//TODO: Add viewing extra cards if in pool.
+		if (wantsToSpeak) {
+
+			if (canAccuse) {
+				Solution s = getAccusationInput();
+				if (s.equals(solution)) {
+					gameFinished = true;
+					return true;
+				} else {
+					System.out.println("Wrong, you're dead");
+					return false;
+				}
+			} else {
+				// TODO: Wants to announce
+				System.out.println("Well tough shit");
+				// Otherwise just an announcement.
+			}
+		}
+		// We didn't die
+		return true;
+	}
+
+	private Solution getAccusationInput() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private boolean getAnnounceInput(boolean inPool) {
+		System.out.printf(
+				"Would you like to make an %s? Type \"yes\" or \"no\"\n",
+				inPool ? "accusation" : "announcement");
+		Scanner sc = new Scanner(System.in);
+		String data = sc.nextLine();
+		data = data.toLowerCase(); // If they decided caps would be fun
+		if (data.contains("yes")) {
+			return true;
+		} else if (data.contains("no")) {
+			return false;
+		} else {
+			System.out.println("Not a valid choice");
+			return getAnnounceInput(inPool);
+		}
 	}
 
 	/**
@@ -85,6 +177,8 @@ public class Game {
 	 * @return
 	 */
 	private Location getLocationInput() {
+		System.out
+				.println("Please enter the x,y co-ordinates to move to in the form x,y:");
 		try {
 			Scanner sc = new Scanner(System.in);
 			String data = sc.nextLine();
@@ -232,15 +326,30 @@ public class Game {
 		return (gameBoard.tileAtLocation(newPosition) instanceof RoomTile);
 	}
 
+	/**
+	 * Checks if a location is a particular room (not just ANY room)
+	 * 
+	 * @param newPosition
+	 * @param roomAcronym
+	 *            e.g. "PO" for pool etc.
+	 * @return
+	 */
+	public boolean inParticularRoomLocation(Location newPosition,
+			String roomAcronym) {
+		Tile r = gameBoard.tileAtLocation(newPosition);
+		return (r instanceof RoomTile && r.toString().equals(roomAcronym));
+	}
+
 	public boolean isDoorLocation(Location newPosition) {
 		return (gameBoard.tileAtLocation(newPosition) instanceof DoorTile);
 	}
-
+	
 	/**
-	 * @return the gameBoard
+	 * Doors in our game.
+	 * @return
 	 */
-	public Board getGameBoard() {
-		return gameBoard;
+	public List<DoorTile> getDoors(){
+		return gameBoard.getListOfDoors();
 	}
 
 }

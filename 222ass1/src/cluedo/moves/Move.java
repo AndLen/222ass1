@@ -1,6 +1,5 @@
 package cluedo.moves;
 
-import java.util.List;
 import java.util.Set;
 
 import cluedo.main.Game;
@@ -17,24 +16,10 @@ import cluedo.structs.Player;
  */
 public class Move implements MoveI {
 
-	private int x;
-	private int y;
 	private Location oldPosition;
 	private int diceRoll;
 	private Location newPosition;
 
-	/**
-	 * 
-	 * @param x
-	 *            the x coordinate of the cell moving to
-	 * @param y
-	 *            the y coordinate of the cell moving to
-	 */
-	public Move(int x, int y) {
-		this.x = x;
-		this.y = y;
-
-	}
 
 	/**
 	 * 
@@ -53,6 +38,7 @@ public class Move implements MoveI {
 		this.oldPosition = oldPosition;
 		this.newPosition = newPosition;
 		this.diceRoll = diceRoll;
+		
 	}
 
 	@Override
@@ -106,7 +92,7 @@ public class Move implements MoveI {
 
 	@Override
 	public void apply(Game game) {
-		// TODO Auto-generated method stub
+		game.changePlayerLocation(oldPosition, newPosition);
 
 	}
 
