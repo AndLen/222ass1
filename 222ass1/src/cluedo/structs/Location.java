@@ -11,7 +11,7 @@ import cluedo.main.Board;
  * @param <T>
  * 
  */
-public class Location implements Comparable {
+public class Location implements Comparable<Location> {
 	private int x;
 	private int y;
 
@@ -105,9 +105,8 @@ public class Location implements Comparable {
 				.getY() < Board.BOARD_HEIGHT);
 	}
 
-
 	@Override
-	public int compareTo(Object obj) {
+	public int compareTo(Location obj) {
 		// TODO Auto-generated method stub
 
 		if (equals(obj)) {
