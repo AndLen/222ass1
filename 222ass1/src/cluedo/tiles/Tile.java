@@ -30,4 +30,17 @@ public abstract class Tile {
 		return stringRep;
 	}
 
+	/**
+	 * @return the x
+	 */
+	public int getX() {
+		return x;
+	}
+
+	/**
+	 * @return the y
+	 */
+	public int getY() {
+		return y;
+	}
 }

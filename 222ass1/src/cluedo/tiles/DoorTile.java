@@ -41,5 +41,4 @@ public class DoorTile extends Tile {
 	public int getyDir() {
 		return yDir;
 	}
-	
 }
