@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import cluedo.cards.Card;
 import cluedo.structs.Location;
@@ -169,7 +170,7 @@ public class Game {
 				.values()));
 	}
 
-	public List<Location> getMovesTo(Location oldPosition, int diceRoll) {
+	public Set<Location> getMovesTo(Location oldPosition, int diceRoll) {
 		return gameBoard.getMovesTo(oldPosition, diceRoll);
 	}
 
@@ -185,4 +186,11 @@ public class Game {
 		return (gameBoard.tileAtLocation(newPosition) instanceof DoorTile);
 	}
 
+	/**
+	 * @return the gameBoard
+	 */
+	public Board getGameBoard() {
+		return gameBoard;
+	}
+	
 }
