@@ -1,8 +1,14 @@
 package cluedo.tiles;
 
+
 public abstract class Tile {
 	private String stringRep;
-	
+
+	/**
+	 * the positionon the board
+	 */
+	private int x;
+	private int y;
 	
 	public Tile(String s) {
 		stringRep = s;
@@ -10,6 +16,8 @@ public abstract class Tile {
 
 	public Tile(String s, int x, int y) {
 		stringRep = s;
+		this.x = x;
+		this.y = y;
 	}
 
 	public void draw() {
