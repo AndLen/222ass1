@@ -8,9 +8,10 @@ import cluedo.main.Board;
  * bad encapsulation should make it easier to find where a player is at.
  * 
  * @author Michael
+ * @param <T>
  * 
  */
-public class Location {
+public class Location<T> implements Comparable<T> {
 	private int x;
 	private int y;
 
@@ -100,7 +101,25 @@ public class Location {
 	 * @return
 	 */
 	public static boolean isValid(Location l) {
-		return (l.getX() > 0 && l.getX() < Board.BOARD_WIDTH && l.getY() > 0 && l
+		return (l.getX() >= 0 && l.getX() < Board.BOARD_WIDTH && l.getY() >= 0 && l
 				.getY() < Board.BOARD_HEIGHT);
+	}
+
+	@Override
+	public int compareTo(T obj) {
+		// TODO Auto-generated method stub
+
+		if (equals(obj)) {
+			return 0;
+		}
+
+		if (getClass() != obj.getClass())
+			return 0;
+		Location other = (Location) obj;
+		if (x * y < other.x * other.y) {
+			return -1;
+		}
+		
+		return 1;
 	}
 }
