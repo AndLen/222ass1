@@ -16,6 +16,7 @@ import cluedo.cards.WeaponI;
 import cluedo.main.Board;
 import cluedo.main.Game;
 import cluedo.moves.CluedoException;
+import cluedo.moves.Enter;
 import cluedo.moves.Move;
 import cluedo.structs.Location;
 import cluedo.structs.Player;
@@ -63,26 +64,26 @@ public class MoveTests {
 	public void testEnterRoom(){
 		
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(9, 10), CharacterI.CHARACTERS[0], null, null));
+		players.add(new Player(new Location(7, 9), CharacterI.CHARACTERS[0], null, null));
 		
 		
 		Game game = new Game(new Board(),
 				new Solution(new Character(CharacterI.CHARACTERS[1]),
 						new Room(RoomI.ROOMS[1]), new Weapon(WeaponI.WEAPONS[1])), null, players);
 		
-		Move move = new Move(players.get(0).getLocation(), new Location(7,11), 6, game);
+		Enter move = new Enter(players.get(0).getLocation(), new Location(9,1), 3, game);
 		
-		try {
+		//try {
 			if(!move.isValid(game)){
 				// move is invalid
 				fail("a Player can enter room");
 				
 			}
-		} catch (CluedoException e) {
+		//} catch (CluedoException e) {
 			// TODO Auto-generated catch block
-			fail("exception thrown");
-			e.printStackTrace();
-		}
+//			fail("exception thrown");
+//			e.printStackTrace();
+//		}
 		// TODO move one of the players so that they land on the other
 		
 	}

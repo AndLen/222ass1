@@ -74,7 +74,8 @@ public class Move implements MoveI {
 		}
 
 		if (moves.contains(newPosition)) {
-			if (game.isRoomLocation(newPosition)) {
+			// a door should also counts as a roomlocation
+			if (game.isRoomLocation(newPosition) || game.isDoorLocation(newPosition)) {
 				throw new EnteringRoomException(
 						"move is potentially valid but needs to be an EnterMove");
 			}
