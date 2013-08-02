@@ -2,6 +2,7 @@ package tests;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -40,7 +41,7 @@ public class BoardTests {
 				new Solution(new Character(CharacterI.CHARACTERS[1]),
 						new Room(RoomI.ROOMS[1]), new Weapon(WeaponI.WEAPONS[1])), null, players);
 		
-		List<Location> movesTo = game.getMovesTo(new Location(8, 8), 4);
+		Set<Location> movesTo = game.getMovesTo(new Location(8, 8), 4);
 		
 		
 	}

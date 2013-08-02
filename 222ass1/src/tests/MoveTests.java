@@ -54,5 +54,37 @@ public class MoveTests {
 		// TODO move one of the players so that they land on the other
 		
 	}
+	
+	
+	@Test
+	/**
+	 * test if a player can enter a room
+	 */
+	public void testEnterRoom(){
+		
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(9, 10), CharacterI.CHARACTERS[0], null, null));
+		
+		
+		Game game = new Game(new Board(),
+				new Solution(new Character(CharacterI.CHARACTERS[1]),
+						new Room(RoomI.ROOMS[1]), new Weapon(WeaponI.WEAPONS[1])), null, players);
+		
+		Move move = new Move(players.get(0).getLocation(), new Location(7,11), 6, game);
+		
+		try {
+			if(!move.isValid(game)){
+				// move is invalid
+				fail("a Player can enter room");
+				
+			}
+		} catch (CluedoException e) {
+			// TODO Auto-generated catch block
+			fail("exception thrown");
+			e.printStackTrace();
+		}
+		// TODO move one of the players so that they land on the other
+		
+	}
 
 }
