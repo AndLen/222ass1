@@ -41,6 +41,9 @@ public class Board {
 	 * @return
 	 */
 	public Tile tileAtLocation(Location l) {
+		if(!Location.isValid(l)){
+			throw new IllegalArgumentException("Location " + l.getX() + " " + l.getY() + "isn't valid");
+		}
 		return gameBoard[l.getX()][l.getY()];
 	}
 
@@ -70,7 +73,8 @@ public class Board {
 			// Print y axis labels
 			sb.append(digitToString(i));
 			for (int j = 0; j < BOARD_WIDTH; j++) {
-				Player p = hasPlayer(i, j, g);
+				//hasplayer x, y
+				Player p = hasPlayer(j,i, g);
 				if (p != null) {
 					sb.append(p.getMySymbol() + " ");
 				} else

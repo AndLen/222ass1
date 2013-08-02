@@ -5,9 +5,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
 import cluedo.cards.Card;
+import cluedo.moves.Move;
+import cluedo.structs.Dice;
 import cluedo.structs.Location;
 import cluedo.structs.Player;
 import cluedo.structs.Solution;
@@ -23,6 +26,8 @@ import cluedo.tiles.RoomTile;
  */
 public class Game {
 	private final Board gameBoard;
+	private boolean gameFinished = false;
+	private final Dice die = new Dice();
 	private final Solution solution;
 	private final List<Card> cardsInPool;
 	// Our human players.
@@ -39,24 +44,69 @@ public class Game {
 		solution = s;
 		// All our leftover cards get put in the middle.
 		cardsInPool = cardsLeft;
-		
-		//Make maps.
-		players = new HashMap<String,Player>();
-		for(Player p: playersList){
+
+		// Make maps.
+		players = new HashMap<String, Player>();
+		for (Player p : playersList) {
 			players.put(p.getMyName(), p);
 		}
 		playerToNextPlayer = setUpMap();
 
-		//DEBUG - shows our mapping of next players.
-		//System.out.println(playerToNextPlayer.entrySet());
+		// DEBUG - shows our mapping of next players.
+		// System.out.println(playerToNextPlayer.entrySet());
 	}
 
-	public void beginGame() {
+	public void runGame() {
 		nextPlayer = getOrder();
-		// TODO Auto-generated method stub
+		while (!gameFinished) {
+			takeTurn(nextPlayer);
+			nextPlayer = playerToNextPlayer.get(nextPlayer);
+		}
 
 	}
-	
+
+	private void takeTurn(Player p) {
+		int roll = die.getRoll();
+		System.out
+				.println("It is " + p + "'s turn!\n" + p + " rolls a " + roll);
+		System.out
+				.println("Please enter the x,y co-ordinates to move to in the form x,y:\n");
+		Location newLocation = getLocationInput();
+		
+		//TODO: Make this auto-select the right move! (probably in the move constructor).
+		new Move(p.getLocation(),newLocation, roll, this);
+		System.out.print(gameBoard.toString(this));
+	}
+
+	/**
+	 * Requests input for the player to move to on the board and checks their
+	 * validity.
+	 * 
+	 * @return
+	 */
+	private Location getLocationInput() {
+		try {
+			Scanner sc = new Scanner(System.in);
+			String data = sc.nextLine();
+			// Split by the comma
+			String[] numbers = data.split(",");
+			if (numbers.length == 2) {
+				// Trim them in case of whitespace.
+				int x = Integer.parseInt(numbers[0].trim());
+				int y = Integer.parseInt(numbers[1].trim());
+				Location newLoc = new Location(x, y);
+				if (Location.isValid(newLoc)) {
+					return newLoc;
+				}
+			}
+			System.out.println("Invalid Co-ordinates, try again.\n");
+			return getLocationInput();
+		} catch (NumberFormatException e) {
+			System.out.println("Invalid Co-ordinates, try again.\n");
+			return getLocationInput();
+		}
+	}
+
 	/*
 	 * Next three methods are used to initialising the map of player to next
 	 * player - surprisingly hard to code!
@@ -98,7 +148,7 @@ public class Game {
 		throw new IllegalArgumentException("Invalid Char name");
 	}
 
-	/* 
+	/*
 	 * End map intialisation code.
 	 */
 
@@ -112,7 +162,7 @@ public class Game {
 		Player highestRollPlayer = null;
 		// Find who rolled the highest number
 		for (Player p : players.values()) {
-			int roll = (int) (1 + Math.random() * 6);
+			int roll = die.getRoll();
 			System.out.println(p.getMyName() + " rolled a " + roll + "!");
 			if (roll > highestRoll) {
 				highestRoll = roll;
@@ -192,5 +242,5 @@ public class Game {
 	public Board getGameBoard() {
 		return gameBoard;
 	}
-	
+
 }
