@@ -64,14 +64,14 @@ public class MoveTests {
 	public void testEnterRoom(){
 		
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(7, 9), CharacterI.CHARACTERS[0], null, null));
+		players.add(new Player(new Location(6, 20), CharacterI.CHARACTERS[0], null, null));
 		
 		
 		Game game = new Game(new Board(),
 				new Solution(new Character(CharacterI.CHARACTERS[1]),
 						new Room(RoomI.ROOMS[1]), new Weapon(WeaponI.WEAPONS[1])), null, players);
 		
-		Enter move = new Enter(players.get(0).getLocation(), new Location(9,1), 3, game);
+		Enter move = new Enter(players.get(0).getLocation(), new Location(2,27), 2, game);
 		
 		//try {
 			if(!move.isValid(game)){
