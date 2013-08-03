@@ -18,7 +18,7 @@ public class Passage implements MoveI {
 	}
 
 	@Override
-	public boolean isValid(Game game) throws CluedoException {
+	public boolean isValid(Game game) /*throws CluedoException */{
 		// TODO Auto-generated method stub
 		
 		if(game.isRoomLocation(oldPosition) || game.isDoorLocation(oldPosition)){

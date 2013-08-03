@@ -22,6 +22,8 @@ public class Move implements MoveI {
 	private int diceRoll;
 	private Location newPosition;
 
+	private MoveI move; // move if not a simple corridor to corridor move.
+
 	/**
 	 * 
 	 * @param oldPosition
@@ -33,10 +35,6 @@ public class Move implements MoveI {
 	 */
 	public Move(Location oldPosition, Location newPosition, int diceRoll,
 			Game game) {
-		if (!game.isCorridorLocation(oldPosition)) {
-			throw new IllegalArgumentException(
-					"oldPosition must be in a corridor");
-		}
 		this.oldPosition = oldPosition;
 		this.newPosition = newPosition;
 		this.diceRoll = diceRoll;
@@ -44,7 +42,7 @@ public class Move implements MoveI {
 	}
 
 	@Override
-	public boolean isValid(Game game) throws CluedoException {
+	public boolean isValid(Game game) /*throws CluedoException*/ {
 		// TODO
 		// can we jump over a player? i know they can't when they are blocking a
 		// door, but can they if the are in hallway
@@ -61,13 +59,18 @@ public class Move implements MoveI {
 			}
 		}
 
+		if ((game.isRoomLocation(oldPosition) || game
+				.isDoorLocation(oldPosition))
+				&& (game.isRoomLocation(newPosition) || game
+						.isDoorLocation(newPosition))) {
+
+			move = new Passage(oldPosition, newPosition, diceRoll, game);
+			return move.isValid(game);
+		}
+
 		if (moves.contains(newPosition)) {
 			// a door should also counts as a roomlocation
-			if (game.isRoomLocation(newPosition)
-					|| game.isDoorLocation(newPosition)) {
-				throw new EnteringRoomException(
-						"move is potentially valid but needs to be an EnterMove");
-			}
+		
 
 			// should check that path doesn't involve walking through walls
 			// if only one six sided dice can only occur when crossing the tip
@@ -79,6 +82,14 @@ public class Move implements MoveI {
 			// List<Location> path = new ArrayList<Location>();
 
 			return true;
+		}
+		
+		if (game.isRoomLocation(newPosition)
+				|| game.isDoorLocation(newPosition)) {
+			// throw new EnteringRoomException(
+			// "move is potentially valid but needs to be an EnterMove");
+			move = new Enter(oldPosition, newPosition, diceRoll, game);
+			return move.isValid(game);
 		}
 
 		return false;

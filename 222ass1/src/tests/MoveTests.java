@@ -45,18 +45,11 @@ public class MoveTests {
 		Move move = new Move(players.get(0).getLocation(), new Location(8, 8),
 				1, game);
 
-		try {
-			if (move.isValid(game)) {
-				// move is invalid
-				fail("a Player cannot move onto another player");
+		if (move.isValid(game)) {
+			// move is invalid
+			fail("a Player cannot move onto another player");
 
-			}
-		} catch (CluedoException e) {
-			// TODO Auto-generated catch block
-			fail("exception thrown");
-			e.printStackTrace();
 		}
-		// TODO move one of the players so that they land on the other
 
 	}
 
@@ -74,7 +67,7 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Enter move = new Enter(players.get(0).getLocation(),
+		Move move = new Move(players.get(0).getLocation(),
 				new Location(2, 27), 2, game);
 
 		// try {
@@ -181,7 +174,7 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Enter move = new Enter(players.get(0).getLocation(),
+		Move move = new Move(players.get(0).getLocation(),
 				new Location(16, 5), 6, game);
 
 		if (!move.isValid(game)) {
@@ -209,15 +202,10 @@ public class MoveTests {
 		Move move = new Move(players.get(0).getLocation(), new Location(20, 7),
 				8, game);
 
-		try {
-			if (move.isValid(game)) {
-				// move is invalid
-				fail("a Player cannot walk through walls");
+		if (move.isValid(game)) {
+			// move is invalid
+			fail("a Player cannot walk through walls");
 
-			}
-		} catch (CluedoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}
@@ -237,18 +225,13 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Passage move = new Passage(players.get(0).getLocation(), new Location(
+		Move move = new Move(players.get(0).getLocation(), new Location(
 				22, 25), 8, game);
 
-		try {
-			if (!move.isValid(game)) {
-				// move is invalid
-				fail("a Player can move between spa and guest house");
+		if (!move.isValid(game)) {
+			// move is invalid
+			fail("a Player can move between spa and guest house");
 
-			}
-		} catch (CluedoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}
@@ -268,18 +251,13 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Passage move = new Passage(players.get(0).getLocation(), new Location(
+		Move move = new Move(players.get(0).getLocation(), new Location(
 				0, 0), 1, game);
 
-		try {
-			if (!move.isValid(game)) {
-				// move is invalid
-				fail("a Player can move between guest house and spa");
+		if (!move.isValid(game)) {
+			// move is invalid
+			fail("a Player can move between guest house and spa");
 
-			}
-		} catch (CluedoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}
@@ -299,18 +277,13 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Passage move = new Passage(players.get(0).getLocation(), new Location(
+		Move move = new Move(players.get(0).getLocation(), new Location(
 				23, 1), 1, game);
 
-		try {
-			if (!move.isValid(game)) {
-				// move is invalid
-				fail("a Player can move between kitchen and observatory");
+		if (!move.isValid(game)) {
+			// move is invalid
+			fail("a Player can move between kitchen and observatory");
 
-			}
-		} catch (CluedoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}
@@ -330,18 +303,13 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Passage move = new Passage(players.get(0).getLocation(), new Location(
+		Move move = new Move(players.get(0).getLocation(), new Location(
 				1, 25), 1, game);
 
-		try {
-			if (!move.isValid(game)) {
-				// move is invalid
-				fail("a Player can move between observatory and kitchen");
+		if (!move.isValid(game)) {
+			// move is invalid
+			fail("a Player can move between observatory and kitchen");
 
-			}
-		} catch (CluedoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}
@@ -361,18 +329,13 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Passage move = new Passage(players.get(0).getLocation(), new Location(
+		Move move = new Move(players.get(0).getLocation(), new Location(
 				1, 6), 1, game);
 
-		try {
-			if (move.isValid(game)) {
+		if (move.isValid(game)) {
 
-				fail("a Player cannot move between patio and spa");
+			fail("a Player cannot move between patio and spa");
 
-			}
-		} catch (CluedoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}
@@ -392,18 +355,13 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Passage move = new Passage(players.get(0).getLocation(), new Location(
+		Move move = new Move(players.get(0).getLocation(), new Location(
 				1, 21), 1, game);
 
-		try {
-			if (move.isValid(game)) {
+		if (move.isValid(game)) {
 
-				fail("a Player cannot move between guest house and kitchen");
+			fail("a Player cannot move between guest house and kitchen");
 
-			}
-		} catch (CluedoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 	}

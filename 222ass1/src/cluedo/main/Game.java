@@ -99,12 +99,12 @@ public class Game {
 			// TODO: Make this auto-select the right move! (probably in the move
 			// constructor).
 			m = new Move(p.getLocation(), newLocation, roll, this);
-			try {
+//			try {
 				validMove = m.isValid(this);
-			} catch (CluedoException e) {
-				System.out.println("Invalid move: " + e.getMessage());
-				continue;
-			}
+//			} catch (CluedoException e) {
+//				System.out.println("Invalid move: " + e.getMessage());
+//				continue;
+//			}
 			if (!validMove) {
 				System.out.println("Invalid move.");
 			}
