@@ -29,7 +29,6 @@ public class DoorTile extends Tile {
 		this.xDir = xDir;
 		this.yDir = yDir;
 
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

@@ -127,11 +127,7 @@ public class Board {
 		// TODO need to implement it so not only the max amount of moves is
 		// possible(at the moment player must move dice squares and not back and
 		// forward)
-
-		// TODO Does this allow diagonal moves or just straight lines?
-		// e.g. -> -> | or just -> -> ->
-		// v
-		// TODO it allows straight, and L shaped moves, but only around one
+		//it allows straight, and L shaped moves, but only around one
 		// ;corner' this only becomes a problem when oldPos = a room and new pos
 		// = another room. need to check the code does actually check this now
 

@@ -26,7 +26,6 @@ public class Location implements Comparable<Location> {
 	}
 
 	public Location() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -107,7 +106,6 @@ public class Location implements Comparable<Location> {
 
 	@Override
 	public int compareTo(Location obj) {
-		// TODO Auto-generated method stub
 
 		if (equals(obj)) {
 			return 0;

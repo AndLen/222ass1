@@ -1,5 +1,7 @@
 package cluedo.cards;
 
+import java.util.Arrays;
+
 /**
  * 
  * @author Michael
@@ -17,6 +19,9 @@ public class Character implements Card {
 	private String card;
 
 	public Character(String s) {
+		if(!Arrays.asList(CHARACTERS).contains(s)){
+			throw new IllegalArgumentException(s + "is not a character");
+		}
 		this.card = s;
 
 	}
