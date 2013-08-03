@@ -57,17 +57,17 @@ public class Player {
 	public static Location startLocation(String charName) {
 		// TODO: Can we use enums here? Would be prettier}
 		if (charName.equals("Kasandra Scarlett")) {
-			return new Location(28, 18);
+			return new Location(18, 28);
 		} else if (charName.equals("Jack Mustard")) {
-			return new Location(28, 7);
+			return new Location(7, 28);
 		} else if (charName.equals("Diane White")) {
-			return new Location(19, 0);
+			return new Location(0,19);
 		} else if (charName.equals("Jacob Green")) {
-			return new Location(9, 0);
+			return new Location(0, 9);
 		} else if (charName.equals("Eleanor Peacock")) {
-			return new Location(0, 6);
+			return new Location(6, 0);
 		} else if (charName.equals("Victor Plum")) {
-			return new Location(0, 20);
+			return new Location(20, 0);
 		}
 		throw new IllegalArgumentException("Invalid Char name");
 	}

@@ -53,7 +53,7 @@ public class Main {
 
 		game = setupGame();
 		System.out.print(game.boardToString());
-		game.beginGame();
+		game.runGame();
 		System.out.println("Thanks for playing!");
 	}
 

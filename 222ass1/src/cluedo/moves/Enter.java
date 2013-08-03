@@ -60,7 +60,7 @@ public class Enter implements MoveI {
 		List<Location> list = new ArrayList<Location>();
 		//diceRoll--; // by using the position infront of the door, one tap/move
 					// has already been taken
-		for (DoorTile d : game.getGameBoard().getListOfDoors()) {
+		for (DoorTile d : game.getDoors()) {
 			Location outsideDoor = new Location(d.getX() + d.getxDir(),
 					d.getY() + d.getyDir()); // the position one step before the
 												// door.
