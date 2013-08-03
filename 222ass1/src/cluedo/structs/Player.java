@@ -9,7 +9,6 @@ import cluedo.cards.Card;
  * Represents a human player in the game. Should contain their current location,
  * as well as their own cards.
  * 
- * TODO: Put an interface in for this I guess.
  * 
  * @author Andrew
  * 
@@ -55,7 +54,6 @@ public class Player {
 	}
 
 	public static Location startLocation(String charName) {
-		// TODO: Can we use enums here? Would be prettier}
 		if (charName.equals("Kasandra Scarlett")) {
 			return new Location(18, 28);
 		} else if (charName.equals("Jack Mustard")) {

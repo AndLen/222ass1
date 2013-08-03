@@ -37,7 +37,6 @@ public class Exit implements MoveI {
 	 */
 	@Override
 	public boolean isValid(Game game) {
-		// TODO Auto-generated method stub
 
 		Set<Location> moves = new TreeSet<Location>();
 

@@ -98,7 +98,6 @@ public class MoveTests {
 
 		}
 		// } catch (CluedoException e) {
-		// TODO Auto-generated catch block
 		// fail("exception thrown");
 		// e.printStackTrace();
 		// }

@@ -9,7 +9,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-import cluedo.cards.Card;
+import cluedo.cards.*;
+import cluedo.cards.Character;
 import cluedo.moves.Move;
 import cluedo.structs.Dice;
 import cluedo.structs.Location;
@@ -95,15 +96,8 @@ public class Game {
 		// Okay, let's get the player to make a move that's valid.
 		do {
 			Location newLocation = getLocationInput();
-			// TODO: Make this auto-select the right move! (probably in the move
-			// constructor).
 			m = new Move(p.getLocation(), newLocation, roll, this);
-			// try {
 			validMove = m.isValid(this);
-			// } catch (CluedoException e) {
-			// System.out.println("Invalid move: " + e.getMessage());
-			// continue;
-			// }
 			if (!validMove) {
 				System.out.println("Invalid move.");
 			}
@@ -122,10 +116,16 @@ public class Game {
 
 		// If we're in the pool, we can make an accusation, otherwise we are
 		// making an announcement
-		boolean canAccuse = inParticularRoomLocation(p.getLocation(), "Po");
+		boolean canAccuse = inParticularRoomLocation(p.getLocation(),"PO");
+		if (canAccuse) {
+			System.out.println("Cards in pool: ");
+			for (Card c : cardsInPool) {
+				System.out.print(c + ", ");
+			}
+			System.out.println();
+		}
 		boolean wantsToSpeak = getAnnounceInput(canAccuse);
 
-		// TODO: Add viewing extra cards if in pool.
 		if (wantsToSpeak) {
 
 			if (canAccuse) {
@@ -146,12 +146,39 @@ public class Game {
 		// We didn't die
 		return true;
 	}
-
+	/**
+	 * Requests input for the player to make an accusation and checks their
+	 * validity.
+	 * 
+	 * @return
+	 */
 	private Solution getAccusationInput() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		System.out
+				.println("Type the character name, room name and weapon name seperated by commas.");
+		Scanner sc = new Scanner(System.in);
+		String data = sc.nextLine();
+		String stringCards[] = data.split(",");
 
+		if (stringCards.length == 3) {
+			try {
+				Character c = new Character(stringCards[0]);
+				Room r = new Room(stringCards[1]);
+				Weapon w = new Weapon(stringCards[2]);
+				return new Solution(c, r, w);
+			} catch (IllegalArgumentException e) {
+				System.out.println("Not valid" + e);
+			}
+		} else {
+			System.out.println("Not enough cards.");
+		}
+		return getAccusationInput();
+	}
+	/**
+	 * Requests input for the player to make an announcement and checks their
+	 * validity.
+	 * 
+	 * @return
+	 */
 	private boolean getAnnounceInput(boolean inPool) {
 		System.out.printf(
 				"Would you like to make an %s? Type \"yes\" or \"no\"\n",
@@ -182,7 +209,7 @@ public class Game {
 			Scanner sc = new Scanner(System.in);
 			String data = sc.nextLine();
 			// Split by the comma
-			String[] numbers = data.split(",");
+			String numbers[] = data.split(",");
 			if (numbers.length == 2) {
 				// Trim them in case of whitespace.
 				int x = Integer.parseInt(numbers[0].trim());
@@ -248,7 +275,6 @@ public class Game {
 	/**
 	 * Constructs the order in which players take turns.
 	 * 
-	 * @return TODO: Implement map return.
 	 */
 	private Player getOrder() {
 		int highestRoll = 0;
