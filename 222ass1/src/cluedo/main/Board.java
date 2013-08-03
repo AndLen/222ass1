@@ -185,66 +185,66 @@ public class Board {
 		Tile spa = new RoomTile("SP");
 		fillRoom(0, 0, 5, 5, spa);
 		fillRoom(0, 6, 4, 7, spa);
-		gameBoard[5][5] = new DoorTile(0, 1, 5, 5);
+		gameBoard[5][5] = new DoorTile("SP", 0, 1, 5, 5);
 
 		// Theatre
 		Tile theatre = new RoomTile("TH");
 		fillRoom(8, 0, 12, 7, theatre);
-		gameBoard[10][7] = new DoorTile(0, 1, 10, 7);
+		gameBoard[10][7] = new DoorTile("TH", 0, 1, 10, 7);
 
 		// Living Room
 		Tile livingRoom = new RoomTile("LI");
 		fillRoom(14, 0, 19, 7, livingRoom);
 		fillRoom(15, 8, 17, 8, livingRoom);
-		gameBoard[16][8] = new DoorTile(0, 1, 16, 8);
+		gameBoard[16][8] = new DoorTile("LI", 0, 1, 16, 8);
 
 		// Observatory
 		Tile observatory = new RoomTile("OB");
 		fillRoom(22, 0, 23, 8, observatory);
-		gameBoard[22][7] = new DoorTile(-1, 0, 22, 7);
+		gameBoard[22][7] = new DoorTile("OB", -1, 0, 22, 7);
 
 		// Hall
 		Tile hall = new RoomTile("HA");
 		fillRoom(19, 11, 23, 17, hall);
-		gameBoard[19][13] = new DoorTile(-1, 0, 19, 13);
-		gameBoard[19][14] = new DoorTile(-1, 0, 19, 14);
-		gameBoard[22][11] = new DoorTile(0, -1, 22, 11);
+		gameBoard[19][13] = new DoorTile("HA", -1, 0, 19, 13);
+		gameBoard[19][14] = new DoorTile("HA", -1, 0, 19, 14);
+		gameBoard[22][11] = new DoorTile("HA", 0, -1, 22, 11);
 
 		// Guest House
 		Tile guestHouse = new RoomTile("GU");
 		fillRoom(20, 21, 23, 28, guestHouse);
 		fillRoom(21, 20, 23, 20, guestHouse);
-		gameBoard[20][21] = new DoorTile(0, -1, 20, 21);
-		gameBoard[21][20] = new DoorTile(-1, 0, 21, 20);
+		gameBoard[20][21] = new DoorTile("GU", 0, -1, 20, 21);
+		gameBoard[21][20] = new DoorTile("GU", -1, 0, 21, 20);
 
 		// Dining room
 		Tile diningRoom = new RoomTile("DI");
 		fillRoom(10, 19, 15, 22, diningRoom);
 		fillRoom(9, 23, 16, 28, diningRoom);
-		gameBoard[12][19] = new DoorTile(0, -1, 12, 19);
-		gameBoard[15][21] = new DoorTile(1, 0, 15, 21);
+		gameBoard[12][19] = new DoorTile("DI", 0, -1, 12, 19);
+		gameBoard[15][21] = new DoorTile("DI", 1, 0, 15, 21);
 
 		// Kitchen
 		Tile kitchen = new RoomTile("KI");
 		fillRoom(0, 21, 5, 21, kitchen);
 		fillRoom(0, 22, 6, 28, kitchen);
-		gameBoard[6][22] = new DoorTile(0, -1, 6, 22);
+		gameBoard[6][22] = new DoorTile("KI", 0, -1, 6, 22);
 
 		// Patio
 		Tile patio = new RoomTile("PA");
 		fillRoom(0, 10, 3, 18, patio);
 		fillRoom(4, 11, 7, 17, patio);
-		gameBoard[5][11] = new DoorTile(0, -1, 5, 11);
-		gameBoard[7][12] = new DoorTile(1, 0, 7, 12);
-		gameBoard[7][16] = new DoorTile(1, 0, 7, 16);
-		gameBoard[5][17] = new DoorTile(0, 1, 5, 17);
+		gameBoard[5][11] = new DoorTile("PA", 0, -1, 5, 11);
+		gameBoard[7][12] = new DoorTile("PA", 1, 0, 7, 12);
+		gameBoard[7][16] = new DoorTile("PA", 1, 0, 7, 16);
+		gameBoard[5][17] = new DoorTile("PA", 0, 1, 5, 17);
 
 		// Pool
 		Tile pool = new RoomTile("PO");
 		fillRoom(10, 11, 17, 16, pool);
-		gameBoard[14][11] = new DoorTile(0, -1, 14, 11);
-		gameBoard[10][16] = new DoorTile(0, 1, 10, 16);
-		gameBoard[17][16] = new DoorTile(0, 1, 17, 16);
+		gameBoard[14][11] = new DoorTile("PO", 0, -1, 14, 11);
+		gameBoard[10][16] = new DoorTile("PO", 0, 1, 10, 16);
+		gameBoard[17][16] = new DoorTile("PO", 0, 1, 17, 16);
 
 		// add all doors to the list
 		listOfDoors = new ArrayList<DoorTile>();
