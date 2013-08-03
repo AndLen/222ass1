@@ -4,7 +4,7 @@ public class DoorTile extends Tile {
 
 	private int xDir;
 	private int yDir;
-	private String roomInitial;
+	
 
 	/**
 	 * 
@@ -16,9 +16,8 @@ public class DoorTile extends Tile {
 	 *            unless North West e.t.c
 	 */
 	public DoorTile(String roomInitial, int xDir, int yDir, int x, int y) {
-		super(" #", x, y);
+		super(" #", roomInitial, x, y);
 
-		this.roomInitial = roomInitial;
 		if (xDir < -1 || xDir > 1) {
 			throw new IllegalArgumentException("xDir must be -1, 0 or 1");
 		}
@@ -46,10 +45,5 @@ public class DoorTile extends Tile {
 		return yDir;
 	}
 
-	/**
-	 * @return the roomInitial
-	 */
-	public String getRoomInitial() {
-		return roomInitial;
-	}
+
 }

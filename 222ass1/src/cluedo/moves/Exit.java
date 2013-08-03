@@ -41,7 +41,9 @@ public class Exit implements MoveI {
 		//check that one of the positions infront of a door is in the set.
 		// for each door check if door is for the room currently in
 		for(DoorTile dT : game.getDoors()){
-			if(dT.getRoomInitial().equals(game.getTile(oldPosition).toString())){
+			
+			System.out.println("dT:" + dT.getRoomInitial() + " roomTile: " + game.getTile(oldPosition).getRoomInitial());
+			if(dT.getRoomInitial().equals(game.getTile(oldPosition).getRoomInitial())){
 				// then the door then the door belongs to the same room we are in
 				Location loc = new Location(dT.getX()+dT.getxDir(), dT.getY()+dT.getyDir());
 				moves.addAll(game.getMovesTo(loc, diceRoll-1));

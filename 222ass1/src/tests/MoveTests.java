@@ -461,7 +461,7 @@ public class MoveTests {
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(6, 20),
-				2, game);
+				3, game);
 
 		if (!move.isValid(game)) {
 
@@ -470,4 +470,32 @@ public class MoveTests {
 		}
 
 	}
+	
+	@Test
+	/**
+	 * test if a player can exit a room into a corridor
+	 *  dianew white got stuck on 5,17 and couldnt exit
+	 */
+	public void testExitRoom2() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(5, 17), CharacterI.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
+				new Weapon(WeaponI.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(5, 18),
+				1, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit a room");
+
+		}
+
+	}
+	
+	
 }

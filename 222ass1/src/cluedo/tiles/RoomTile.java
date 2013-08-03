@@ -9,7 +9,7 @@ package cluedo.tiles;
 public class RoomTile extends Tile {
 
 	public RoomTile(String s) {
-		super(s);
+		super(s, s);
 		// TODO Auto-generated constructor stub
 	}
 

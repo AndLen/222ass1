@@ -3,7 +3,7 @@ package cluedo.tiles;
 
 public abstract class Tile {
 	private String stringRep;
-
+	private String roomInitial;
 	/**
 	 * the positionon the board
 	 */
@@ -16,6 +16,18 @@ public abstract class Tile {
 
 	public Tile(String s, int x, int y) {
 		stringRep = s;
+		this.x = x;
+		this.y = y;
+	}
+	
+	public Tile(String s, String roomInitial) {
+		stringRep = s;
+		this.roomInitial = roomInitial;
+	}
+	
+	public Tile(String s, String roomInitial, int x, int y) {
+		stringRep = s;
+		this.roomInitial = roomInitial;
 		this.x = x;
 		this.y = y;
 	}
@@ -42,5 +54,9 @@ public abstract class Tile {
 	 */
 	public int getY() {
 		return y;
+	}
+
+	public String getRoomInitial() {
+		return roomInitial;
 	}
 }
