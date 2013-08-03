@@ -18,6 +18,7 @@ import cluedo.main.Game;
 import cluedo.moves.CluedoException;
 import cluedo.moves.Enter;
 import cluedo.moves.Move;
+import cluedo.moves.Passage;
 import cluedo.structs.Location;
 import cluedo.structs.Player;
 import cluedo.structs.Solution;
@@ -115,7 +116,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	@Test
 	/**
 	 * test if a player can enter a room
@@ -165,7 +166,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	@Test
 	/**
 	 * test if a player can enter a room
@@ -190,7 +191,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	@Test
 	/**
 	 * test if a player cannot walk through walls
@@ -205,8 +206,8 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Move move = new Move(players.get(0).getLocation(),
-				new Location(20, 7), 8 , game);
+		Move move = new Move(players.get(0).getLocation(), new Location(20, 7),
+				8, game);
 
 		try {
 			if (move.isValid(game)) {
@@ -220,5 +221,190 @@ public class MoveTests {
 		}
 
 	}
-	
+
+	@Test
+	/**
+	 * test if a player can use secret passage
+	 * Spa to guest house
+	 */
+	public void testSecretPassage() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(3, 6), CharacterI.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
+				new Weapon(WeaponI.WEAPONS[1])), null, players);
+
+		Passage move = new Passage(players.get(0).getLocation(), new Location(
+				22, 25), 8, game);
+
+		try {
+			if (!move.isValid(game)) {
+				// move is invalid
+				fail("a Player can move between spa and guest house");
+
+			}
+		} catch (CluedoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test
+	/**
+	 * test if a player can use secret passage
+	 * guest house to spa
+	 */
+	public void testSecretPassage2() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(21, 28), CharacterI.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
+				new Weapon(WeaponI.WEAPONS[1])), null, players);
+
+		Passage move = new Passage(players.get(0).getLocation(), new Location(
+				0, 0), 1, game);
+
+		try {
+			if (!move.isValid(game)) {
+				// move is invalid
+				fail("a Player can move between guest house and spa");
+
+			}
+		} catch (CluedoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test
+	/**
+	 * test if a player can use secret passage
+	 * kitchen and observatory
+	 */
+	public void testSecretPassage3() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(2, 23), CharacterI.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
+				new Weapon(WeaponI.WEAPONS[1])), null, players);
+
+		Passage move = new Passage(players.get(0).getLocation(), new Location(
+				23, 1), 1, game);
+
+		try {
+			if (!move.isValid(game)) {
+				// move is invalid
+				fail("a Player can move between kitchen and observatory");
+
+			}
+		} catch (CluedoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test
+	/**
+	 * test if a player can use secret passage
+	 * observatory and kitchen
+	 */
+	public void testSecretPassage4() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(23, 2), CharacterI.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
+				new Weapon(WeaponI.WEAPONS[1])), null, players);
+
+		Passage move = new Passage(players.get(0).getLocation(), new Location(
+				1, 25), 1, game);
+
+		try {
+			if (!move.isValid(game)) {
+				// move is invalid
+				fail("a Player can move between observatory and kitchen");
+
+			}
+		} catch (CluedoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test
+	/**
+	 * test if a player cannot use a secret passage that doesnt exist
+	 *  patio to spa
+	 */
+	public void testInvalidSecretPassage() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(4, 14), CharacterI.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
+				new Weapon(WeaponI.WEAPONS[1])), null, players);
+
+		Passage move = new Passage(players.get(0).getLocation(), new Location(
+				1, 6), 1, game);
+
+		try {
+			if (move.isValid(game)) {
+
+				fail("a Player cannot move between patio and spa");
+
+			}
+		} catch (CluedoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test
+	/**
+	 * test if a player cannot use a secret passage that doesnt exist
+	 *  guest house to kitchen
+	 */
+	public void testInvalidSecretPassage2() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(20, 27), CharacterI.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
+				new Weapon(WeaponI.WEAPONS[1])), null, players);
+
+		Passage move = new Passage(players.get(0).getLocation(), new Location(
+				1, 21), 1, game);
+
+		try {
+			if (move.isValid(game)) {
+
+				fail("a Player cannot move between guest house and kitchen");
+
+			}
+		} catch (CluedoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 }
