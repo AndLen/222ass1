@@ -42,7 +42,7 @@ public class Move implements MoveI {
 	}
 
 	@Override
-	public boolean isValid(Game game) /*throws CluedoException*/ {
+	public boolean isValid(Game game) /* throws CluedoException */{
 		// TODO
 		// can we jump over a player? i know they can't when they are blocking a
 		// door, but can they if the are in hallway
@@ -68,9 +68,25 @@ public class Move implements MoveI {
 			return move.isValid(game);
 		}
 
+		if (game.isRoomLocation(newPosition)
+				|| game.isDoorLocation(newPosition)) {
+			// throw new EnteringRoomException(
+			// "move is potentially valid but needs to be an EnterMove");
+			move = new Enter(oldPosition, newPosition, diceRoll, game);
+			return move.isValid(game);
+		}
+
+		if (game.isCorridorLocation(newPosition)
+				&& (game.isDoorLocation(oldPosition) || game
+						.isRoomLocation(oldPosition))) {
+
+			move = new Exit(oldPosition, newPosition, diceRoll, game);
+			
+			return move.isValid(game);
+		}
+
 		if (moves.contains(newPosition)) {
 			// a door should also counts as a roomlocation
-		
 
 			// should check that path doesn't involve walking through walls
 			// if only one six sided dice can only occur when crossing the tip
@@ -82,14 +98,6 @@ public class Move implements MoveI {
 			// List<Location> path = new ArrayList<Location>();
 
 			return true;
-		}
-		
-		if (game.isRoomLocation(newPosition)
-				|| game.isDoorLocation(newPosition)) {
-			// throw new EnteringRoomException(
-			// "move is potentially valid but needs to be an EnterMove");
-			move = new Enter(oldPosition, newPosition, diceRoll, game);
-			return move.isValid(game);
 		}
 
 		return false;

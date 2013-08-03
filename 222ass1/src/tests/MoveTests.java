@@ -17,6 +17,7 @@ import cluedo.main.Board;
 import cluedo.main.Game;
 import cluedo.moves.CluedoException;
 import cluedo.moves.Enter;
+import cluedo.moves.Exit;
 import cluedo.moves.Move;
 import cluedo.moves.Passage;
 import cluedo.structs.Location;
@@ -25,6 +26,32 @@ import cluedo.structs.Solution;
 
 public class MoveTests {
 
+	@Test
+	/**
+	 * test if a player can make multiple turns
+	 *  
+	 */
+	public void testZigZagMove() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(7, 4), CharacterI.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
+				new Weapon(WeaponI.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(18, 25),
+				32, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can make zig zags");
+
+		}
+
+	}
+	
 	@Test
 	/**
 	 * test if a player is being landied on originating in the corridor and ending in the corridor
@@ -67,8 +94,8 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Move move = new Move(players.get(0).getLocation(),
-				new Location(2, 27), 2, game);
+		Move move = new Move(players.get(0).getLocation(), new Location(2, 27),
+				2, game);
 
 		// try {
 		if (!move.isValid(game)) {
@@ -174,8 +201,8 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Move move = new Move(players.get(0).getLocation(),
-				new Location(16, 5), 6, game);
+		Move move = new Move(players.get(0).getLocation(), new Location(16, 5),
+				6, game);
 
 		if (!move.isValid(game)) {
 			// move is invalid
@@ -225,8 +252,8 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Move move = new Move(players.get(0).getLocation(), new Location(
-				22, 25), 8, game);
+		Move move = new Move(players.get(0).getLocation(),
+				new Location(22, 25), 8, game);
 
 		if (!move.isValid(game)) {
 			// move is invalid
@@ -251,8 +278,8 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Move move = new Move(players.get(0).getLocation(), new Location(
-				0, 0), 1, game);
+		Move move = new Move(players.get(0).getLocation(), new Location(0, 0),
+				1, game);
 
 		if (!move.isValid(game)) {
 			// move is invalid
@@ -277,8 +304,8 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Move move = new Move(players.get(0).getLocation(), new Location(
-				23, 1), 1, game);
+		Move move = new Move(players.get(0).getLocation(), new Location(23, 1),
+				1, game);
 
 		if (!move.isValid(game)) {
 			// move is invalid
@@ -303,8 +330,8 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Move move = new Move(players.get(0).getLocation(), new Location(
-				1, 25), 1, game);
+		Move move = new Move(players.get(0).getLocation(), new Location(1, 25),
+				1, game);
 
 		if (!move.isValid(game)) {
 			// move is invalid
@@ -329,8 +356,8 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Move move = new Move(players.get(0).getLocation(), new Location(
-				1, 6), 1, game);
+		Move move = new Move(players.get(0).getLocation(), new Location(1, 6),
+				1, game);
 
 		if (move.isValid(game)) {
 
@@ -355,12 +382,90 @@ public class MoveTests {
 				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
 				new Weapon(WeaponI.WEAPONS[1])), null, players);
 
-		Move move = new Move(players.get(0).getLocation(), new Location(
-				1, 21), 1, game);
+		Move move = new Move(players.get(0).getLocation(), new Location(1, 21),
+				1, game);
 
 		if (move.isValid(game)) {
 
 			fail("a Player cannot move between guest house and kitchen");
+
+		}
+
+	}
+
+	@Test
+	/**
+	 * test if a player cannot exit a room into a corridor not high enough dice roll
+	 *  
+	 */
+	public void testInvalidExitRoom() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(4, 27), CharacterI.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
+				new Weapon(WeaponI.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(6, 19),
+				1, game);
+
+		if (move.isValid(game)) {
+
+			fail("a Player can exit a room");
+
+		}
+
+	}
+	
+	@Test
+	/**
+	 * test if a player cannot move within the room
+	 *  
+	 */
+	public void testInvalidExitRoom2() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(4, 27), CharacterI.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
+				new Weapon(WeaponI.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(4, 26),
+				1, game);
+
+		if (move.isValid(game)) {
+
+			fail("a Player can exit a room");
+
+		}
+
+	}
+
+	@Test
+	/**
+	 * test if a player can exit a room into a corridor
+	 *  
+	 */
+	public void testExitRoom() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(4, 27), CharacterI.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
+				new Weapon(WeaponI.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(6, 20),
+				2, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit a room");
 
 		}
 

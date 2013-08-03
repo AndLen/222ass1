@@ -344,6 +344,10 @@ public class Game {
 		return (gameBoard.tileAtLocation(newPosition) instanceof DoorTile);
 	}
 	
+	public Tile getTile(Location l){
+		return gameBoard.tileAtLocation(l);
+	}
+	
 	/**
 	 * Doors in our game.
 	 * @return
