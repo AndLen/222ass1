@@ -11,6 +11,7 @@ package cluedo.moves;
  * @author Michael
  * 
  */
+@Deprecated
 public class EnteringRoomException extends CluedoException {
 
 	/**

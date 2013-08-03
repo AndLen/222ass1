@@ -1,5 +1,6 @@
 package cluedo.moves;
 
+@Deprecated
 public abstract class CluedoException extends Throwable {
 
 	/**
