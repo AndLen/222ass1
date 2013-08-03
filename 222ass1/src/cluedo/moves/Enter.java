@@ -76,7 +76,6 @@ public class Enter implements MoveI {
 	@Override
 	public void apply(Game game) {
 		// TODO Auto-generated method stub
-
 	}
 
 }

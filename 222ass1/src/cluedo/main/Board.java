@@ -146,10 +146,14 @@ public class Board {
 					continue;
 				}
 				// this position is on the gameBoard
+				
+				
+				//NW and SE corners
 				if (i + j > dice || i + j < -dice) {
 					continue;
 				}
 
+				// NE and SW corners
 				if (Math.abs(i) + Math.abs(j) > dice) {
 					continue;
 				}
