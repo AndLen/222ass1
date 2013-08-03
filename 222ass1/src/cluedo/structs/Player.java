@@ -61,7 +61,7 @@ public class Player {
 		} else if (charName.equals("Jack Mustard")) {
 			return new Location(7, 28);
 		} else if (charName.equals("Diane White")) {
-			return new Location(0,19);
+			return new Location(0, 19);
 		} else if (charName.equals("Jacob Green")) {
 			return new Location(0, 9);
 		} else if (charName.equals("Eleanor Peacock")) {
@@ -71,8 +71,9 @@ public class Player {
 		}
 		throw new IllegalArgumentException("Invalid Char name");
 	}
-	
-	public String toString(){
+
+	@Override
+	public String toString() {
 		return getMyName();
 	}
 }

@@ -115,11 +115,11 @@ public class Location implements Comparable<Location> {
 
 		if (getClass() != obj.getClass())
 			return 0;
-		Location other = (Location) obj;
+		Location other = obj;
 		if (x * y < other.x * other.y) {
 			return -1;
 		}
-		
+
 		return 1;
 	}
 }

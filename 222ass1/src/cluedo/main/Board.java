@@ -40,8 +40,9 @@ public class Board {
 	 * @return
 	 */
 	public Tile tileAtLocation(Location l) {
-		if(!Location.isValid(l)){
-			throw new IllegalArgumentException("Location " + l.getX() + " " + l.getY() + "isn't valid");
+		if (!Location.isValid(l)) {
+			throw new IllegalArgumentException("Location " + l.getX() + " "
+					+ l.getY() + "isn't valid");
 		}
 		return gameBoard[l.getX()][l.getY()];
 	}
@@ -72,8 +73,8 @@ public class Board {
 			// Print y axis labels
 			sb.append(digitToString(i));
 			for (int j = 0; j < BOARD_WIDTH; j++) {
-				//hasplayer x, y
-				Player p = hasPlayer(j,i, g);
+				// hasplayer x, y
+				Player p = hasPlayer(j, i, g);
 				if (p != null) {
 					sb.append(p.getMySymbol() + " ");
 				} else
@@ -146,9 +147,8 @@ public class Board {
 					continue;
 				}
 				// this position is on the gameBoard
-				
-				
-				//NW and SE corners
+
+				// NW and SE corners
 				if (i + j > dice || i + j < -dice) {
 					continue;
 				}
@@ -162,9 +162,9 @@ public class Board {
 				// i think this should recursively get the positions to allow
 				// multiple turns/corners to be made
 				// no longer need to do this
-//				if (i + j < dice && i - j > -dice) {
-//					list.addAll(getMovesTo(newPosition, i + j));
-//				}
+				// if (i + j < dice && i - j > -dice) {
+				// list.addAll(getMovesTo(newPosition, i + j));
+				// }
 
 			}
 		}

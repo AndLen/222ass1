@@ -5,8 +5,13 @@ package cluedo.cards;
  * @author Michael
  * 
  */
-public class Weapon implements WeaponI {
+public class Weapon implements Card {
+	public static enum WEAPONS {
+		Rope, Candlestick, Knife, Pistol, Baseball_Bat, Dumbbell, Trophy, Poison, Axe
+	};
 
+	public static String[] WEAPONS = { "Rope", "Candlestick", "Knife",
+			"Pistol", "Baseball Bat", "Dumbbell", "Trophy", "Poison", "Axe" };
 	private String weapon;
 
 	/**

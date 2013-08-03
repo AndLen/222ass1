@@ -10,7 +10,6 @@ import java.util.Scanner;
 import java.util.Set;
 
 import cluedo.cards.Card;
-import cluedo.moves.CluedoException;
 import cluedo.moves.Move;
 import cluedo.structs.Dice;
 import cluedo.structs.Location;
@@ -99,12 +98,12 @@ public class Game {
 			// TODO: Make this auto-select the right move! (probably in the move
 			// constructor).
 			m = new Move(p.getLocation(), newLocation, roll, this);
-//			try {
-				validMove = m.isValid(this);
-//			} catch (CluedoException e) {
-//				System.out.println("Invalid move: " + e.getMessage());
-//				continue;
-//			}
+			// try {
+			validMove = m.isValid(this);
+			// } catch (CluedoException e) {
+			// System.out.println("Invalid move: " + e.getMessage());
+			// continue;
+			// }
 			if (!validMove) {
 				System.out.println("Invalid move.");
 			}
@@ -125,8 +124,8 @@ public class Game {
 		// making an announcement
 		boolean canAccuse = inParticularRoomLocation(p.getLocation(), "Po");
 		boolean wantsToSpeak = getAnnounceInput(canAccuse);
-		
-		//TODO: Add viewing extra cards if in pool.
+
+		// TODO: Add viewing extra cards if in pool.
 		if (wantsToSpeak) {
 
 			if (canAccuse) {
@@ -343,16 +342,17 @@ public class Game {
 	public boolean isDoorLocation(Location newPosition) {
 		return (gameBoard.tileAtLocation(newPosition) instanceof DoorTile);
 	}
-	
-	public Tile getTile(Location l){
+
+	public Tile getTile(Location l) {
 		return gameBoard.tileAtLocation(l);
 	}
-	
+
 	/**
 	 * Doors in our game.
+	 * 
 	 * @return
 	 */
-	public List<DoorTile> getDoors(){
+	public List<DoorTile> getDoors() {
 		return gameBoard.getListOfDoors();
 	}
 

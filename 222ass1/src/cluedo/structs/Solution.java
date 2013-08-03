@@ -1,8 +1,8 @@
 package cluedo.structs;
 
-import cluedo.cards.CharacterI;
-import cluedo.cards.RoomI;
-import cluedo.cards.WeaponI;
+import cluedo.cards.Character;
+import cluedo.cards.Room;
+import cluedo.cards.Weapon;
 
 /**
  * A set of cards believed to be the solution to the game!
@@ -13,25 +13,25 @@ import cluedo.cards.WeaponI;
 
 public class Solution {
 
-	private final CharacterI charSol;
-	private final RoomI roomSol;
-	private final WeaponI weaponSol;
+	private final Character charSol;
+	private final Room roomSol;
+	private final Weapon weaponSol;
 
-	public Solution(CharacterI c, RoomI r, WeaponI w) {
+	public Solution(Character c, Room r, Weapon w) {
 		charSol = c;
 		roomSol = r;
 		weaponSol = w;
 	}
 
-	public CharacterI getCharSol() {
+	public Character getCharSol() {
 		return charSol;
 	}
 
-	public RoomI getRoomSol() {
+	public Room getRoomSol() {
 		return roomSol;
 	}
 
-	public WeaponI getWeaponSol() {
+	public Weapon getWeaponSol() {
 		return weaponSol;
 	}
 

@@ -1,6 +1,5 @@
 package cluedo.tiles;
 
-
 public abstract class Tile {
 	private String stringRep;
 
@@ -9,7 +8,7 @@ public abstract class Tile {
 	 */
 	private int x;
 	private int y;
-	
+
 	public Tile(String s) {
 		stringRep = s;
 	}

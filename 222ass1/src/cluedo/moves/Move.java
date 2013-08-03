@@ -1,7 +1,5 @@
 package cluedo.moves;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import cluedo.main.Game;
@@ -81,7 +79,7 @@ public class Move implements MoveI {
 						.isRoomLocation(oldPosition))) {
 
 			move = new Exit(oldPosition, newPosition, diceRoll, game);
-			
+
 			return move.isValid(game);
 		}
 
