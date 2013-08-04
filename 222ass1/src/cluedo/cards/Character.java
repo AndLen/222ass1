@@ -20,7 +20,7 @@ public class Character implements Card {
 
 	public Character(String s) {
 		if(!Arrays.asList(CHARACTERS).contains(s)){
-			throw new IllegalArgumentException(s + "is not a character");
+			throw new IllegalArgumentException(s + " is not a character");
 		}
 		this.card = s;
 

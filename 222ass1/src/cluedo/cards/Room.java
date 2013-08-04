@@ -13,13 +13,13 @@ public class Room implements Card {
 	};
 
 	public static String[] ROOMS = { "Spa", "Theatre", "Living Room",
-			"Conservatory", "Piano", "Hall", "Kitchen", "Dining Room",
+			"Conservatory", "Patio", "Hall", "Kitchen", "Dining Room",
 			"Guest House" };
 	private String room;
 
 	public Room(String s) {
 		if(!Arrays.asList(ROOMS).contains(s)){
-			throw new IllegalArgumentException(s + "is not a room");
+			throw new IllegalArgumentException(s + " is not a room");
 		}
 		this.room = s;
 

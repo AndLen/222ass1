@@ -71,6 +71,7 @@ public class Game {
 
 			nextPlayer = playerToNextPlayer.get(nextPlayer);
 			if (!alive) {
+				// TODO: Fix game breaking when someone is removed
 				players.remove(nextPlayer.getMyName());
 				// And re-intialise the map
 				setUpMap();
@@ -114,45 +115,49 @@ public class Game {
 		}
 		System.out.println();
 
-		// If we're in the pool, we can make an accusation, otherwise we are
-		// making an announcement
-		boolean canAccuse = inParticularRoomLocation(p.getLocation(),"PO");
-		if (canAccuse) {
-			System.out.println("Cards in pool: ");
-			for (Card c : cardsInPool) {
-				System.out.print(c + ", ");
-			}
-			System.out.println();
-		}
-		boolean wantsToSpeak = getAnnounceInput(canAccuse);
-
-		if (wantsToSpeak) {
-
+		// If we're in a room, then we can do some other stuff...
+		if (isRoomLocation(p.getLocation())) {
+			// If we're in the pool, we can make an accusation, otherwise we are
+			// making a suggestion
+			boolean canAccuse = inParticularRoomLocation(p.getLocation(), "PO");
 			if (canAccuse) {
-				Solution s = getAccusationInput();
-				if (s.equals(solution)) {
-					gameFinished = true;
-					return true;
-				} else {
-					System.out.println("Wrong, you're dead");
-					return false;
+				System.out.println("Cards in pool: ");
+				for (Card c : cardsInPool) {
+					System.out.print(c + ", ");
 				}
-			} else {
-				// TODO: Wants to announce
-				System.out.println("Well tough shit");
-				// Otherwise just an announcement.
+				System.out.println();
+			}
+			boolean wantsToSpeak = getAnnounceInput(canAccuse);
+
+			if (wantsToSpeak) {
+				Solution possibleSol = getAccusationInput(canAccuse,p);
+				if (canAccuse) {
+					if (possibleSol.equals(solution)) {
+						gameFinished = true;
+						return true;
+					} else {
+						System.out.println("Wrong, you're dead");
+						return false;
+					}
+				} else {
+					// TODO: Wants to announce
+					System.out.println("Well tough shit");
+					// Otherwise just an announcement.
+				}
 			}
 		}
+
 		// We didn't die
 		return true;
 	}
+
 	/**
 	 * Requests input for the player to make an accusation and checks their
 	 * validity.
 	 * 
 	 * @return
 	 */
-	private Solution getAccusationInput() {
+	private Solution getAccusationInput(boolean inPool, Player p) {
 		System.out
 				.println("Type the character name, room name and weapon name seperated by commas.");
 		Scanner sc = new Scanner(System.in);
@@ -161,18 +166,28 @@ public class Game {
 
 		if (stringCards.length == 3) {
 			try {
-				Character c = new Character(stringCards[0]);
-				Room r = new Room(stringCards[1]);
-				Weapon w = new Weapon(stringCards[2]);
+				//Trim them for a little leeway on typing
+				Character c = new Character(stringCards[0].trim());
+				Room r = new Room(stringCards[1].trim());
+				Weapon w = new Weapon(stringCards[2].trim());
+				// If we're not in the pool and try to suggest a room we're not
+				// in, that's invalid!
+				if (!inPool
+						&& !inParticularRoomLocation(p.getLocation(),
+								r.getSymbol())) {
+					throw new IllegalArgumentException(
+							"Cant suggest something unless you're in the right room");
+				}
 				return new Solution(c, r, w);
 			} catch (IllegalArgumentException e) {
-				System.out.println("Not valid" + e);
+				System.out.println("Not valid: " + e.getMessage());
 			}
 		} else {
 			System.out.println("Not enough cards.");
 		}
-		return getAccusationInput();
+		return getAccusationInput(inPool,p);
 	}
+
 	/**
 	 * Requests input for the player to make an announcement and checks their
 	 * validity.

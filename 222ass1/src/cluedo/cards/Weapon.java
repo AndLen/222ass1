@@ -23,7 +23,7 @@ public class Weapon implements Card {
 	 */
 	public Weapon(String s) {
 		if(!Arrays.asList(WEAPONS).contains(s)){
-			throw new IllegalArgumentException(s + "is not a weapon");
+			throw new IllegalArgumentException(s + " is not a weapon");
 		}
 		this.weapon = s;
 	}
