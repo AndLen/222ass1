@@ -15,10 +15,7 @@ import org.junit.runners.Suite;
  */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ 
-	CardTests.class,
-	MoveTests.class,
-	BoardTests.class,
+@Suite.SuiteClasses({ CardTests.class, MoveTests.class, BoardTests.class,
 // classtests.class,
 
 })

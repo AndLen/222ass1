@@ -21,7 +21,7 @@ public interface MoveI {
 	 * @throws Exception
 	 * @throws CluedoException
 	 */
-	public boolean isValid(Game game); //throws CluedoException;
+	public boolean isValid(Game game); // throws CluedoException;
 
 	/**
 	 * applies the move

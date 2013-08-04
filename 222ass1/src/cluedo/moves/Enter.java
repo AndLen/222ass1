@@ -19,7 +19,6 @@ public class Enter implements MoveI {
 	private int diceRoll;
 	private Location newPosition;
 
-
 	public Enter(Location oldPosition, Location newPosition, int diceRoll,
 			Game game) {
 		super();
@@ -28,24 +27,24 @@ public class Enter implements MoveI {
 		this.newPosition = newPosition;
 	}
 
-//	public Enter(Chamber room) {
-//		this.room = room;
-//	}
+	// public Enter(Chamber room) {
+	// this.room = room;
+	// }
 
 	@Override
 	public boolean isValid(Game game) {
 		// TODO
-//
-//		Move move = new Move(oldPosition, newPosition, diceRoll, game);
-//		try {
-//			move.isValid(game);
-//			// if this return is reached the move does not end in a room
-//			// therefore move is invalid
-//			return false;
-//		}
-//		// i want to recieve this exception (move is likely to be valid)
-//		catch (CluedoException e) {
-//		}
+		//
+		// Move move = new Move(oldPosition, newPosition, diceRoll, game);
+		// try {
+		// move.isValid(game);
+		// // if this return is reached the move does not end in a room
+		// // therefore move is invalid
+		// return false;
+		// }
+		// // i want to recieve this exception (move is likely to be valid)
+		// catch (CluedoException e) {
+		// }
 
 		// we can now check if a door was used to enter this room
 
@@ -58,8 +57,9 @@ public class Enter implements MoveI {
 
 		// for(each doorTile to the room entered){
 		List<Location> list = new ArrayList<Location>();
-		//diceRoll--; // by using the position infront of the door, one tap/move
-					// has already been taken
+		// diceRoll--; // by using the position infront of the door, one
+		// tap/move
+		// has already been taken
 		for (DoorTile d : game.getDoors()) {
 			Location outsideDoor = new Location(d.getX() + d.getxDir(),
 					d.getY() + d.getyDir()); // the position one step before the

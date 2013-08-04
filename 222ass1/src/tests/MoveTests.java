@@ -8,18 +8,12 @@ import java.util.List;
 import org.junit.Test;
 
 import cluedo.cards.Character;
-import cluedo.cards.CharacterI;
 import cluedo.cards.Room;
-import cluedo.cards.RoomI;
 import cluedo.cards.Weapon;
-import cluedo.cards.WeaponI;
 import cluedo.main.Board;
 import cluedo.main.Game;
-import cluedo.moves.CluedoException;
 import cluedo.moves.Enter;
-import cluedo.moves.Exit;
 import cluedo.moves.Move;
-import cluedo.moves.Passage;
 import cluedo.structs.Location;
 import cluedo.structs.Player;
 import cluedo.structs.Solution;
@@ -34,15 +28,15 @@ public class MoveTests {
 	public void testZigZagMove() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(7, 4), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(7, 4), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
-		Move move = new Move(players.get(0).getLocation(), new Location(18, 25),
-				32, game);
+		Move move = new Move(players.get(0).getLocation(),
+				new Location(18, 25), 32, game);
 
 		if (!move.isValid(game)) {
 
@@ -51,7 +45,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	@Test
 	/**
 	 * test if a player is being landied on originating in the corridor and ending in the corridor
@@ -59,15 +53,15 @@ public class MoveTests {
 	public void testLandOnPlayer() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(9, 8), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(9, 8), Character.CHARACTERS[0],
 				null, null));
 
-		players.add(new Player(new Location(8, 8), CharacterI.CHARACTERS[1],
+		players.add(new Player(new Location(8, 8), Character.CHARACTERS[1],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(8, 8),
 				1, game);
@@ -87,12 +81,12 @@ public class MoveTests {
 	public void testEnterRoom() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(6, 20), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(6, 20), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(2, 27),
 				2, game);
@@ -104,7 +98,6 @@ public class MoveTests {
 
 		}
 		// } catch (CluedoException e) {
-		// TODO Auto-generated catch block
 		// fail("exception thrown");
 		// e.printStackTrace();
 		// }
@@ -119,12 +112,12 @@ public class MoveTests {
 	public void testEnterRoom1() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(5, 20), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(5, 20), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Enter move = new Enter(players.get(0).getLocation(),
 				new Location(3, 28), 3, game);
@@ -144,12 +137,12 @@ public class MoveTests {
 	public void testEnterRoom2() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(8, 18), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(8, 18), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Enter move = new Enter(players.get(0).getLocation(),
 				new Location(3, 14), 3, game);
@@ -169,12 +162,12 @@ public class MoveTests {
 	public void testEnterRoom3() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(8, 18), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(8, 18), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Enter move = new Enter(players.get(0).getLocation(),
 				new Location(3, 14), 3, game);
@@ -194,12 +187,12 @@ public class MoveTests {
 	public void testEnterRoom4() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(13, 7), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(13, 7), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(16, 5),
 				6, game);
@@ -219,12 +212,12 @@ public class MoveTests {
 	public void testNotGhost() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(13, 6), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(13, 6), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(20, 7),
 				8, game);
@@ -245,12 +238,12 @@ public class MoveTests {
 	public void testSecretPassage() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(3, 6), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(3, 6), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(),
 				new Location(22, 25), 8, game);
@@ -271,12 +264,12 @@ public class MoveTests {
 	public void testSecretPassage2() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(21, 28), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(21, 28), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(0, 0),
 				1, game);
@@ -297,12 +290,12 @@ public class MoveTests {
 	public void testSecretPassage3() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(2, 23), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(2, 23), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(23, 1),
 				1, game);
@@ -323,12 +316,12 @@ public class MoveTests {
 	public void testSecretPassage4() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(23, 2), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(23, 2), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(1, 25),
 				1, game);
@@ -349,12 +342,12 @@ public class MoveTests {
 	public void testInvalidSecretPassage() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(4, 14), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(4, 14), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(1, 6),
 				1, game);
@@ -375,12 +368,12 @@ public class MoveTests {
 	public void testInvalidSecretPassage2() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(20, 27), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(20, 27), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(1, 21),
 				1, game);
@@ -401,12 +394,12 @@ public class MoveTests {
 	public void testInvalidExitRoom() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(4, 27), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(4, 27), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(6, 19),
 				1, game);
@@ -418,7 +411,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	@Test
 	/**
 	 * test if a player cannot move within the room
@@ -427,12 +420,12 @@ public class MoveTests {
 	public void testInvalidExitRoom2() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(4, 27), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(4, 27), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(4, 26),
 				1, game);
@@ -453,12 +446,12 @@ public class MoveTests {
 	public void testExitRoom() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(4, 27), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(4, 27), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(6, 20),
 				3, game);
@@ -479,12 +472,12 @@ public class MoveTests {
 	public void testExitRoom2() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(5, 17), CharacterI.CHARACTERS[0],
+		players.add(new Player(new Location(5, 17), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				CharacterI.CHARACTERS[1]), new Room(RoomI.ROOMS[1]),
-				new Weapon(WeaponI.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]),
+				new Weapon(Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(5, 18),
 				1, game);

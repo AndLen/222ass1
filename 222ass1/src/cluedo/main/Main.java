@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import cluedo.cards.Card;
-import cluedo.cards.CharacterI;
-import cluedo.cards.RoomI;
-import cluedo.cards.WeaponI;
+import cluedo.cards.Character;
+import cluedo.cards.Room;
+import cluedo.cards.Weapon;
 import cluedo.structs.Location;
 import cluedo.structs.Player;
 import cluedo.structs.Solution;
@@ -66,11 +66,11 @@ public class Main {
 		Board board = new Board();
 
 		// First, get all our cards in shuffled lists
-		List<String> names = Arrays.asList(CharacterI.CHARACTERS);
+		List<String> names = Arrays.asList(Character.CHARACTERS);
 		Collections.shuffle(names);
-		List<CharacterI> cCards = setUpCharCards();
-		List<WeaponI> wCards = setUpWeapCards();
-		List<RoomI> rCards = setUpRoomCards();
+		List<Character> cCards = setUpCharCards();
+		List<Weapon> wCards = setUpWeapCards();
+		List<Room> rCards = setUpRoomCards();
 
 		// Construct our solution from 1st cards in shuffled list
 		Solution sol = new Solution(cCards.remove(0), rCards.remove(0),
@@ -85,7 +85,7 @@ public class Main {
 
 		// And finally our players.
 		List<Player> players = new ArrayList<Player>();
-		int numCardsEach = cardsLeft.size()/numPlayers;
+		int numCardsEach = cardsLeft.size() / numPlayers;
 		for (int i = 0; i < numPlayers; i++) {
 			String myName = names.get(i);
 			// 1st char in 1st name capitalised + 1st char in surname
@@ -111,9 +111,9 @@ public class Main {
 	 * 
 	 * @return characters the list to be returned
 	 */
-	private List<CharacterI> setUpCharCards() {
-		List<CharacterI> characters = new ArrayList<CharacterI>();
-		for (String s : CharacterI.CHARACTERS) {
+	private List<Character> setUpCharCards() {
+		List<Character> characters = new ArrayList<Character>();
+		for (String s : Character.CHARACTERS) {
 			characters.add(new cluedo.cards.Character(s));
 		}
 
@@ -126,9 +126,9 @@ public class Main {
 	 * 
 	 * @return weapons the list to be returned
 	 */
-	private List<WeaponI> setUpWeapCards() {
-		List<WeaponI> weapons = new ArrayList<WeaponI>();
-		for (String s : WeaponI.WEAPONS) {
+	private List<Weapon> setUpWeapCards() {
+		List<Weapon> weapons = new ArrayList<Weapon>();
+		for (String s : Weapon.WEAPONS) {
 			weapons.add(new cluedo.cards.Weapon(s));
 		}
 
@@ -141,9 +141,9 @@ public class Main {
 	 * 
 	 * @return rooms the list to be returned
 	 */
-	private List<RoomI> setUpRoomCards() {
-		List<RoomI> rooms = new ArrayList<RoomI>();
-		for (String s : RoomI.ROOMS) {
+	private List<Room> setUpRoomCards() {
+		List<Room> rooms = new ArrayList<Room>();
+		for (String s : Room.ROOMS) {
 			rooms.add(new cluedo.cards.Room(s));
 		}
 

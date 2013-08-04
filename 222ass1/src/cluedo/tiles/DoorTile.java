@@ -24,11 +24,10 @@ public class DoorTile extends Tile {
 		if (yDir < -1 || yDir > 1) {
 			throw new IllegalArgumentException("yDir must be -1, 0 or 1");
 		}
-		
+
 		this.xDir = xDir;
 		this.yDir = yDir;
 
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

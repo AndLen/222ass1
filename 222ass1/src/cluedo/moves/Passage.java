@@ -8,9 +8,9 @@ public class Passage implements MoveI {
 	private Location oldPosition;
 	private int diceRoll;
 	private Location newPosition;
-	
-	
-	public Passage(Location oldPosition, Location newPosition, int diceRoll, Game game) {
+
+	public Passage(Location oldPosition, Location newPosition, int diceRoll,
+			Game game) {
 		super();
 		this.oldPosition = oldPosition;
 		this.diceRoll = diceRoll;
@@ -18,32 +18,36 @@ public class Passage implements MoveI {
 	}
 
 	@Override
-	public boolean isValid(Game game) /*throws CluedoException */{
-		// TODO Auto-generated method stub
-		
-		if(game.isRoomLocation(oldPosition) || game.isDoorLocation(oldPosition)){
-			if(game.isRoomLocation(newPosition) || game.isDoorLocation(newPosition)){
-				
-				if(game.inParticularRoomLocation(oldPosition, "SP") && game.inParticularRoomLocation(newPosition, "GU")){
+	public boolean isValid(Game game) /* throws CluedoException */{
+
+		if (game.isRoomLocation(oldPosition)
+				|| game.isDoorLocation(oldPosition)) {
+			if (game.isRoomLocation(newPosition)
+					|| game.isDoorLocation(newPosition)) {
+
+				if (game.inParticularRoomLocation(oldPosition, "SP")
+						&& game.inParticularRoomLocation(newPosition, "GU")) {
 					return true;
-				}else if(game.inParticularRoomLocation(oldPosition, "GU") && game.inParticularRoomLocation(newPosition, "SP")){
+				} else if (game.inParticularRoomLocation(oldPosition, "GU")
+						&& game.inParticularRoomLocation(newPosition, "SP")) {
 					return true;
-				}else if(game.inParticularRoomLocation(oldPosition, "KI") && game.inParticularRoomLocation(newPosition, "OB")){
+				} else if (game.inParticularRoomLocation(oldPosition, "KI")
+						&& game.inParticularRoomLocation(newPosition, "OB")) {
 					return true;
-				}else if(game.inParticularRoomLocation(oldPosition, "OB") && game.inParticularRoomLocation(newPosition, "KI")){
+				} else if (game.inParticularRoomLocation(oldPosition, "OB")
+						&& game.inParticularRoomLocation(newPosition, "KI")) {
 					return true;
 				}
-				
-				
+
 			}
 		}
-		
+
 		return false;
 	}
 
 	@Override
 	public void apply(Game game) {
-		// TODO Auto-generated method stub
+		// TODO Passages applying
 
 	}
 

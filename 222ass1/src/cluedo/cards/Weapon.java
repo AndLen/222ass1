@@ -1,12 +1,19 @@
 package cluedo.cards;
 
+import java.util.Arrays;
+
 /**
  * 
  * @author Michael
  * 
  */
-public class Weapon implements WeaponI {
+public class Weapon implements Card {
+	public static enum WEAPONS {
+		Rope, Candlestick, Knife, Pistol, Baseball_Bat, Dumbbell, Trophy, Poison, Axe
+	};
 
+	public static String[] WEAPONS = { "Rope", "Candlestick", "Knife",
+			"Pistol", "Baseball Bat", "Dumbbell", "Trophy", "Poison", "Axe" };
 	private String weapon;
 
 	/**
@@ -15,6 +22,9 @@ public class Weapon implements WeaponI {
 	 *            the number the card corresponds to from static WEAPONS[]
 	 */
 	public Weapon(String s) {
+		if(!Arrays.asList(WEAPONS).contains(s)){
+			throw new IllegalArgumentException(s + "is not a weapon");
+		}
 		this.weapon = s;
 	}
 
