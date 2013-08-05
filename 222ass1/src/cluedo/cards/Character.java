@@ -27,7 +27,7 @@ public class Character implements Card {
 	}
 
 	@Override
-	public String getCard() {
+	public String toString() {
 		return card;
 	}
 

@@ -226,8 +226,8 @@ public class Board {
 		gameBoard[6][22] = new DoorTile("KI", 0, -1, 6, 22);
 
 		// Patio
-		fillRoom(0, 10, 3, 18, "Room","Pa");
-		fillRoom(4, 11, 7, 17, "Room","Pa");
+		fillRoom(0, 10, 3, 18, "Room","PA");
+		fillRoom(4, 11, 7, 17, "Room","PA");
 		gameBoard[5][11] = new DoorTile("PA", 0, -1, 5, 11);
 		gameBoard[7][12] = new DoorTile("PA", 1, 0, 7, 12);
 		gameBoard[7][16] = new DoorTile("PA", 1, 0, 7, 16);

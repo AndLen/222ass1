@@ -58,17 +58,17 @@ public class Solution {
 		if (charSol == null) {
 			if (other.charSol != null)
 				return false;
-		} else if (!charSol.getCard().equals(other.charSol.getCard()))
+		} else if (!charSol.toString().equals(other.charSol.toString()))
 			return false;
 		if (roomSol == null) {
 			if (other.roomSol != null)
 				return false;
-		} else if (!roomSol.getCard().equals(other.roomSol.getCard()))
+		} else if (!roomSol.toString().equals(other.roomSol.toString()))
 			return false;
 		if (weaponSol == null) {
 			if (other.weaponSol != null)
 				return false;
-		} else if (!weaponSol.getCard().equals(other.weaponSol.getCard()))
+		} else if (!weaponSol.toString().equals(other.weaponSol.toString()))
 			return false;
 		return true;
 	}

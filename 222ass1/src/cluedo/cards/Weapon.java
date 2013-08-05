@@ -29,7 +29,7 @@ public class Weapon implements Card {
 	}
 
 	@Override
-	public String getCard() {
+	public String toString() {
 		return weapon;
 	}
 

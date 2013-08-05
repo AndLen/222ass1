@@ -111,43 +111,62 @@ public class Game {
 		Iterator<Card> cardIt = p.myCardsIterator();
 		System.out.print("Your cards: ");
 		while (cardIt.hasNext()) {
-			System.out.print(cardIt.next().getCard() + ", ");
+			System.out.print(cardIt.next().toString() + ", ");
 		}
 		System.out.println();
 
-		// If we're in a room, then we can do some other stuff...
 		if (isRoomLocation(p.getLocation())) {
-			// If we're in the pool, we can make an accusation, otherwise we are
-			// making a suggestion
-			boolean canAccuse = inParticularRoomLocation(p.getLocation(), "PO");
-			if (canAccuse) {
-				System.out.println("Cards in pool: ");
-				for (Card c : cardsInPool) {
-					System.out.print(c + ", ");
-				}
-				System.out.println();
-			}
-			boolean wantsToSpeak = getAnnounceInput(canAccuse);
-
-			if (wantsToSpeak) {
-				Solution possibleSol = getAccusationInput(canAccuse,p);
-				if (canAccuse) {
-					if (possibleSol.equals(solution)) {
-						gameFinished = true;
-						return true;
-					} else {
-						System.out.println("Wrong, you're dead");
-						return false;
-					}
-				} else {
-					// TODO: Wants to announce
-					System.out.println("Well tough shit");
-					// Otherwise just an announcement.
-				}
-			}
+			// If we're in a room, then we can do some other stuff...
+			return takeRoomTurn(p);
 		}
 
 		// We didn't die
+		return true;
+	}
+
+	/**
+	 * Returns false if died.
+	 * @param p
+	 */
+	private boolean takeRoomTurn(Player p) {
+		// If we're in the pool, we can make an accusation, otherwise we are
+		// making a suggestion
+		boolean canAccuse = inParticularRoomLocation(p.getLocation(), "PO");
+		if (canAccuse) {
+			System.out.println("Cards in pool: ");
+			for (Card c : cardsInPool) {
+				System.out.print(c + ", ");
+			}
+			System.out.println();
+		}
+		boolean wantsToSpeak = getAnnounceInput(canAccuse);
+
+		if (wantsToSpeak) {
+			Solution possibleSol = getAccusationInput(canAccuse, p);
+			if (canAccuse) {
+				if (possibleSol.equals(solution)) {
+					gameFinished = true;
+				} else {
+					return false;
+				}
+			} else {
+				// TODO: Wants to suggest
+				System.out.println(p + " suggests " + possibleSol.getCharSol() + " in " + possibleSol.getRoomSol() + " with the " + possibleSol.getWeaponSol());
+				if(!refute(p, players.get(p),possibleSol)){
+					System.out.println("No one can refute that!");
+				}
+
+
+			}
+		}
+		return true; // still alive.
+	}
+
+	private boolean refute(Player originPlayer, Player nextPlayer,Solution sol) {
+		//TODO: Finish this off.
+		if(originPlayer.equals(nextPlayer)){
+			return false;
+		}
 		return true;
 	}
 
@@ -166,7 +185,7 @@ public class Game {
 
 		if (stringCards.length == 3) {
 			try {
-				//Trim them for a little leeway on typing
+				// Trim them for a little leeway on typing
 				Character c = new Character(stringCards[0].trim());
 				Room r = new Room(stringCards[1].trim());
 				Weapon w = new Weapon(stringCards[2].trim());
@@ -185,7 +204,7 @@ public class Game {
 		} else {
 			System.out.println("Not enough cards.");
 		}
-		return getAccusationInput(inPool,p);
+		return getAccusationInput(inPool, p);
 	}
 
 	/**
@@ -197,7 +216,7 @@ public class Game {
 	private boolean getAnnounceInput(boolean inPool) {
 		System.out.printf(
 				"Would you like to make an %s? Type \"yes\" or \"no\"\n",
-				inPool ? "accusation" : "announcement");
+				inPool ? "accusation" : "suggestion");
 		Scanner sc = new Scanner(System.in);
 		String data = sc.nextLine();
 		data = data.toLowerCase(); // If they decided caps would be fun
@@ -364,6 +383,7 @@ public class Game {
 
 	/**
 	 * Includes DoorTile as child of RoomTile
+	 * 
 	 * @param newPosition
 	 * @return
 	 */
@@ -382,12 +402,12 @@ public class Game {
 	public boolean inParticularRoomLocation(Location newPosition,
 			String roomAcronym) {
 		Tile t = gameBoard.tileAtLocation(newPosition);
-		if(t instanceof RoomTile){
-			//Okay, it's a room/door. Is it the right one?
+		if (t instanceof RoomTile) {
+			// Okay, it's a room/door. Is it the right one?
 			RoomTile rT = (RoomTile) t;
 			return (rT.roomRep().equals(roomAcronym));
 		}
-		//not a room or a door.
+		// not a room or a door.
 		return false;
 	}
 

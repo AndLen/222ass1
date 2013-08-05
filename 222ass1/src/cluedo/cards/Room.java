@@ -26,7 +26,7 @@ public class Room implements Card {
 	}
 
 	@Override
-	public String getCard() {
+	public String toString() {
 		return room;
 	}
 
