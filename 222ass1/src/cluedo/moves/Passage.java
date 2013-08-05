@@ -7,16 +7,14 @@ public class Passage extends Move {
 
 	public Passage(Location oldPosition, Location newPosition, int diceRoll,
 			Game game) {
-		super(oldPosition, newPosition,diceRoll,game);
+		super(oldPosition, newPosition, diceRoll, game);
 	}
 
 	@Override
 	public boolean isValid(Game game) /* throws CluedoException */{
 
-		if (game.isRoomLocation(oldPosition)
-				|| game.isDoorLocation(oldPosition)) {
-			if (game.isRoomLocation(newPosition)
-					|| game.isDoorLocation(newPosition)) {
+		if (game.isRoomLocation(oldPosition)) {
+			if (game.isRoomLocation(newPosition)) {
 
 				if (game.inParticularRoomLocation(oldPosition, "SP")
 						&& game.inParticularRoomLocation(newPosition, "GU")) {

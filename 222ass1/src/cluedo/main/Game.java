@@ -392,19 +392,6 @@ public class Game {
 	}
 
 	/**
-	 * Is a DOOR, not just a Room.
-	 * @param newPosition
-	 * @return
-	 */
-	public boolean isDoorLocation(Location newPosition) {
-		return (gameBoard.tileAtLocation(newPosition) instanceof DoorTile);
-	}
-
-	public Tile getTile(Location l) {
-		return gameBoard.tileAtLocation(l);
-	}
-
-	/**
 	 * Doors in our game.
 	 * 
 	 * @return

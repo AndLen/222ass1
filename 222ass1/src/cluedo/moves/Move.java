@@ -45,11 +45,10 @@ public class Move implements MoveI {
 		// can we jump over a player? i know they can't when they are blocking a
 		// door, but can they if the are in hallway
 
+		//Possible locations the player can reach with his/her roll.
 		Set<Location> moves = game.getMovesTo(oldPosition, diceRoll);
-		// printMoves(moves);
-
+		
 		for (Player p : game.getPlayers()) {
-
 			if (p.getLocation().equals(newPosition)) {
 
 				// player cannot land on another player
@@ -57,33 +56,31 @@ public class Move implements MoveI {
 			}
 		}
 
-		if ((game.isRoomLocation(oldPosition) || game
-				.isDoorLocation(oldPosition))
-				&& (game.isRoomLocation(newPosition) || game
-						.isDoorLocation(newPosition))) {
-
+		if (game.isRoomLocation(oldPosition)
+				&& game.isRoomLocation(newPosition)) {
+			//Must be moving through a passage or otherwise illegal
+			
 			move = new Passage(oldPosition, newPosition, diceRoll, game);
 			return move.isValid(game);
 		}
 
-		if (game.isRoomLocation(newPosition)
-				|| game.isDoorLocation(newPosition)) {
-			// throw new EnteringRoomException(
-			// "move is potentially valid but needs to be an EnterMove");
+		else if (game.isRoomLocation(newPosition)) {
+			//Must be entering a room from a corridor.
 			move = new Enter(oldPosition, newPosition, diceRoll, game);
 			return move.isValid(game);
 		}
 
-		if (game.isCorridorLocation(newPosition)
-				&& (game.isDoorLocation(oldPosition) || game
-						.isRoomLocation(oldPosition))) {
-
+		else if (game.isCorridorLocation(newPosition)
+				&& game.isRoomLocation(oldPosition)) {
+			//Must be leaving a room
 			move = new Exit(oldPosition, newPosition, diceRoll, game);
 
 			return move.isValid(game);
 		}
 
-		if (moves.contains(newPosition)) {
+		else if (moves.contains(newPosition)) {
+			//Otherwise just a corridor move.
+			
 			// a door should also counts as a roomlocation
 
 			// should check that path doesn't involve walking through walls
@@ -103,6 +100,7 @@ public class Move implements MoveI {
 
 	/**
 	 * TODO: Debugging?
+	 * 
 	 * @return the distance between the 2 points
 	 */
 	private int distanceBetween() {
@@ -113,6 +111,7 @@ public class Move implements MoveI {
 
 	/**
 	 * Debugging
+	 * 
 	 * @param moves
 	 */
 	private void printMoves(Set<Location> moves) {
