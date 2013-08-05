@@ -1,9 +1,10 @@
 package cluedo.tiles;
 
-public class DoorTile extends Tile {
+public class DoorTile extends RoomTile {
 
 	private int xDir;
 	private int yDir;
+	private String roomInitial;
 	
 
 	/**
@@ -16,7 +17,7 @@ public class DoorTile extends Tile {
 	 *            unless North West e.t.c
 	 */
 	public DoorTile(String roomInitial, int xDir, int yDir, int x, int y) {
-		super(" #", roomInitial, x, y);
+		super(" #", x, y);
 
 		if (xDir < -1 || xDir > 1) {
 			throw new IllegalArgumentException("xDir must be -1, 0 or 1");
@@ -24,7 +25,7 @@ public class DoorTile extends Tile {
 		if (yDir < -1 || yDir > 1) {
 			throw new IllegalArgumentException("yDir must be -1, 0 or 1");
 		}
-
+		this.roomInitial = roomInitial;
 		this.xDir = xDir;
 		this.yDir = yDir;
 
@@ -42,6 +43,13 @@ public class DoorTile extends Tile {
 	 */
 	public int getyDir() {
 		return yDir;
+	}
+	
+	/**
+	 * Room it belongs to - NOT the "#" rep for the door.
+	 */
+	public String roomRep(){
+		return roomInitial;
 	}
 
 

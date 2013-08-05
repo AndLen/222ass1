@@ -13,18 +13,12 @@ import cluedo.tiles.DoorTile;
  * @author Michael
  * 
  */
-public class Enter implements MoveI {
+public class Enter extends Move {
 
-	private Location oldPosition;
-	private int diceRoll;
-	private Location newPosition;
 
 	public Enter(Location oldPosition, Location newPosition, int diceRoll,
 			Game game) {
-		super();
-		this.oldPosition = oldPosition;
-		this.diceRoll = diceRoll;
-		this.newPosition = newPosition;
+		super(oldPosition, newPosition,diceRoll,game);
 	}
 
 	// public Enter(Chamber room) {
@@ -73,9 +67,5 @@ public class Enter implements MoveI {
 		return false;
 	}
 
-	@Override
-	public void apply(Game game) {
-		// TODO Auto-generated method stub
-	}
 
 }

@@ -362,6 +362,11 @@ public class Game {
 		return (gameBoard.tileAtLocation(newPosition) instanceof CorridorTile);
 	}
 
+	/**
+	 * Includes DoorTile as child of RoomTile
+	 * @param newPosition
+	 * @return
+	 */
 	public boolean isRoomLocation(Location newPosition) {
 		return (gameBoard.tileAtLocation(newPosition) instanceof RoomTile);
 	}
@@ -376,10 +381,21 @@ public class Game {
 	 */
 	public boolean inParticularRoomLocation(Location newPosition,
 			String roomAcronym) {
-		Tile r = gameBoard.tileAtLocation(newPosition);
-		return (r instanceof RoomTile && r.toString().equals(roomAcronym));
+		Tile t = gameBoard.tileAtLocation(newPosition);
+		if(t instanceof RoomTile){
+			//Okay, it's a room/door. Is it the right one?
+			RoomTile rT = (RoomTile) t;
+			return (rT.roomRep().equals(roomAcronym));
+		}
+		//not a room or a door.
+		return false;
 	}
 
+	/**
+	 * Is a DOOR, not just a Room.
+	 * @param newPosition
+	 * @return
+	 */
 	public boolean isDoorLocation(Location newPosition) {
 		return (gameBoard.tileAtLocation(newPosition) instanceof DoorTile);
 	}

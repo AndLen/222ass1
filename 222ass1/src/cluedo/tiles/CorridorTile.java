@@ -2,8 +2,8 @@ package cluedo.tiles;
 
 public class CorridorTile extends Tile {
 
-	public CorridorTile() {
-		super("  ");
+	public CorridorTile(int x, int y) {
+		super("  ",x,y);
 	}
 
 }

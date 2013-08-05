@@ -3,18 +3,11 @@ package cluedo.moves;
 import cluedo.main.Game;
 import cluedo.structs.Location;
 
-public class Passage implements MoveI {
-
-	private Location oldPosition;
-	private int diceRoll;
-	private Location newPosition;
+public class Passage extends Move {
 
 	public Passage(Location oldPosition, Location newPosition, int diceRoll,
 			Game game) {
-		super();
-		this.oldPosition = oldPosition;
-		this.diceRoll = diceRoll;
-		this.newPosition = newPosition;
+		super(oldPosition, newPosition,diceRoll,game);
 	}
 
 	@Override
@@ -43,12 +36,6 @@ public class Passage implements MoveI {
 		}
 
 		return false;
-	}
-
-	@Override
-	public void apply(Game game) {
-		// TODO Passages applying
-
 	}
 
 }

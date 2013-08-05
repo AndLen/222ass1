@@ -16,9 +16,9 @@ import cluedo.structs.Player;
  */
 public class Move implements MoveI {
 
-	private Location oldPosition;
-	private int diceRoll;
-	private Location newPosition;
+	protected Location oldPosition;
+	protected int diceRoll;
+	protected Location newPosition;
 
 	private MoveI move; // move if not a simple corridor to corridor move.
 
@@ -102,7 +102,7 @@ public class Move implements MoveI {
 	}
 
 	/**
-	 * 
+	 * TODO: Debugging?
 	 * @return the distance between the 2 points
 	 */
 	private int distanceBetween() {
@@ -111,6 +111,10 @@ public class Move implements MoveI {
 				+ Math.abs(newPosition.getY() - oldPosition.getY());
 	}
 
+	/**
+	 * Debugging
+	 * @param moves
+	 */
 	private void printMoves(Set<Location> moves) {
 		boolean a[][] = new boolean[26][26];
 		for (Location l : moves) {

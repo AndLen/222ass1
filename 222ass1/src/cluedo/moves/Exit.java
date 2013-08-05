@@ -16,18 +16,12 @@ import cluedo.tiles.DoorTile;
  * @author Michael
  * 
  */
-public class Exit implements MoveI {
-
-	private Location oldPosition;
-	private int diceRoll;
-	private Location newPosition;
+public class Exit extends Move {
 
 	public Exit(Location oldPosition, Location newPosition, int diceRoll,
 			Game game) {
-		super();
-		this.oldPosition = oldPosition;
-		this.diceRoll = diceRoll;
-		this.newPosition = newPosition;
+		super(oldPosition, newPosition, diceRoll, game);
+
 	}
 
 	/*
@@ -43,14 +37,13 @@ public class Exit implements MoveI {
 		// check that one of the positions infront of a door is in the set.
 		// for each door check if door is for the room currently in
 
-		for(DoorTile dT : game.getDoors()){
-			
-			System.out.println("dT:" + dT.getRoomInitial() + " roomTile: " + game.getTile(oldPosition).getRoomInitial());
-			if(dT.getRoomInitial().equals(game.getTile(oldPosition).getRoomInitial())){
-				// then the door then the door belongs to the same room we are in
-				Location loc = new Location(dT.getX()+dT.getxDir(), dT.getY()+dT.getyDir());
-				moves.addAll(game.getMovesTo(loc, diceRoll-1));
-
+		for (DoorTile dT : game.getDoors()) {
+			if(game.inParticularRoomLocation(oldPosition, dT.roomRep())){
+				// then the door then the door belongs to the same room we are
+				// in
+				Location loc = new Location(dT.getX() + dT.getxDir(), dT.getY()
+						+ dT.getyDir());
+				moves.addAll(game.getMovesTo(loc, diceRoll - 1));
 			}
 		}
 
@@ -61,15 +54,5 @@ public class Exit implements MoveI {
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see cluedo.moves.MoveI#apply(cluedo.main.Game)
-	 */
-	@Override
-	public void apply(Game game) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

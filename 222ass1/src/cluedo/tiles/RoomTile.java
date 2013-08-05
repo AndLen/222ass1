@@ -7,11 +7,17 @@ package cluedo.tiles;
  * 
  */
 public class RoomTile extends Tile {
-
-	public RoomTile(String s) {
-		super(s, s);
-		// TODO Auto-generated constructor stub
-
+	
+	public RoomTile(String s, int x, int y){
+		super(s,x,y);
 	}
 
+	
+	/**
+	 * What room this room tile belongs to.
+	 * @return
+	 */
+	public String roomRep(){
+		return stringRep;
+	}
 }
