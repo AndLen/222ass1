@@ -539,6 +539,31 @@ public class MoveTests {
 		
 		
 	}	
+		@Test
+		/**
+		 * test if can not use a door to enter living room
+		 */
+		public void testInvalidEnter2() {
+
+			List<Player> players = new ArrayList<Player>();
+			players.add(new Player(new Location(13, 7), Character.CHARACTERS[0],
+					null, null));
+
+			Game game = new Game(new Board(), new Solution(new Character(
+					Character.CHARACTERS[1]), new Room(Room.ROOMS[1]),
+					new Weapon(Weapon.WEAPONS[1])), null, players);
+
+			Move move = new Move(players.get(0).getLocation(), new Location(16, 7),
+					1, game);
+
+			if (move.isValid(game)) {
+
+				fail("a Player cannot enter the room (havent rolled engouh)");
+
+			}
+		
+				
+}
 	
 	
 	
