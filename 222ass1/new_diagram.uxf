@@ -1,1 +1,467 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><umlet_diagram></umlet_diagram>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>820</x>
+      <y>780</y>
+      <w>750</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>cluedo.cards::Weapon
+--
++WEAPONS = { "Rope", "Candlestick", "Knife", "Pistol", "Baseball Bat", "Dumbbell", "Trophy", "Poison", "Axe" }: String[]
+-weapon: String
+--
++Weapon(String s): ctor
++toString(): String
++getSymbol(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>220</x>
+      <y>930</y>
+      <w>140</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>cluedo.structs::Dice
+--
+~r: Random
+--
++Dice(): ctor
++getRoll(): int
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1580</x>
+      <y>780</y>
+      <w>120</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+cluedo.tiles::TileI
+--
+--
++draw(): void
++toString(): String
++getX(): int
++getY(): int
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>250</x>
+      <y>1050</y>
+      <w>200</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>cluedo.tiles::CorridorTile
+--
+--
++CorridorTile(int x, int y): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1050</x>
+      <y>930</y>
+      <w>520</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>cluedo.moves::Exit
+--
+--
++Exit(Location oldPosition, Location newPosition, int diceRoll, Game game): ctor
++isValid(Game game): boolean
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1580</x>
+      <y>930</y>
+      <w>550</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>cluedo.moves::Passage
+--
+--
++Passage(Location oldPosition, Location newPosition, int diceRoll, Game game): ctor
++isValid(Game game): boolean
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>370</x>
+      <y>930</y>
+      <w>130</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+cluedo.cards::Card
+--
+--
++getSymbol(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>520</w>
+      <h>550</h>
+    </coordinates>
+    <panel_attributes>cluedo.main::Game
+--
+-gameBoard: Board
+-gameFinished = false: boolean
+-die = new Dice(): Dice
+-solution: Solution
+-cardsInPool: List&lt;Card&gt;
+-players: Map&lt;String, Player&gt;
+-nextPlayer: Player
+-playerToNextPlayer: Map&lt;Player, Player&gt;
+--
++Game(Board b, Solution s, List&lt;Card&gt; cardsLeft, List&lt;Player&gt; playersList): ctor
++runGame(): void
+-takeTurn(Player p): boolean
+-takeRoomTurn(Player p): boolean
+-refute(Player originPlayer, Player nextPlayer, Solution sol): boolean
+-getAccusationInput(boolean inPool, Player p): Solution
+-getAnnounceInput(boolean inPool): boolean
+-getLocationInput(): Location
+-setUpMap(): Map&lt;Player, Player&gt;
+-nextPlayerSetup(Player kas): Player
+-nextPlayerString(String charName): String
+-getOrder(): Player
++boardToString(): String
++changePlayerLocation(Location oldL, Location newL): void
+-findPlayerAt(Location oldL): Player
++getPlayers(): List&lt;Player&gt;
++getMovesTo(Location oldPosition, int diceRoll): Set&lt;Location&gt;
++isCorridorLocation(Location newPosition): boolean
++isRoomLocation(Location newPosition): boolean
++inParticularRoomLocation(Location newPosition, String roomAcronym): boolean
++getDoors(): List&lt;DoorTile&gt;
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>510</x>
+      <y>930</y>
+      <w>530</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>cluedo.moves::Enter
+--
+--
++Enter(Location oldPosition, Location newPosition, int diceRoll, Game game): ctor
++isValid(Game game): boolean
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>0</x>
+      <y>780</y>
+      <w>810</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>cluedo.cards::Room
+--
++ROOMS = { "Spa", "Theatre", "Living Room", "Conservatory", "Patio", "Hall", "Kitchen", "Dining Room", "Guest House" }: String[]
+-room: String
+--
++Room(String s): ctor
++toString(): String
++getSymbol(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1730</x>
+      <y>560</y>
+      <w>830</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>cluedo.cards::Character
+--
++CHARACTERS = { "Kasandra Scarlett", "Jack Mustard", "Diane White", "Jacob Green", "Eleanor Peacock", "Victor Plum" }: String[]
+-card: String
+--
++Character(String s): ctor
++toString(): String
++getSymbol(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>0</x>
+      <y>560</y>
+      <w>240</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>cluedo.main::Main
+--
+-numPlayers: int
+-input: Scanner
+-game: Game
+--
++Main(): ctor
+-setupGame(): Game
+-setUpCharCards(): List&lt;Character&gt;
+-setUpWeapCards(): List&lt;Weapon&gt;
+-setUpRoomCards(): List&lt;Room&gt;
++main(String args[]): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>530</x>
+      <y>0</y>
+      <w>520</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>cluedo.structs::Player
+--
+-myPosition: Location
+-myName: String
+-mySymbol: String
+-myCards: List&lt;Card&gt;
+--
++Player(Location start, String myName, String mySymbol, List&lt;Card&gt; cards): ctor
++getMyName(): String
++getMySymbol(): String
++updateLocation(Location newPos): void
++getLocation(): Location
++myCardsIterator(): Iterator&lt;Card&gt;
++startLocation(String charName): Location
++hashCode(): int
++equals(Object obj): boolean
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1500</x>
+      <y>0</y>
+      <w>200</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>cluedo.structs::Location
+--
+-x: int
+-y: int
+--
++Location(Location l): ctor
++Location(int x, int y): ctor
++Location(): ctor
++hashCode(): int
++equals(Object obj): boolean
++getX(): int
++setX(int x): void
++getY(): int
++setY(int y): void
++isValid(Location l): boolean
++compareTo(Location obj): int
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1330</x>
+      <y>560</y>
+      <w>390</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>cluedo.tiles::DoorTile
+--
+-xDir: int
+-yDir: int
+-roomInitial: String
+--
++DoorTile(String roomInitial, int xDir, int yDir, int x, int y): ctor
++getxDir(): int
++getyDir(): int
++roomRep(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1060</x>
+      <y>0</y>
+      <w>430</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>cluedo.main::Board
+--
++BOARD_WIDTH = 24: int
++BOARD_HEIGHT = 29: int
+-gameBoard: Tile[][]
+-listOfDoors: List&lt;DoorTile&gt;
+--
++Board(): ctor
++tileAtLocation(Location l): Tile
++toString(Game g): String
+-hasPlayer(int i, int j, Game g): Player
+-digitToString(int i): String
++getMovesTo(Location oldPosition, int dice): Set&lt;Location&gt;
+-fillRoom(int x, int y, int x2, int y2, String type, String acronym): void
+-populateBoard(): void
++getListOfDoors(): List&lt;DoorTile&gt;
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>0</x>
+      <y>1050</y>
+      <w>240</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>cluedo.tiles::RoomTile
+--
+--
++RoomTile(String s, int x, int y): ctor
++roomRep(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>250</x>
+      <y>560</y>
+      <w>530</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>cluedo.moves::Move
+--
+#oldPosition: Location
+#diceRoll: int
+#newPosition: Location
+-move: MoveI
+--
++Move(Location oldPosition, Location newPosition, int diceRoll, Game game): ctor
++isValid(Game game): boolean
+-distanceBetween(): int
+-printMoves(Set&lt;Location&gt; moves): void
++apply(Game game): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>0</x>
+      <y>930</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+cluedo.moves::MoveI
+--
+--
++isValid(Game game): boolean
++apply(Game game): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>790</x>
+      <y>560</y>
+      <w>320</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>cluedo.structs::Solution
+--
+-charSol: Character
+-roomSol: Room
+-weaponSol: Weapon
+--
++Solution(Character c, Room r, Weapon w): ctor
++getCharSol(): Character
++getRoomSol(): Room
++getWeaponSol(): Weapon
++hashCode(): int
++equals(Object obj): boolean
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>1120</x>
+      <y>560</y>
+      <w>200</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>/cluedo.tiles::Tile/
+--
+#stringRep: String
+-x: int
+-y: int
+--
++Tile(String s, int x, int y): ctor
++draw(): void
++toString(): String
++getX(): int
++getY(): int
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

@@ -47,8 +47,6 @@ public class Board {
 		return gameBoard[l.getX()][l.getY()];
 	}
 
-	
-
 	/*
 	 * Used to print the gameBoard :-)
 	 */
@@ -120,17 +118,16 @@ public class Board {
 		// TODO need to implement it so not only the max amount of moves is
 		// possible(at the moment player must move dice squares and not back and
 		// forward)
-		//it allows straight, and L shaped moves, but only around one
+		// it allows straight, and L shaped moves, but only around one
 		// ;corner' this only becomes a problem when oldPos = a room and new pos
 		// = another room. need to check the code does actually check this now
 
 		Set<Location> list = new TreeSet<Location>();
-		Location newPosition = new Location();
 
 		for (int i = -dice; i <= dice; i++) {
 			for (int j = dice; j >= -dice; j--) {
-				newPosition.setX(oldPosition.getX() + i);
-				newPosition.setY(oldPosition.getY() + j);
+				Location newPosition = new Location(oldPosition.getX() + i,
+						oldPosition.getY() + j);
 
 				if (!Location.isValid(newPosition)) {
 					continue;
@@ -162,79 +159,79 @@ public class Board {
 
 	}
 
-	private void fillRoom(int x, int y, int x2, int y2, String type, String acronym) {
+	private void fillRoom(int x, int y, int x2, int y2, String type,
+			String acronym) {
 		for (; x <= x2; x++) {
 			// Uses a second variable or else y gets massive, heh. Dumb bug.
 			for (int y1 = y; y1 <= y2; y1++) {
-				if(type.equals("Corridor")){
-					gameBoard[x][y1] = new CorridorTile(x,y1);
-				}
-				else if(type.equals("Room")){
-					gameBoard[x][y1] = new RoomTile(acronym,x,y1);
-				}
-				else throw new IllegalArgumentException("Not a supported room.");
+				if (type.equals("Corridor")) {
+					gameBoard[x][y1] = new CorridorTile(x, y1);
+				} else if (type.equals("Room")) {
+					gameBoard[x][y1] = new RoomTile(acronym, x, y1);
+				} else
+					throw new IllegalArgumentException("Not a supported room.");
 			}
 		}
 	}
-	
+
 	/**
 	 * Adds all our doors and rooms
 	 */
 	private void populateBoard() {
 		// Fill everywhere with corridor to start with.
-		fillRoom(0, 0, BOARD_WIDTH - 1, BOARD_HEIGHT - 1, "Corridor","");
+		fillRoom(0, 0, BOARD_WIDTH - 1, BOARD_HEIGHT - 1, "Corridor", "");
 		// Tile door = new DoorTile();
 		// Spa
-		fillRoom(0, 0, 5, 5, "Room","SP");
-		fillRoom(0, 6, 4, 7,"Room", "SP");
+		fillRoom(0, 0, 5, 5, "Room", "SP");
+		fillRoom(0, 6, 4, 7, "Room", "SP");
 		gameBoard[5][5] = new DoorTile("SP", 0, 1, 5, 5);
 
 		// Theatre
-		fillRoom(8, 0, 12, 7, "Room","TH");
+		fillRoom(8, 0, 12, 7, "Room", "TH");
 		gameBoard[10][7] = new DoorTile("TH", 0, 1, 10, 7);
 
 		// Living Room
-		fillRoom(14, 0, 19, 7, "Room","LI");
-		fillRoom(15, 8, 17, 8, "Room","LI");
+		fillRoom(14, 0, 19, 7, "Room", "LI");
+		fillRoom(15, 8, 17, 8, "Room", "LI");
 		gameBoard[16][8] = new DoorTile("LI", 0, 1, 16, 8);
 
 		// Observatory
-		fillRoom(22, 0, 23, 8, "Room","OB");
+		fillRoom(22, 0, 23, 8, "Room", "OB");
 		gameBoard[22][7] = new DoorTile("OB", -1, 0, 22, 7);
 
 		// Hall
-		fillRoom(19, 11, 23, 17, "Room","HA");
+		fillRoom(19, 11, 23, 17, "Room", "HA");
 		gameBoard[19][13] = new DoorTile("HA", -1, 0, 19, 13);
 		gameBoard[19][14] = new DoorTile("HA", -1, 0, 19, 14);
 		gameBoard[22][11] = new DoorTile("HA", 0, -1, 22, 11);
 
 		// Guest House
-		fillRoom(20, 21, 23, 28, "Room","GU");
-		fillRoom(21, 20, 23, 20, "Room","GU");
+		fillRoom(20, 21, 23, 28, "Room", "GU");
+		fillRoom(21, 20, 23, 20, "Room", "GU");
 		gameBoard[20][21] = new DoorTile("GU", 0, -1, 20, 21);
 		gameBoard[21][20] = new DoorTile("GU", -1, 0, 21, 20);
 
 		// Dining room
-		fillRoom(10, 19, 15, 22, "Room","DI");
-		fillRoom(9, 23, 16, 28, "Room","DI");
+		fillRoom(10, 19, 15, 22, "Room", "DI");
+		fillRoom(9, 23, 16, 28, "Room", "DI");
 		gameBoard[12][19] = new DoorTile("DI", 0, -1, 12, 19);
 		gameBoard[15][21] = new DoorTile("DI", 1, 0, 15, 21);
 
 		// Kitchen
-		fillRoom(0, 21, 5, 21, "Room","KI");
-		fillRoom(0, 22, 6, 28, "Room","KI");
+		fillRoom(0, 21, 5, 21, "Room", "KI");
+		fillRoom(0, 22, 6, 28, "Room", "KI");
 		gameBoard[6][22] = new DoorTile("KI", 0, -1, 6, 22);
 
 		// Patio
-		fillRoom(0, 10, 3, 18, "Room","PA");
-		fillRoom(4, 11, 7, 17, "Room","PA");
+		fillRoom(0, 10, 3, 18, "Room", "PA");
+		fillRoom(4, 11, 7, 17, "Room", "PA");
 		gameBoard[5][11] = new DoorTile("PA", 0, -1, 5, 11);
 		gameBoard[7][12] = new DoorTile("PA", 1, 0, 7, 12);
 		gameBoard[7][16] = new DoorTile("PA", 1, 0, 7, 16);
 		gameBoard[5][17] = new DoorTile("PA", 0, 1, 5, 17);
 
 		// Pool
-		fillRoom(10, 11, 17, 16, "Room","PO");
+		fillRoom(10, 11, 17, 16, "Room", "PO");
 		gameBoard[14][11] = new DoorTile("PO", 0, -1, 14, 11);
 		gameBoard[10][16] = new DoorTile("PO", 0, 1, 10, 16);
 		gameBoard[17][16] = new DoorTile("PO", 0, 1, 17, 16);
