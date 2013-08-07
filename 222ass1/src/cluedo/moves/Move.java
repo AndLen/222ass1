@@ -45,9 +45,9 @@ public class Move implements MoveI {
 		// can we jump over a player? i know they can't when they are blocking a
 		// door, but can they if the are in hallway
 
-		//Possible locations the player can reach with his/her roll.
+		// Possible locations the player can reach with his/her roll.
 		Set<Location> moves = game.getMovesTo(oldPosition, diceRoll);
-		
+
 		for (Player p : game.getPlayers()) {
 			if (p.getLocation().equals(newPosition)) {
 
@@ -58,29 +58,29 @@ public class Move implements MoveI {
 
 		if (game.isRoomLocation(oldPosition)
 				&& game.isRoomLocation(newPosition)) {
-			//Must be moving through a passage or otherwise illegal
-			
+			// Must be moving through a passage or otherwise illegal
+
 			move = new Passage(oldPosition, newPosition, diceRoll, game);
 			return move.isValid(game);
 		}
 
 		else if (game.isRoomLocation(newPosition)) {
-			//Must be entering a room from a corridor.
+			// Must be entering a room from a corridor.
 			move = new Enter(oldPosition, newPosition, diceRoll, game);
 			return move.isValid(game);
 		}
 
 		else if (game.isCorridorLocation(newPosition)
 				&& game.isRoomLocation(oldPosition)) {
-			//Must be leaving a room
+			// Must be leaving a room
 			move = new Exit(oldPosition, newPosition, diceRoll, game);
-
+			//printMoves(moves);
 			return move.isValid(game);
 		}
 
 		else if (moves.contains(newPosition)) {
-			//Otherwise just a corridor move.
-			
+			// Otherwise just a corridor move.
+
 			// a door should also counts as a roomlocation
 
 			// should check that path doesn't involve walking through walls
@@ -94,7 +94,7 @@ public class Move implements MoveI {
 
 			return true;
 		}
-
+		//printMoves(moves);
 		return false;
 	}
 
@@ -114,10 +114,10 @@ public class Move implements MoveI {
 	 * 
 	 * @param moves
 	 */
-	private void printMoves(Set<Location> moves) {
+	protected void printMoves(Set<Location> moves) {
 		boolean a[][] = new boolean[26][26];
 		for (Location l : moves) {
-			a[l.getX()][l.getY()] = true;
+			a[l.getY()][l.getX()] = true;
 		}
 		for (boolean[] ba : a) {
 			for (boolean b : ba) {

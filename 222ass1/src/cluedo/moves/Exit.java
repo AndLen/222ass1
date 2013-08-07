@@ -38,7 +38,7 @@ public class Exit extends Move {
 		// for each door check if door is for the room currently in
 
 		for (DoorTile dT : game.getDoors()) {
-			if(game.inParticularRoomLocation(oldPosition, dT.roomRep())){
+			if (game.inParticularRoomLocation(oldPosition, dT.roomRep())) {
 				// then the door then the door belongs to the same room we are
 				// in
 				Location loc = new Location(dT.getX() + dT.getxDir(), dT.getY()
@@ -46,13 +46,12 @@ public class Exit extends Move {
 				moves.addAll(game.getMovesTo(loc, diceRoll - 1));
 			}
 		}
-
+	//	printMoves(moves);
 		if (moves.contains(newPosition)) {
 			return true;
 		}
-
+		printMoves(moves);
 		return false;
 	}
-
 
 }
