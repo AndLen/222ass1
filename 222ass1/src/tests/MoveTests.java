@@ -564,4 +564,332 @@ public class MoveTests {
 
 	}
 
+	@Test
+	/**
+	 * test if can  use a door, to exit the south facing door of the patio
+	 */
+	public void testValidExit() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(3, 10), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(5, 18),
+				1, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit the room");
+
+		}
+
+	}
+
+	@Test
+	/**
+	 * test if cannot  use a door, to exit the south facing door of the patio
+	 * havent rolled high enough
+	 */
+	public void testInvalidExit2() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(4, 11), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(5, 20),
+				1, game);
+
+		if (move.isValid(game)) {
+
+			fail("a Player cannot exit the room havent rolled enough");
+
+		}
+
+	}
+
+	/**
+	 * test if can use a door, to exit the south facing door of the patio
+	 */
+	public void testValidExit2() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(4, 11), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(5, 20),
+				3, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit the room");
+
+		}
+
+	}
+
+	@Test
+	/**
+	 * test if can  use a door, to exit the south facing door of the patio
+	 */
+	public void testValidExit3() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(4, 11), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(6, 20),
+				4, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit the room");
+
+		}
+
+	}
+	
+	@Test
+	/**
+	 * test if can  use a door, to exit the south facing door of the pool
+	 */
+	public void testValidExit4() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(12, 13), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(9, 19),
+				4, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit the room");
+
+		}
+
+	}
+	
+
+	@Test
+	/**
+	 * test if can  use a door, to exit the south facing door (left) of the pool
+	 */
+	public void testValidExit5() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(11, 13), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(9, 21),
+				6, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit the room");
+
+		}
+
+	}
+	
+	@Test
+	/**
+	 * test if can  use a door, to exit the north facing door of the pool
+	 */
+	public void testValidExit6() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(12, 14), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(13, 7),
+				5, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit the room");
+
+		}
+
+	}
+	
+	@Test
+	/**
+	 * test if can  use a door, to exit the south facing of patio
+	 */
+	public void testValidExit7() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(1,17), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(6, 18),
+				2, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit the room");
+
+		}
+
+	}
+	
+	@Test
+	/**
+	 * test if can  use a door, to exit the south facing of patio
+	 */
+	public void testValidExit8() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(1,17), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(4, 18),
+				2, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit the room");
+
+		}
+
+	}
+
+	@Test
+	/**
+	 * test if can  use a door, to exit the south facing of patio
+	 */
+	public void testValidExit9() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(1,17), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(4, 19),
+				3, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit the room");
+
+		}
+
+	}
+	
+	@Test
+	/**
+	 * test if can  use a door, to exit the south facing of patio
+	 */
+	public void testValidExit10() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(1,17), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(3,19),
+				4, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit the room");
+
+		}
+
+	}
+	
+	
+	@Test
+	/**
+	 * test if can  use a door, hall
+	 */
+	public void testValidExit11() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(21,17), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(18,17),
+				4, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit the room");
+
+		}
+
+	}
+	
+	@Test
+	/**
+	 * test if player can move to down and left 
+	 * 	 */
+	public void testValidMove() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(5,7), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(7,9), //7,8
+				5, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit the room");
+
+		}
+
+	}
+	
+	
 }
