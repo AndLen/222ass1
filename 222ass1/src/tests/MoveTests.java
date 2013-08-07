@@ -490,5 +490,56 @@ public class MoveTests {
 
 	}
 	
+	@Test
+	/**
+	 * test if a player can enter a room Kitchen and use the passage in one move
+	 */
+	public void testInvalidPassage() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(7, 22), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]),
+				new Weapon(Weapon.WEAPONS[1])), null, players);
+
+		Move move = new Move(players.get(0).getLocation(), new Location(22, 1),
+				6, game);
+
+		if (move.isValid(game)) {
+
+			fail("a Player cannot enter a rrom then use a passage");
+
+		}
+	}
+	
+		@Test
+		/**
+		 * test if can not use a door to enter living room
+		 */
+		public void testInvalidEnter() {
+
+			List<Player> players = new ArrayList<Player>();
+			players.add(new Player(new Location(21, 7), Character.CHARACTERS[0],
+					null, null));
+
+			Game game = new Game(new Board(), new Solution(new Character(
+					Character.CHARACTERS[1]), new Room(Room.ROOMS[1]),
+					new Weapon(Weapon.WEAPONS[1])), null, players);
+
+			Move move = new Move(players.get(0).getLocation(), new Location(17, 7),
+					1, game);
+
+			if (move.isValid(game)) {
+
+				fail("a Player cannot enter the room (havent rolled engouh)");
+
+			}
+		
+		
+	}	
+	
+	
 	
 }
