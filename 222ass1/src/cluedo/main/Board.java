@@ -123,7 +123,7 @@ public class Board {
 		// = another room. need to check the code does actually check this now
 
 		Set<Location> list = new TreeSet<Location>();
-
+		
 		for (int i = -dice; i <= dice; i++) {
 			for (int j = dice; j >= -dice; j--) {
 				Location newPosition = new Location(oldPosition.getX() + i,
