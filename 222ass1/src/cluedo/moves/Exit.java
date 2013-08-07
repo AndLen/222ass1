@@ -50,7 +50,7 @@ public class Exit extends Move {
 		if (moves.contains(newPosition)) {
 			return true;
 		}
-		printMoves(moves);
+	//	printMoves(moves);
 		return false;
 	}
 

@@ -891,5 +891,35 @@ public class MoveTests {
 
 	}
 	
+	@Test
+	/**
+	 * test that a player cannot move off the board
+	 * 	 */
+	public void testInvalidMove() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(1,8), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
+
+		try{
+		Move move = new Move(players.get(0).getLocation(), new Location(-2,8), //7,8
+				5, game);
+
+		if (move.isValid(game)) {
+
+			fail("a Player cannot move off the board");
+
+		}
+		}catch (IllegalArgumentException e){
+			return;
+			
+		}
+		fail("a Player cannot mov off the board");
+	}
 	
+
 }

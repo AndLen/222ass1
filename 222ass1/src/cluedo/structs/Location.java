@@ -25,8 +25,6 @@ public class Location implements Comparable<Location> {
 		this.y = y;
 	}
 
-	public Location() {
-	}
 
 	/*
 	 * (non-Javadoc)
