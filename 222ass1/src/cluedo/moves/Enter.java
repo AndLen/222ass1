@@ -55,10 +55,15 @@ public class Enter extends Move {
 		// tap/move
 		// has already been taken
 		for (DoorTile d : game.getDoors()) {
+			
+			// the door needs to belong to the same room as the one entered
+			
+			if(d.roomRep().equals(game.getRoom(newPosition))){
 			Location outsideDoor = new Location(d.getX() + d.getxDir(),
 					d.getY() + d.getyDir()); // the position one step before the
 												// door.
 			list.addAll(game.getMovesTo(outsideDoor, diceRoll));
+			}
 		}
 
 		if (list.contains(oldPosition)) {

@@ -339,7 +339,7 @@ public class MoveTests {
 	 * test if a player cannot use a secret passage that doesnt exist
 	 *  patio to spa
 	 */
-	public void testInvalidSecretPassage() {
+	public void testNonExistentSecretPassage() {
 
 		List<Player> players = new ArrayList<Player>();
 		players.add(new Player(new Location(4, 14), Character.CHARACTERS[0],
@@ -365,7 +365,7 @@ public class MoveTests {
 	 * test if a player cannot use a secret passage that doesnt exist
 	 *  guest house to kitchen
 	 */
-	public void testInvalidSecretPassage2() {
+	public void testNonExistentSecretPassage2() {
 
 		List<Player> players = new ArrayList<Player>();
 		players.add(new Player(new Location(20, 27), Character.CHARACTERS[0],
@@ -388,8 +388,8 @@ public class MoveTests {
 
 	@Test
 	/**
-	 * test if a player cannot exit a room into a corridor not high enough dice roll
-	 *  
+	 * test if a player cannot exit a room into a corridor tile to far away,
+	 *  when not high enough dice roll
 	 */
 	public void testInvalidExitRoom() {
 
@@ -417,7 +417,7 @@ public class MoveTests {
 	 * test if a player cannot move within the room
 	 *  
 	 */
-	public void testInvalidExitRoom2() {
+	public void testInvalidMoveWithinRoom() {
 
 		List<Player> players = new ArrayList<Player>();
 		players.add(new Player(new Location(4, 27), Character.CHARACTERS[0],
@@ -463,7 +463,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	@Test
 	/**
 	 * test if a player can exit a room into a corridor
@@ -476,8 +476,8 @@ public class MoveTests {
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]),
-				new Weapon(Weapon.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(5, 18),
 				1, game);
@@ -489,7 +489,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	@Test
 	/**
 	 * test if a player can enter a room Kitchen and use the passage in one move
@@ -501,8 +501,8 @@ public class MoveTests {
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
-				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]),
-				new Weapon(Weapon.WEAPONS[1])), null, players);
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(22, 1),
 				6, game);
@@ -513,58 +513,55 @@ public class MoveTests {
 
 		}
 	}
-	
-		@Test
-		/**
-		 * test if can not use a door to enter living room
-		 */
-		public void testInvalidEnter() {
 
-			List<Player> players = new ArrayList<Player>();
-			players.add(new Player(new Location(21, 7), Character.CHARACTERS[0],
-					null, null));
+	@Test
+	/**
+	 * test if can not use a door, to enter living room
+	 */
+	public void testInvalidEnter() {
 
-			Game game = new Game(new Board(), new Solution(new Character(
-					Character.CHARACTERS[1]), new Room(Room.ROOMS[1]),
-					new Weapon(Weapon.WEAPONS[1])), null, players);
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(21, 7), Character.CHARACTERS[0],
+				null, null));
 
-			Move move = new Move(players.get(0).getLocation(), new Location(17, 7),
-					1, game);
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
-			if (move.isValid(game)) {
+		Move move = new Move(players.get(0).getLocation(), new Location(17, 7),
+				1, game);
 
-				fail("a Player cannot enter the room (havent rolled engouh)");
+		if (move.isValid(game)) {
 
-			}
-		
-		
-	}	
-		@Test
-		/**
-		 * test if can not use a door to enter living room
-		 */
-		public void testInvalidEnter2() {
+			fail("a Player cannot enter the room (havent rolled engouh)");
 
-			List<Player> players = new ArrayList<Player>();
-			players.add(new Player(new Location(13, 7), Character.CHARACTERS[0],
-					null, null));
+		}
 
-			Game game = new Game(new Board(), new Solution(new Character(
-					Character.CHARACTERS[1]), new Room(Room.ROOMS[1]),
-					new Weapon(Weapon.WEAPONS[1])), null, players);
+	}
 
-			Move move = new Move(players.get(0).getLocation(), new Location(16, 7),
-					1, game);
+	@Test
+	/**
+	 * test if can not use a door, to enter living room
+	 */
+	public void testInvalidEnter2() {
 
-			if (move.isValid(game)) {
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(13, 7), Character.CHARACTERS[0],
+				null, null));
 
-				fail("a Player cannot enter the room (havent rolled engouh)");
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, players);
 
-			}
-		
-				
-}
-	
-	
-	
+		Move move = new Move(players.get(0).getLocation(), new Location(16, 7),
+				1, game);
+
+		if (move.isValid(game)) {
+
+			fail("a Player cannot enter the room (havent rolled engouh)");
+
+		}
+
+	}
+
 }

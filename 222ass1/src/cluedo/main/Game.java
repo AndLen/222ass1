@@ -126,6 +126,7 @@ public class Game {
 
 	/**
 	 * Returns false if died.
+	 * 
 	 * @param p
 	 */
 	private boolean takeRoomTurn(Player p) {
@@ -151,20 +152,21 @@ public class Game {
 				}
 			} else {
 				// TODO: Wants to suggest
-				System.out.println(p + " suggests " + possibleSol.getCharSol() + " in " + possibleSol.getRoomSol() + " with the " + possibleSol.getWeaponSol());
-				if(!refute(p, players.get(p),possibleSol)){
+				System.out.println(p + " suggests " + possibleSol.getCharSol()
+						+ " in " + possibleSol.getRoomSol() + " with the "
+						+ possibleSol.getWeaponSol());
+				if (!refute(p, players.get(p), possibleSol)) {
 					System.out.println("No one can refute that!");
 				}
-
 
 			}
 		}
 		return true; // still alive.
 	}
 
-	private boolean refute(Player originPlayer, Player nextPlayer,Solution sol) {
-		//TODO: Finish this off.
-		if(originPlayer.equals(nextPlayer)){
+	private boolean refute(Player originPlayer, Player nextPlayer, Solution sol) {
+		// TODO: Finish this off.
+		if (originPlayer.equals(nextPlayer)) {
 			return false;
 		}
 		return true;
@@ -409,6 +411,21 @@ public class Game {
 		}
 		// not a room or a door.
 		return false;
+	}
+
+	/**
+	 * 
+	 * @param location
+	 *            the location for the tile rep
+	 * @return the intitals of the room that the room belongs to
+	 */
+	public String getRoom(Location location) {
+		Tile t = gameBoard.tileAtLocation(location);
+		if (t instanceof RoomTile) {
+			RoomTile rt = (RoomTile) t;
+			return rt.roomRep();
+		}
+		return null;
 	}
 
 	/**
