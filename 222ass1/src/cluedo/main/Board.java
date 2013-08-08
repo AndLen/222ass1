@@ -9,6 +9,7 @@ import cluedo.structs.Location;
 import cluedo.structs.Player;
 import cluedo.tiles.CorridorTile;
 import cluedo.tiles.DoorTile;
+import cluedo.tiles.IntrigueTile;
 import cluedo.tiles.RoomTile;
 import cluedo.tiles.Tile;
 
@@ -123,7 +124,7 @@ public class Board {
 		// = another room. need to check the code does actually check this now
 
 		Set<Location> list = new TreeSet<Location>();
-		
+
 		for (int i = -dice; i <= dice; i++) {
 			for (int j = dice; j >= -dice; j--) {
 				Location newPosition = new Location(oldPosition.getX() + i,
@@ -245,6 +246,29 @@ public class Board {
 				}
 			}
 		}
+
+		setupIntrigueTiles();
+
+	}
+
+	/**
+	 * adds Intrigue tiles to board
+	 */
+	private void setupIntrigueTiles() {
+		gameBoard[3][8] = new IntrigueTile(3, 8);
+		gameBoard[7][4] = new IntrigueTile(7, 4);
+		gameBoard[11][5] = new IntrigueTile(11, 5);
+		gameBoard[13][0] = new IntrigueTile(13, 0);
+		gameBoard[16][10] = new IntrigueTile(16, 10);
+		gameBoard[21][6] = new IntrigueTile(21, 6);
+		gameBoard[8][14] = new IntrigueTile(8, 14);
+		gameBoard[14][17] = new IntrigueTile(14, 17);
+		gameBoard[4][18] = new IntrigueTile(4, 18);
+		gameBoard[20][18] = new IntrigueTile(20, 18);
+		gameBoard[8][23] = new IntrigueTile(8, 23);
+		gameBoard[18][22] = new IntrigueTile(18, 22);
+		
+		
 	}
 
 	/**

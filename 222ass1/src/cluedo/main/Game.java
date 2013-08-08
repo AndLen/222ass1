@@ -18,6 +18,7 @@ import cluedo.structs.Player;
 import cluedo.structs.Solution;
 import cluedo.tiles.CorridorTile;
 import cluedo.tiles.DoorTile;
+import cluedo.tiles.IntrigueTile;
 import cluedo.tiles.RoomTile;
 import cluedo.tiles.Tile;
 
@@ -380,7 +381,12 @@ public class Game {
 	}
 
 	public boolean isCorridorLocation(Location newPosition) {
-		return (gameBoard.tileAtLocation(newPosition) instanceof CorridorTile);
+		return (gameBoard.tileAtLocation(newPosition) instanceof CorridorTile)
+				|| (gameBoard.tileAtLocation(newPosition) instanceof IntrigueTile);
+	}
+	
+	public boolean isIntrigueLocation(Location newPosition) {
+		return(gameBoard.tileAtLocation(newPosition) instanceof IntrigueTile);
 	}
 
 	/**
