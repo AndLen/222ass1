@@ -6,4 +6,8 @@ public class CorridorTile extends Tile {
 		super("  ",x,y);
 	}
 
+	public CorridorTile(String string, int x, int y) {
+		super(string, x, y);
+	}
+
 }

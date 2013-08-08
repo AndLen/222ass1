@@ -7,7 +7,7 @@ package cluedo.tiles;
  * @author Michael
  * 
  */
-public class IntrigueTile extends Tile{
+public class IntrigueTile extends CorridorTile{
 
 	public IntrigueTile(int x, int y) {
 		super(" ?", x, y);
