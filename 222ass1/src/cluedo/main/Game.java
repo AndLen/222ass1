@@ -108,12 +108,8 @@ public class Game {
 		System.out.print(gameBoard.toString(this));
 
 		// Print what cards you have
-		Iterator<Card> cardIt = p.myCardsIterator();
 		System.out.print("Your cards: ");
-		while (cardIt.hasNext()) {
-			System.out.print(cardIt.next().toString() + ", ");
-		}
-		System.out.println();
+		System.out.println(p.myCards());
 
 		if (isRoomLocation(p.getLocation())) {
 			// If we're in a room, then we can do some other stuff...
@@ -135,10 +131,14 @@ public class Game {
 		boolean canAccuse = inParticularRoomLocation(p.getLocation(), "PO");
 		if (canAccuse) {
 			System.out.println("Cards in pool: ");
-			for (Card c : cardsInPool) {
-				System.out.print(c + ", ");
+			if (cardsInPool.isEmpty()) {
+				System.out.println("No cards in the pool.");
+			} else {
+				for (Card c : cardsInPool) {
+					System.out.print(c + ", ");
+				}
+				System.out.println();
 			}
-			System.out.println();
 		}
 		boolean wantsToSpeak = getAnnounceInput(canAccuse);
 
@@ -151,11 +151,24 @@ public class Game {
 					return false;
 				}
 			} else {
-				// TODO: Wants to suggest
+
+				// Need to move the appropriate player to the room
+				Player toMove = players
+						.get(possibleSol.getCharSol().toString());
+				if (toMove != null) {
+					Location newLocation = gameBoard.getFreeTile(players
+							.values(), possibleSol.getRoomSol().getSymbol());
+					// Found them a spot, move them and re-draw.
+					changePlayerLocation(toMove.getLocation(), newLocation);
+					System.out.print(boardToString());
+					System.out.print(toMove + " was moved to the " + possibleSol.getRoomSol() + " !\n");
+				}
+
 				System.out.println(p + " suggests " + possibleSol.getCharSol()
 						+ " in " + possibleSol.getRoomSol() + " with the "
 						+ possibleSol.getWeaponSol());
-				if (!refute(p, players.get(p), possibleSol)) {
+
+				if (!refute(p, playerToNextPlayer.get(p), possibleSol)) {
 					System.out.println("No one can refute that!");
 				}
 
@@ -165,11 +178,37 @@ public class Game {
 	}
 
 	private boolean refute(Player originPlayer, Player nextPlayer, Solution sol) {
-		// TODO: Finish this off.
 		if (originPlayer.equals(nextPlayer)) {
 			return false;
 		}
-		return true;
+		Iterator<Card> cards = nextPlayer.myCardsIterator();
+		boolean canRefute = false;
+		while (cards.hasNext()) {
+			if (sol.containsCard(cards.next().toString())) {
+				canRefute = true;
+				break;
+			}
+		}
+		if (canRefute) {
+			System.out.print(nextPlayer + ": please refute " + originPlayer
+					+ "'s accusation\n");
+			System.out.print(nextPlayer + ", your cards are:\n");
+			System.out.println(nextPlayer.myCards());
+			while (true) {
+				Scanner sc = new Scanner(System.in);
+				System.out
+						.println("Please enter the card you wish to refute with:");
+				String possCard = sc.nextLine();
+				possCard = possCard.trim();
+				if (sol.containsCard(possCard)) {
+					System.out.println(nextPlayer + " refuted with: "
+							+ possCard);
+					return true;
+				}
+
+			}
+		}
+		return refute(originPlayer, playerToNextPlayer.get(nextPlayer), sol);
 	}
 
 	/**
@@ -197,7 +236,7 @@ public class Game {
 						&& !inParticularRoomLocation(p.getLocation(),
 								r.getSymbol())) {
 					throw new IllegalArgumentException(
-							"Cant suggest something unless you're in the right room");
+							"Can't suggest something unless you're in the right room");
 				}
 				return new Solution(c, r, w);
 			} catch (IllegalArgumentException e) {

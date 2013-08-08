@@ -52,6 +52,18 @@ public class Player {
 	public Iterator<Card> myCardsIterator() {
 		return myCards.iterator();
 	}
+	
+	/**
+	 * String representation of the cards the player holds.
+	 * @return
+	 */
+	public String myCards(){
+		String s = "";
+		for(Card c: myCards){
+			s+=c.toString() + ", ";
+		}
+		return s;
+	}
 
 	public static Location startLocation(String charName) {
 		if (charName.equals("Kasandra Scarlett")) {

@@ -1,7 +1,9 @@
 package cluedo.main;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -252,6 +254,26 @@ public class Board {
 	 */
 	public List<DoorTile> getListOfDoors() {
 		return listOfDoors;
+	}
+
+	public Location getFreeTile(Collection<Player> players, String symbol) {
+		for(int i = 0; i < BOARD_WIDTH;i++){
+			for(int j = 0; j < BOARD_HEIGHT;j++){
+				if(gameBoard[i][j].toString().equals(symbol)){
+					boolean nobodyHere = true;
+					for(Player p: players){
+						if(p.getLocation().equals(new Location(i,j))){
+							nobodyHere = false;
+							break;
+						}
+					}
+					if(nobodyHere){
+						return new Location(i,j);
+					}
+				}
+			}
+		}
+		throw new IllegalArgumentException("No tile found!!");
 	}
 
 }
