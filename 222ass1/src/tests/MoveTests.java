@@ -18,6 +18,13 @@ import cluedo.structs.Location;
 import cluedo.structs.Player;
 import cluedo.structs.Solution;
 
+/**
+ * to update the intrigue cards just find and replace null, null with null, and
+ * the list of cards. if needed
+ * 
+ * @author Michael
+ * 
+ */
 public class MoveTests {
 
 	@Test
@@ -32,7 +39,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(2, 27),
 				2, game);
@@ -63,7 +70,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Enter move = new Enter(players.get(0).getLocation(),
 				new Location(3, 28), 3, game);
@@ -88,7 +95,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Enter move = new Enter(players.get(0).getLocation(),
 				new Location(3, 14), 3, game);
@@ -113,7 +120,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Enter move = new Enter(players.get(0).getLocation(),
 				new Location(3, 14), 3, game);
@@ -138,7 +145,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(16, 5),
 				6, game);
@@ -164,7 +171,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(6, 20),
 				3, game);
@@ -190,7 +197,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(5, 18),
 				1, game);
@@ -215,7 +222,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(17, 7),
 				1, game);
@@ -240,7 +247,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(16, 7),
 				1, game);
@@ -266,7 +273,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(5, 20),
 				1, game);
@@ -292,7 +299,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(6, 19),
 				1, game);
@@ -312,25 +319,26 @@ public class MoveTests {
 	public void testInvalidMove() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(1,8), Character.CHARACTERS[0],
+		players.add(new Player(new Location(1, 8), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
-		try{
-		Move move = new Move(players.get(0).getLocation(), new Location(-2,8), //7,8
-				5, game);
+		try {
+			Move move = new Move(players.get(0).getLocation(), new Location(-2,
+					8), // 7,8
+					5, game);
 
-		if (move.isValid(game)) {
+			if (move.isValid(game)) {
 
-			fail("a Player cannot move off the board");
+				fail("a Player cannot move off the board");
 
-		}
-		}catch (IllegalArgumentException e){
+			}
+		} catch (IllegalArgumentException e) {
 			return;
-			
+
 		}
 		fail("a Player cannot mov off the board");
 	}
@@ -348,7 +356,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(4, 26),
 				1, game);
@@ -373,7 +381,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(22, 1),
 				6, game);
@@ -384,7 +392,6 @@ public class MoveTests {
 
 		}
 	}
-
 
 	@Test
 	/**
@@ -401,7 +408,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(8, 8),
 				1, game);
@@ -427,7 +434,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(1, 6),
 				1, game);
@@ -440,7 +447,6 @@ public class MoveTests {
 
 	}
 
-	
 	@Test
 	/**
 	 * test if a player cannot use a secret passage that doesnt exist
@@ -454,7 +460,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(1, 21),
 				1, game);
@@ -479,7 +485,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(20, 7),
 				8, game);
@@ -505,7 +511,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(),
 				new Location(22, 25), 8, game);
@@ -531,7 +537,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(0, 0),
 				1, game);
@@ -557,7 +563,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(23, 1),
 				1, game);
@@ -583,7 +589,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(1, 25),
 				1, game);
@@ -608,7 +614,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(5, 18),
 				1, game);
@@ -628,14 +634,14 @@ public class MoveTests {
 	public void testValidExit10() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(1,17), Character.CHARACTERS[0],
+		players.add(new Player(new Location(1, 17), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
-		Move move = new Move(players.get(0).getLocation(), new Location(3,19),
+		Move move = new Move(players.get(0).getLocation(), new Location(3, 19),
 				4, game);
 
 		if (!move.isValid(game)) {
@@ -653,15 +659,15 @@ public class MoveTests {
 	public void testValidExit11() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(21,17), Character.CHARACTERS[0],
+		players.add(new Player(new Location(21, 17), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
-		Move move = new Move(players.get(0).getLocation(), new Location(18,17),
-				4, game);
+		Move move = new Move(players.get(0).getLocation(),
+				new Location(18, 17), 4, game);
 
 		if (!move.isValid(game)) {
 
@@ -670,7 +676,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	/**
 	 * test if can use a door, to exit the south facing door of the patio
 	 */
@@ -682,7 +688,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(5, 20),
 				3, game);
@@ -694,7 +700,6 @@ public class MoveTests {
 		}
 
 	}
-	
 
 	@Test
 	/**
@@ -708,7 +713,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(6, 20),
 				4, game);
@@ -720,7 +725,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	@Test
 	/**
 	 * test if can  use a door, to exit the south facing door of the pool
@@ -733,7 +738,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(9, 19),
 				4, game);
@@ -745,7 +750,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	@Test
 	/**
 	 * test if can  use a door, to exit the south facing door (left) of the pool
@@ -758,7 +763,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(9, 21),
 				6, game);
@@ -770,7 +775,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	@Test
 	/**
 	 * test if can  use a door, to exit the north facing door of the pool
@@ -783,7 +788,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(13, 7),
 				5, game);
@@ -803,12 +808,12 @@ public class MoveTests {
 	public void testValidExit7() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(1,17), Character.CHARACTERS[0],
+		players.add(new Player(new Location(1, 17), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(6, 18),
 				2, game);
@@ -820,7 +825,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	@Test
 	/**
 	 * test if can  use a door, to exit the south facing of patio
@@ -828,12 +833,12 @@ public class MoveTests {
 	public void testValidExit8() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(1,17), Character.CHARACTERS[0],
+		players.add(new Player(new Location(1, 17), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(4, 18),
 				2, game);
@@ -845,8 +850,7 @@ public class MoveTests {
 		}
 
 	}
-	
-	
+
 	@Test
 	/**
 	 * test if can  use a door, to exit the south facing of patio
@@ -854,12 +858,12 @@ public class MoveTests {
 	public void testValidExit9() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(1,17), Character.CHARACTERS[0],
+		players.add(new Player(new Location(1, 17), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(), new Location(4, 19),
 				3, game);
@@ -871,7 +875,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	@Test
 	/**
 	 * test if player can move to down and left 
@@ -879,14 +883,14 @@ public class MoveTests {
 	public void testValidMove() {
 
 		List<Player> players = new ArrayList<Player>();
-		players.add(new Player(new Location(5,7), Character.CHARACTERS[0],
+		players.add(new Player(new Location(5, 7), Character.CHARACTERS[0],
 				null, null));
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
-		Move move = new Move(players.get(0).getLocation(), new Location(7,9), //7,8
+		Move move = new Move(players.get(0).getLocation(), new Location(7, 9), // 7,8
 				5, game);
 
 		if (!move.isValid(game)) {
@@ -896,7 +900,7 @@ public class MoveTests {
 		}
 
 	}
-	
+
 	@Test
 	/**
 	 * test if a player can make multiple turns
@@ -910,7 +914,7 @@ public class MoveTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Move move = new Move(players.get(0).getLocation(),
 				new Location(18, 25), 32, game);
@@ -922,6 +926,5 @@ public class MoveTests {
 		}
 
 	}
-	
 
 }

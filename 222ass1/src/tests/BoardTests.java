@@ -37,7 +37,7 @@ public class BoardTests {
 
 		Game game = new Game(new Board(), new Solution(new Character(
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
-				Weapon.WEAPONS[1])), null, players);
+				Weapon.WEAPONS[1])), null, null, players);
 
 		Set<Location> movesTo = game.getMovesTo(new Location(8, 8), 4);
 

@@ -19,6 +19,8 @@ import org.junit.runners.Suite;
 	MoveTests.class,
 	BoardTests.class,
 	LocationTests.class,
+	GameTests.class,
+	
 // classtests.class,
 
 })
