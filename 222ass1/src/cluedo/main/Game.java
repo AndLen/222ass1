@@ -1,11 +1,13 @@
 package cluedo.main;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -42,12 +44,23 @@ public class Game {
 	// Used to find who the next person clockwise to go is!
 	private final Map<Player, Player> playerToNextPlayer;
 
+	private int clockCounter; // when this reaches 8 player is dead
+	private final Queue<Card> intrigueCards;
+
 	public Game(Board b, Solution s, List<Card> cardsLeft,
-			List<Player> playersList) {
+			List<Card> intrigueCards, List<Player> playersList) {
+		this.intrigueCards = new ArrayDeque<Card>();
 		gameBoard = b;
 		solution = s;
 		// All our leftover cards get put in the middle.
 		cardsInPool = cardsLeft;
+
+		if (intrigueCards != null) {
+			// sometimes we dont care about these cards (alot of the movement
+			// tests) so it is null
+			this.intrigueCards.addAll(intrigueCards);
+			clockCounter = 8 - intrigueCards.size();
+		}
 
 		// Make maps.
 		players = new HashMap<String, Player>();
@@ -113,6 +126,10 @@ public class Game {
 		System.out.print("Your cards: ");
 		System.out.println(p.myCards());
 
+		if (isIntrigueLocation(p.getLocation())) {
+			return takeIntrigueTurn(p);
+		}
+
 		if (isRoomLocation(p.getLocation())) {
 			// If we're in a room, then we can do some other stuff...
 			return takeRoomTurn(p);
@@ -120,6 +137,32 @@ public class Game {
 
 		// We didn't die
 		return true;
+	}
+
+	/**
+	 * @return false if dead
+	 * @author Michael
+	 */
+	private boolean takeIntrigueTurn(Player p) {
+		// TODO Auto-generated method stub
+		// pick up a card off the pile
+		Card c = intrigueCards.poll();
+
+		if (c instanceof Clocks) {
+			//System.out.println(clockCounter);
+			clockCounter++;
+			//System.out.println(clockCounter);
+			if (clockCounter >= 8) {
+				// player dies when the eigth clock card has been picked up
+				// it then goes back into the pile to kill more people.
+				//System.out.println("size: " + intrigueCards.size());
+				intrigueCards.add(c);
+				return false;
+			}
+			return true;
+
+		}
+		return false;
 	}
 
 	/**
@@ -163,7 +206,8 @@ public class Game {
 					// Found them a spot, move them and re-draw.
 					changePlayerLocation(toMove.getLocation(), newLocation);
 					System.out.print(boardToString());
-					System.out.print(toMove + " was moved to the " + possibleSol.getRoomSol() + " !\n");
+					System.out.print(toMove + " was moved to the "
+							+ possibleSol.getRoomSol() + " !\n");
 				}
 
 				System.out.println(p + " suggests " + possibleSol.getCharSol()
@@ -421,12 +465,11 @@ public class Game {
 	}
 
 	public boolean isCorridorLocation(Location newPosition) {
-		return (gameBoard.tileAtLocation(newPosition) instanceof CorridorTile)
-				|| (gameBoard.tileAtLocation(newPosition) instanceof IntrigueTile);
+		return (gameBoard.tileAtLocation(newPosition) instanceof CorridorTile);
 	}
-	
+
 	public boolean isIntrigueLocation(Location newPosition) {
-		return(gameBoard.tileAtLocation(newPosition) instanceof IntrigueTile);
+		return (gameBoard.tileAtLocation(newPosition) instanceof IntrigueTile);
 	}
 
 	/**

@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import cluedo.cards.Card;
 import cluedo.cards.Character;
+import cluedo.cards.Clocks;
 import cluedo.cards.Room;
 import cluedo.cards.Weapon;
 import cluedo.structs.Location;
@@ -102,7 +103,12 @@ public class Main {
 			}
 			players.add(new Player(myStart, myName, mySymbol, myCards));
 		}
-		Game newGame = new Game(board, sol, cardsLeft, players);
+
+		List<Card> intrigueCards = new ArrayList<Card>();
+		for (int i = 0; i < 8; i++) {
+			intrigueCards.add(new Clocks());
+		}
+		Game newGame = new Game(board, sol, cardsLeft, intrigueCards, players);
 		return newGame;
 	}
 
