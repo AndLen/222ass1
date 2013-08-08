@@ -14,13 +14,13 @@ public class LocationTests {
 	 * test if to identical locations hash to the same thing
 	 */
 	@Test
-	public void testLocationHash(){
+	public void testLocationCompareTo(){
 		
 		Location l1 = new Location(1, 2);
 		Location l2 = new Location(1, 2);
 		
-		if(l1.hashCode() != l2.hashCode()){
-			fail("hashcodes not equal");
+		if(l1.compareTo(l2) != 0){
+			fail("l1 isnot equal to the int 3");
 		}
 		
 	}
@@ -59,13 +59,13 @@ public class LocationTests {
 	 * test if to identical locations hash to the same thing
 	 */
 	@Test
-	public void testLocationCompareTo(){
+	public void testLocationHash(){
 		
 		Location l1 = new Location(1, 2);
 		Location l2 = new Location(1, 2);
 		
-		if(l1.compareTo(l2) != 0){
-			fail("l1 isnot equal to the int 3");
+		if(l1.hashCode() != l2.hashCode()){
+			fail("hashcodes not equal");
 		}
 		
 	}	
