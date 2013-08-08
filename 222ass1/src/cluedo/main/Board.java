@@ -63,7 +63,7 @@ public class Board {
 		}
 		sb.append("\n");
 		for (int i = 0; i < BOARD_HEIGHT; i++) {
-			// Print y axis labels
+			// Print y axis labels (left)
 			sb.append(digitToString(i));
 			for (int j = 0; j < BOARD_WIDTH; j++) {
 				// hasplayer x, y
@@ -73,9 +73,18 @@ public class Board {
 				} else
 					sb.append(gameBoard[j][i].toString() + " ");
 			}
+			// Print y axis labels (right)
+			sb.append(digitToString(i));
 			// End of row
 			sb.append("\n");
 		}
+		// Extra to compensate for shift due to vertical axis.
+				sb.append("   ");
+		// Print x-coords across the bottom
+				for (int a = 0; a < BOARD_WIDTH; a++) {
+					sb.append(digitToString(a));
+				}
+				sb.append("\n");
 		// End of board.
 		sb.append("\n");
 		return sb.toString();
