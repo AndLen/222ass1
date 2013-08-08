@@ -1,7 +1,5 @@
 package cluedo.cards;
 
-import java.util.Arrays;
-
 /**
  * 
  * @author Michael
@@ -22,10 +20,15 @@ public class Weapon implements Card {
 	 *            the number the card corresponds to from static WEAPONS[]
 	 */
 	public Weapon(String s) {
-		if(!Arrays.asList(WEAPONS).contains(s)){
-			throw new IllegalArgumentException(s + " is not a weapon");
+
+		// Check valid input.
+		for (String name : WEAPONS) {
+			if (s.equalsIgnoreCase(name)) {
+				this.weapon = name;
+				return;
+			}
 		}
-		this.weapon = s;
+		throw new IllegalArgumentException(s + " is not a weapon");
 	}
 
 	@Override

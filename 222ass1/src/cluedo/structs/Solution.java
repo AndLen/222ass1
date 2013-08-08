@@ -1,5 +1,6 @@
 package cluedo.structs;
 
+import cluedo.cards.Card;
 import cluedo.cards.Character;
 import cluedo.cards.Room;
 import cluedo.cards.Weapon;
@@ -72,4 +73,12 @@ public class Solution {
 			return false;
 		return true;
 	}
+
+	public boolean containsCard(String cardS) {
+		//We have this card if it matches any of our cards.
+		return (cardS.equalsIgnoreCase(charSol.toString())
+				|| cardS.equalsIgnoreCase(roomSol.toString()) || cardS.equalsIgnoreCase(weaponSol
+				.toString()));
+	}
+	
 }

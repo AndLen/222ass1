@@ -1,7 +1,5 @@
 package cluedo.cards;
 
-import java.util.Arrays;
-
 /**
  * 
  * @author Michael
@@ -18,10 +16,14 @@ public class Room implements Card {
 	private String room;
 
 	public Room(String s) {
-		if(!Arrays.asList(ROOMS).contains(s)){
-			throw new IllegalArgumentException(s + " is not a room");
+		//Check valid input.
+		for (String name : ROOMS) {
+			if (s.equalsIgnoreCase(name)) {
+				this.room = name;
+				return;
+			}
 		}
-		this.room = s;
+		throw new IllegalArgumentException(s + " is not a room");
 
 	}
 

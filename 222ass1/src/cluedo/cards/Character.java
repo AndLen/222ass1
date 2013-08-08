@@ -1,7 +1,5 @@
 package cluedo.cards;
 
-import java.util.Arrays;
-
 /**
  * 
  * @author Michael
@@ -16,19 +14,22 @@ public class Character implements Card {
 		Kasandra_Scarlett, Jack_Mustard, Diane_White, Jacob_Green, Eleanor_Peacock, Victor_Plum
 	};
 
-	private String card;
+	private String character;
 
 	public Character(String s) {
-		if(!Arrays.asList(CHARACTERS).contains(s)){
-			throw new IllegalArgumentException(s + " is not a character");
+		//Check valid input.
+		for (String name : CHARACTERS) {
+			if (s.equalsIgnoreCase(name)) {
+				this.character = name;
+				return;
+			}
 		}
-		this.card = s;
-
+		throw new IllegalArgumentException(s + " is not a character");
 	}
 
 	@Override
 	public String toString() {
-		return card;
+		return character;
 	}
 
 	@Override
@@ -36,9 +37,9 @@ public class Character implements Card {
 	 * @return the first letter and the letter after the underscore converted to lower case
 	 */
 	public String getSymbol() {
-		return card.charAt(0)
+		return character.charAt(0)
 				+ ""
-				+ java.lang.Character.toLowerCase(card.charAt(card
+				+ java.lang.Character.toLowerCase(character.charAt(character
 						.lastIndexOf(" ") + 1));
 	}
 
