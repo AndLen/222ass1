@@ -68,11 +68,12 @@ public class Game {
 			if (gameFinished) {
 				break;
 			}
-
+			String oldPlayer = nextPlayer.getMyName();
 			nextPlayer = playerToNextPlayer.get(nextPlayer);
 			if (!alive) {
-				// TODO: Fix game breaking when someone is removed
-				players.remove(nextPlayer.getMyName());
+				// Remove whoever just died
+				System.out.println(oldPlayer + " has died!");
+				players.remove(oldPlayer);
 				// And re-intialise the map
 				setUpMap();
 			}
