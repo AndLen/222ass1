@@ -677,6 +677,9 @@ public class MoveTests {
 
 	}
 
+	
+	//TODO check exit onto intrigue tile
+	
 	/**
 	 * test if can use a door, to exit the south facing door of the patio
 	 */

@@ -82,14 +82,25 @@ public class Game {
 			if (gameFinished) {
 				break;
 			}
+
 			String oldPlayer = nextPlayer.getMyName();
 			nextPlayer = playerToNextPlayer.get(nextPlayer);
 			if (!alive) {
-				// Remove whoever just died
-				System.out.println(oldPlayer + " has died!");
+				// Remove whoever just dieds
 				players.remove(oldPlayer);
 				// And re-intialise the map
 				setUpMap();
+				System.out.println(oldPlayer + " has died!");
+				//Redraw so we can see person is dead.
+				System.out.println(gameBoard.toString(this));
+				
+			}
+			if (players.size() ==1) {
+				System.out.print("Only one person left, ");
+				for(String s: players.keySet()){
+					System.out.println(s + " has won the game!");
+				}
+				return;
 			}
 		}
 		System.out.println("Congrats to " + nextPlayer
@@ -149,13 +160,15 @@ public class Game {
 		Card c = intrigueCards.poll();
 
 		if (c instanceof Clocks) {
-			//System.out.println(clockCounter);
+			//Print Tick or Tock
+			System.out.println(c.toString());
+			// System.out.println(clockCounter);
 			clockCounter++;
-			//System.out.println(clockCounter);
+			// System.out.println(clockCounter);
 			if (clockCounter >= 8) {
 				// player dies when the eigth clock card has been picked up
 				// it then goes back into the pile to kill more people.
-				//System.out.println("size: " + intrigueCards.size());
+				// System.out.println("size: " + intrigueCards.size());
 				intrigueCards.add(c);
 				return false;
 			}

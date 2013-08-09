@@ -268,7 +268,7 @@ public class Board {
 	private void setupIntrigueTiles() {
 		gameBoard[3][8] = new IntrigueTile(3, 8);
 		gameBoard[7][4] = new IntrigueTile(7, 4);
-		gameBoard[11][5] = new IntrigueTile(11, 5);
+		gameBoard[11][9] = new IntrigueTile(11, 9);
 		gameBoard[13][0] = new IntrigueTile(13, 0);
 		gameBoard[16][10] = new IntrigueTile(16, 10);
 		gameBoard[21][6] = new IntrigueTile(21, 6);
