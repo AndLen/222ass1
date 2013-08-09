@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
@@ -43,6 +44,8 @@ public class Game {
 
 	// Used to find who the next person clockwise to go is!
 	private final Map<Player, Player> playerToNextPlayer;
+	// and anticlockwise
+	private Map<Player, Player> playerToPrevoiusPlayer = new HashMap<Player, Player>();
 
 	private int clockCounter; // when this reaches 8 player is dead
 	private final Queue<Card> intrigueCards;
@@ -91,13 +94,13 @@ public class Game {
 				// And re-intialise the map
 				setUpMap();
 				System.out.println(oldPlayer + " has died!");
-				//Redraw so we can see person is dead.
+				// Redraw so we can see person is dead.
 				System.out.println(gameBoard.toString(this));
-				
+
 			}
-			if (players.size() ==1) {
+			if (players.size() == 1) {
 				System.out.print("Only one person left, ");
-				for(String s: players.keySet()){
+				for (String s : players.keySet()) {
 					System.out.println(s + " has won the game!");
 				}
 				return;
@@ -138,7 +141,15 @@ public class Game {
 		System.out.println(p.myCards());
 
 		if (isIntrigueLocation(p.getLocation())) {
-			return takeIntrigueTurn(p);
+			// return takeIntrigueTurn(p);
+
+			if (!takeIntrigueTurn(p)) {
+				return false;
+			} else {
+				ATIntrigueAvaliable(p);
+				return true;
+			}
+
 		}
 
 		if (isRoomLocation(p.getLocation())) {
@@ -151,6 +162,32 @@ public class Game {
 	}
 
 	/**
+	 * after turn intrigue - ATIntigue
+	 * 
+	 * checks if they can make ATI move, prompts and executes if available
+	 */
+	private void ATIntrigueAvaliable(Player p) {
+		// TODO Auto-generated method stub
+		List<Keepers> tempList = new ArrayList<Keepers>();
+
+		for (Keepers k : p.getKeeperCards()) {
+			if (k instanceof AfterTurnCard) {
+				// player has an after trun card so play it
+				tempList.add(k);
+
+			}
+		}
+
+		System.out.println(p.getMyName() + " has " + tempList
+				+ " intrigue cards avaliable to play");
+
+		// TODO get input from player on which card to play if any
+		Keepers k = null; // change nul to the card selected
+		k.apply(this, p);
+
+	}
+
+	/**
 	 * @return false if dead
 	 * @author Michael
 	 */
@@ -160,7 +197,7 @@ public class Game {
 		Card c = intrigueCards.poll();
 
 		if (c instanceof Clocks) {
-			//Print Tick or Tock
+			// Print Tick or Tock
 			System.out.println(c.toString());
 			// System.out.println(clockCounter);
 			clockCounter++;
@@ -308,6 +345,28 @@ public class Game {
 	}
 
 	/**
+	 * Requests input for the player to move back to their start
+	 */
+	protected Character getCharcterInput() {
+		System.out.println("Type the character name to move back to start");
+		Scanner sc = new Scanner(System.in);
+		String data = sc.nextLine();
+
+		try {
+			// Trim them for a little leeway on typing
+			Character c = new Character(data.trim());
+
+			return c;
+		} catch (IllegalArgumentException e) {
+			System.out.println("Not valid: " + e.getMessage());
+		} finally {
+			sc.close();
+		}
+
+		return getCharcterInput();
+	}
+
+	/**
 	 * Requests input for the player to make an announcement and checks their
 	 * validity.
 	 * 
@@ -336,7 +395,7 @@ public class Game {
 	 * 
 	 * @return
 	 */
-	private Location getLocationInput() {
+	protected Location getLocationInput() {
 		System.out
 				.println("Please enter the x,y co-ordinates to move to in the form x,y:");
 		try {
@@ -371,6 +430,12 @@ public class Game {
 			Player next = nextPlayerSetup(p);
 			map.put(p, next);
 		}
+
+		// should set up a map so players are reverse order
+		for (Entry<Player, Player> e : map.entrySet()) {
+			playerToPrevoiusPlayer.put(e.getValue(), e.getKey());
+		}
+
 		return map;
 	}
 
@@ -537,6 +602,30 @@ public class Game {
 	 */
 	public List<DoorTile> getDoors() {
 		return gameBoard.getListOfDoors();
+	}
+
+	/**
+	 * @return the playerToPrevoiusPlayer
+	 */
+	public Map<Player, Player> getPlayerToPrevoiusPlayer() {
+		return playerToPrevoiusPlayer;
+	}
+
+	public String playerShowCard(Player player) {
+		while (true) {
+			Scanner sc = new Scanner(System.in);
+			System.out
+					.println("Please enter the card you wish to show the player on your left:");
+			String possCard = sc.nextLine();
+			possCard = possCard.trim();
+
+			// TODO need to check the player holds the card they are showing
+			return null;
+//			if(player.getMyCards().contains(new Weapon(possCard))){
+//				System.out.println(player + " shouwed you: " + possCard);
+//				return possCard;
+//			}
+		}
 	}
 
 }

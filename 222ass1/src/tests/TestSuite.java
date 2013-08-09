@@ -20,6 +20,7 @@ import org.junit.runners.Suite;
 	BoardTests.class,
 	LocationTests.class,
 	GameTests.class,
+	KeepersTests.class,
 	
 // classtests.class,
 

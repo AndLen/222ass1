@@ -1,5 +1,8 @@
 package cluedo.cards;
 
+import cluedo.main.Game;
+import cluedo.structs.Player;
+
 public class Clocks implements Card {
 
 	public static String s = "Tock";
@@ -22,5 +25,12 @@ public class Clocks implements Card {
 		}
 		
 		return s;
+	}
+
+
+	@Override
+	public boolean apply(Game game, Player player) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

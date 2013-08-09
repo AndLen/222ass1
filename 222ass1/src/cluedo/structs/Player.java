@@ -1,9 +1,11 @@
 package cluedo.structs;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import cluedo.cards.Card;
+import cluedo.main.Keepers;
 
 /**
  * Represents a human player in the game. Should contain their current location,
@@ -17,6 +19,10 @@ public class Player {
 	private Location myPosition;
 	private final String myName;
 	private final String mySymbol;
+	private final Location starting;
+	
+	
+	private List<Keepers> keeperCards = new ArrayList<Keepers>();
 
 	private List<Card> myCards;
 
@@ -33,6 +39,7 @@ public class Player {
 		this.myName = myName;
 		this.mySymbol = mySymbol;
 		myPosition = start;
+		starting = start;
 		myCards = cards;
 	}
 
@@ -110,5 +117,23 @@ public class Player {
 	@Override
 	public String toString() {
 		return getMyName();
+	}
+
+	public Location getStarting() {
+		return starting;
+	}
+
+	/**
+	 * @return the keeperCards
+	 */
+	public List<Keepers> getKeeperCards() {
+		return keeperCards;
+	}
+	
+	/**
+	 * @return mycards
+	 */
+	public List<Card> getMyCards(){
+		return myCards;
 	}
 }

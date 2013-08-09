@@ -1,5 +1,8 @@
 package cluedo.cards;
 
+import cluedo.main.Game;
+import cluedo.structs.Player;
+
 /**
  * 
  * @author Michael
@@ -46,6 +49,12 @@ public class Weapon implements Card {
 
 		return java.lang.Character.toLowerCase(weapon.charAt(0)) + ""
 				+ java.lang.Character.toUpperCase(weapon.charAt(1));
+	}
+
+	@Override
+	public boolean apply(Game game, Player player) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

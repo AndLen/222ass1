@@ -1,5 +1,8 @@
 package cluedo.cards;
 
+import cluedo.main.Game;
+import cluedo.structs.Player;
+
 /**
  * 
  * @author Michael
@@ -41,6 +44,12 @@ public class Character implements Card {
 				+ ""
 				+ java.lang.Character.toLowerCase(character.charAt(character
 						.lastIndexOf(" ") + 1));
+	}
+
+	@Override
+	public boolean apply(Game game, Player player) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

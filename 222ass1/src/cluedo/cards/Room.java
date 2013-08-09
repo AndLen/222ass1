@@ -1,5 +1,8 @@
 package cluedo.cards;
 
+import cluedo.main.Game;
+import cluedo.structs.Player;
+
 /**
  * 
  * @author Michael
@@ -39,6 +42,12 @@ public class Room implements Card {
 	public String getSymbol() {
 		return room.charAt(0) + ""
 				+ java.lang.Character.toUpperCase(room.charAt(1));
+	}
+
+	@Override
+	public boolean apply(Game game, Player player) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
