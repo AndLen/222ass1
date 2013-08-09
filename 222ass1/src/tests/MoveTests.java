@@ -679,6 +679,32 @@ public class MoveTests {
 
 	
 	//TODO check exit onto intrigue tile
+	@Test
+	/**
+	 * test if can  use a door, to exit onto a intrigue tile
+	 */
+	public void testValidExit12() {
+
+		List<Player> players = new ArrayList<Player>();
+		players.add(new Player(new Location(7, 15), Character.CHARACTERS[0],
+				null, null));
+
+		Game game = new Game(new Board(), new Solution(new Character(
+				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
+				Weapon.WEAPONS[1])), null, null, players);
+
+		Move move = new Move(players.get(0).getLocation(),
+				new Location(8, 14), 3, game);
+
+		if (!move.isValid(game)) {
+
+			fail("a Player can exit the room");
+
+		}
+
+	}
+	
+	
 	
 	/**
 	 * test if can use a door, to exit the south facing door of the patio

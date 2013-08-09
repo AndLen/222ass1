@@ -46,7 +46,7 @@ public class Move implements MoveI {
 		// door, but can they if the are in hallway
 
 		// Possible locations the player can reach with his/her roll.
-		Set<Location> moves = game.getMovesTo(oldPosition, diceRoll);
+	//	Set<Location> moves = game.getMovesTo(oldPosition, diceRoll);
 
 		for (Player p : game.getPlayers()) {
 			if (p.getLocation().equals(newPosition)) {
@@ -77,8 +77,8 @@ public class Move implements MoveI {
 			//printMoves(moves);
 			return move.isValid(game);
 		}
-
-		else if (moves.contains(newPosition)) {
+		Set<Location> moves = game.getMovesTo(oldPosition, diceRoll);
+		 if (moves.contains(newPosition)) {
 			// Otherwise just a corridor move.
 
 			// a door should also counts as a roomlocation

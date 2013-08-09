@@ -96,12 +96,33 @@ public class Location implements Comparable<Location> {
 		if (getClass() != obj.getClass())
 			return 0;
 		Location other = obj;
-		if (x * y <= other.x * other.y) { // Apparently to make the tests pass we
-											// need <= instead of < (Fucking
-											// amazing)
-			return -1;
-		}
+//		if (x * y <= other.x * other.y) { // Apparently to make the tests pass we
+//											// need <= instead of < (Fucking
+//											// amazing)
+//			return -1;
+//		}
 
+		if(x == other.x){
+			if(y == other.y){
+				return 0;
+			}
+			else if(y > other.y){
+				return 1;
+			}
+			else{
+				return -1;
+			}
+			
+		}
+		
+		if(x < other.x){
+			return -1;
+			
+		}
+		if(x > other.x){
+			return 1;
+		}
+		
 		return 1;
 	}
 }
