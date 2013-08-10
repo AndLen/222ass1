@@ -43,8 +43,6 @@ public class AfterTurnCard extends Keepers {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
@@ -84,7 +82,6 @@ public class AfterTurnCard extends Keepers {
 		if (description.equals(Keepers.Cards[7])) {
 			// take another turn
 
-			// TODO if player dies we need to kill them (i.e remove from turns list or whatever)
 			player.getKeeperCards().remove(this);
 			return game.takeTurn(player);
 
