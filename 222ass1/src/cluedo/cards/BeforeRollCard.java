@@ -40,6 +40,7 @@ public class BeforeRollCard extends Keepers {
 	@Override
 	public String apply(Game game, Player player) {
 		// TODO Auto-generated method stub
+		player.getKeeperCards().remove(this);
 		return null;
 	}
 
