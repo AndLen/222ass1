@@ -60,7 +60,7 @@ public class AfterTurnCard extends Keepers {
 		if (description.equals(Keepers.Cards[7])) {
 			// take another turn
 
-			// TODO if player dies we need to kill them
+			// TODO if player dies we need to kill them (i.e remove from turns list or whatever)
 			return game.takeTurn(player);
 
 		}
