@@ -173,7 +173,7 @@ public class Game {
 			// If we're in a room, then we can do some other stuff...
 			String dead = takeRoomTurn(p);
 			//if we didn't die in that room, we can use special cards.
-			if (dead != null)
+			if (dead == null)
 				ATIntrigueAvaliable(p);
 			else
 				return dead;
