@@ -240,6 +240,7 @@ public class Game {
 			return true;
 
 		}
+		System.out.println(c.toString());
 		p.getKeeperCards().add(c);
 		return true;
 	}
