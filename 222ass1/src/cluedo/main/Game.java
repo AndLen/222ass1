@@ -127,14 +127,13 @@ public class Game {
 		int roll1 = new Dice().getRoll();
 		int roll2 = new Dice().getRoll();
 		int roll;
-		if(roll2 == 1){
-			//Rolled a '?' so they get an intrigue card.
+		if (roll2 == 1) {
+			// Rolled a '?' so they get an intrigue card.
 			System.out.println(p + "rolled a ?, they get an intrigue card.");
 			takeIntrigueTurn(p);
-			//only first dice gives any moves.
+			// only first dice gives any moves.
 			roll = roll1;
-		}
-		else{
+		} else {
 			roll = roll1 + roll2;
 		}
 		System.out
@@ -166,15 +165,21 @@ public class Game {
 			String corpse = takeIntrigueTurn(p);
 			if (corpse != null) {
 				return corpse;
-			} 
+			}
 
 		}
-		//After turn intrigue cards.
-		ATIntrigueAvaliable(p);
 
 		if (isRoomLocation(p.getLocation())) {
 			// If we're in a room, then we can do some other stuff...
-			return takeRoomTurn(p);
+			String dead = takeRoomTurn(p);
+			//if we didn't die in that room, we can use special cards.
+			if (dead != null)
+				ATIntrigueAvaliable(p);
+			else
+				return dead;
+		}
+		else{
+			ATIntrigueAvaliable(p);
 		}
 
 		// We didn't die
@@ -191,31 +196,31 @@ public class Game {
 
 			}
 		}
-		if(tempList.size() == 0){
-			//No point going any further
+		if (tempList.size() == 0) {
+			// No point going any further
 			return 0;
 		}
 		System.out.println(p.getMyName() + " has " + tempList
 				+ " intrigue cards avaliable to play");
 
-			while (true) {
-				Scanner sc = new Scanner(System.in);
-				System.out
-						.println("Would you like to add 6 to your dice roll? \"yes\" or \"no\"");
+		while (true) {
+			Scanner sc = new Scanner(System.in);
+			System.out
+					.println("Would you like to add 6 to your dice roll? \"yes\" or \"no\"");
 
-				String data = sc.nextLine();
-				data = data.toLowerCase().trim(); // If they decided caps or
-													// whitespace would be fun
-				if (data.contains("yes")) {
-					tempList.get(0).apply(this, p);
-					return 6;
-				} else if (data.contains("no")) {
-					return 0;
-				} else {
-					System.out.println("Not a valid choice");
-				}
-
+			String data = sc.nextLine();
+			data = data.toLowerCase().trim(); // If they decided caps or
+												// whitespace would be fun
+			if (data.contains("yes")) {
+				tempList.get(0).apply(this, p);
+				return 6;
+			} else if (data.contains("no")) {
+				return 0;
+			} else {
+				System.out.println("Not a valid choice");
 			}
+
+		}
 	}
 
 	/**
@@ -239,7 +244,7 @@ public class Game {
 		}
 		System.out.println(p.getMyName() + " has " + tempList
 				+ " intrigue cards avaliable to play");
-		
+
 		Keepers k = null;
 		while (true) {
 			Scanner sc = new Scanner(System.in);
