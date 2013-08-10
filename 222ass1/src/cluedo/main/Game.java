@@ -129,7 +129,7 @@ public class Game {
 		int roll;
 		if (roll2 == 1) {
 			// Rolled a '?' so they get an intrigue card.
-			System.out.println(p + "rolled a ?, they get an intrigue card.");
+			System.out.println(p + " rolled a ?, they get an intrigue card.");
 			takeIntrigueTurn(p);
 			// only first dice gives any moves.
 			roll = roll1;
@@ -154,7 +154,6 @@ public class Game {
 		} while (!validMove);
 		// Cool, we got a valid move.
 		m.apply(this);
-		System.out.print(gameBoard.toString(this));
 
 		// Print what cards you have
 		System.out.print("Your cards: ");
@@ -349,9 +348,8 @@ public class Game {
 				if (toMove != null) {
 					Location newLocation = gameBoard.getFreeTile(players
 							.values(), possibleSol.getRoomSol().getSymbol());
-					// Found them a spot, move them and re-draw.
+					// Found them a spot, move them.
 					changePlayerLocation(toMove.getLocation(), newLocation);
-					System.out.print(boardToString());
 					System.out.print(toMove + " was moved to the "
 							+ possibleSol.getRoomSol() + " !\n");
 				}
@@ -585,6 +583,7 @@ public class Game {
 	public void changePlayerLocation(Location oldL, Location newL) {
 		Player p = findPlayerAt(oldL);
 		p.updateLocation(newL);
+		System.out.print(boardToString());
 	}
 
 	/**
