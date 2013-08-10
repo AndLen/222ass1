@@ -128,9 +128,9 @@ public class Game {
 		int roll2 = new Dice().getRoll();
 		int roll;
 		if(roll2 == 1){
-			//Rolled a '?'
-			System.out.println(p + "rolled a ? and got a keeper's card! ");
-			p.getKeeperCards().add(intrigueCards.poll());
+			//Rolled a '?' so they get an intrigue card.
+			System.out.println(p + "rolled a ?, they get an intrigue card.");
+			takeIntrigueTurn(p);
 			//only first dice gives any moves.
 			roll = roll1;
 		}
@@ -303,7 +303,7 @@ public class Game {
 			return null;
 
 		}
-		System.out.println(c.toString());
+		System.out.println("They got: \"" + c.toString() + "\"");
 		p.getKeeperCards().add(c);
 		return null;
 	}

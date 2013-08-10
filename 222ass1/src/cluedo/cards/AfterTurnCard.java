@@ -71,7 +71,7 @@ public class AfterTurnCard extends Keepers {
 		}
 		if (description.equals(Keepers.Cards[4])) {
 			// move anyone back to their starting position
-			Character c = getCharacterInput();
+			Character c = getCharacterInput(game);
 
 			// gets the above Character and moves back to their starting
 			// position
@@ -96,7 +96,7 @@ public class AfterTurnCard extends Keepers {
 	/**
 	 * Requests input for the player to move back to their start
 	 */
-	private Character getCharacterInput() {
+	private Character getCharacterInput(Game g) {
 		System.out.println("Type the character name to move back to start");
 		Scanner sc = new Scanner(System.in);
 		String data = sc.nextLine();
@@ -104,13 +104,15 @@ public class AfterTurnCard extends Keepers {
 		try {
 			// Trim them for a little leeway on typing
 			Character c = new Character(data.trim());
-
+			if(g.getPlayer(c.toString()) == null){
+				throw new IllegalArgumentException("Player not in game");
+			}
 			return c;
 		} catch (IllegalArgumentException e) {
 			System.out.println("Not valid: " + e.getMessage());
 		} 
 
-		return getCharacterInput();
+		return getCharacterInput(g);
 	}
 
 }
