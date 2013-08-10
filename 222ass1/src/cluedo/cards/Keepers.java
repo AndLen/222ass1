@@ -1,6 +1,6 @@
-package cluedo.main;
+package cluedo.cards;
 
-import cluedo.cards.Card;
+import cluedo.main.Game;
 import cluedo.structs.Player;
 
 public abstract class Keepers implements Card {
@@ -32,12 +32,13 @@ public abstract class Keepers implements Card {
 	public abstract String getDescription();
 	//	return description;
 	
+	@Override
+	public abstract boolean equals(Object obj);
 
-
-
+	public abstract int hashCode();
 
 	@Override
-	public abstract boolean apply(Game game, Player player);
+	public abstract String apply(Game game, Player player);
 	
 
 }

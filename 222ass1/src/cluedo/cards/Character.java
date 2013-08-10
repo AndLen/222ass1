@@ -47,9 +47,9 @@ public class Character implements Card {
 	}
 
 	@Override
-	public boolean apply(Game game, Player player) {
+	public String apply(Game game, Player player) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	/*

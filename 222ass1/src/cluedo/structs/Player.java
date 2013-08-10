@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import cluedo.cards.Card;
-import cluedo.main.Keepers;
+import cluedo.cards.Keepers;
 
 /**
  * Represents a human player in the game. Should contain their current location,
@@ -72,6 +72,20 @@ public class Player {
 		return s;
 	}
 
+	/**
+	 * String rep of the keeper cards.
+	 * @return
+	 */
+	public String myKeeperCards(){
+		if(keeperCards.size() == 0){
+			return "no";
+		}
+		String s = "";
+		for(Card c: keeperCards){
+			s+=c.toString() + ", ";
+		}
+		return s;
+	}
 	public static Location startLocation(String charName) {
 		if (charName.equals("Kasandra Scarlett")) {
 			return new Location(18, 28);

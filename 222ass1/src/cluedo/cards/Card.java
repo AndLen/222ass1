@@ -22,7 +22,7 @@ public interface Card {
 	 * @return false if card cannot be applied(at the current time or applying
 	 *         does nothing). true if successfully applied.
 	 */
-	public boolean apply(Game game, Player player);
+	public String apply(Game game, Player player);
 
 	
 	

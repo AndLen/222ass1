@@ -14,12 +14,6 @@ public class IntrigueTile extends CorridorTile{
 	}
 
 	@Override
-	public void draw() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public int getX() {
 		// TODO Auto-generated method stub
 		return 0;

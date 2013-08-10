@@ -34,7 +34,6 @@ import cluedo.tiles.Tile;
 public class Game {
 	private final Board gameBoard;
 	private boolean gameFinished = false;
-	private final Dice die = new Dice();
 	private final Solution solution;
 	private final List<Card> cardsInPool;
 	// Our human players.
@@ -45,7 +44,7 @@ public class Game {
 	// Used to find who the next person clockwise to go is!
 	private final Map<Player, Player> playerToNextPlayer;
 	// and anticlockwise
-	private Map<Player, Player> playerToPrevoiusPlayer = new HashMap<Player, Player>();
+	private Map<Player, Player> playerToPreviousPlayer = new HashMap<Player, Player>();
 
 	private int clockCounter; // when this reaches 8 player is dead
 	private final Queue<Keepers> intrigueCards;
@@ -79,7 +78,7 @@ public class Game {
 	public void runGame() {
 		nextPlayer = getOrder();
 		while (true) {
-			boolean alive = takeTurn(nextPlayer);
+			String alive = takeTurn(nextPlayer);
 
 			// Did anyone win?
 			if (gameFinished) {
@@ -88,14 +87,9 @@ public class Game {
 
 			String oldPlayer = nextPlayer.getMyName();
 			nextPlayer = playerToNextPlayer.get(nextPlayer);
-			if (!alive) {
+			if (alive != null) {
 				// Remove whoever just dieds
-				players.remove(oldPlayer);
-				// And re-intialise the map
-				setUpMap();
-				System.out.println(oldPlayer + " has died!");
-				// Redraw so we can see person is dead.
-				System.out.println(gameBoard.toString(this));
+				killSomeone(oldPlayer);
 
 			}
 			if (players.size() == 1) {
@@ -110,14 +104,39 @@ public class Game {
 				+ "! You have won the game.");
 	}
 
+	private void killSomeone(String corpse) {
+		// Sanity check..shouldn't happen.
+		if (corpse == null) {
+			return;
+		}
+		players.remove(corpse);
+		// And re-intialise the map
+		setUpMap();
+		System.out.println(corpse + " has died!");
+		// Redraw so we can see person is dead.
+		System.out.println(gameBoard.toString(this));
+	}
+
 	/**
-	 * Returns true if the player is still alive <_<
+	 * Returns player name if they died
 	 * 
 	 * @param p
 	 * @return
 	 */
-	public boolean takeTurn(Player p) {
-		int roll = die.getRoll();
+	public String takeTurn(Player p) {
+		int roll1 = new Dice().getRoll();
+		int roll2 = new Dice().getRoll();
+		int roll;
+		if(roll2 == 1){
+			//Rolled a '?'
+			System.out.println(p + "rolled a ? and got a keeper's card! ");
+			p.getKeeperCards().add(intrigueCards.poll());
+			//only first dice gives any moves.
+			roll = roll1;
+		}
+		else{
+			roll = roll1 + roll2;
+		}
 		System.out
 				.println("It is " + p + "'s turn!\n" + p + " rolls a " + roll);
 
@@ -144,12 +163,12 @@ public class Game {
 
 		if (isIntrigueLocation(p.getLocation())) {
 			// return takeIntrigueTurn(p);
-
-			if (!takeIntrigueTurn(p)) {
-				return false;
+			String corpse = takeIntrigueTurn(p);
+			if (corpse != null) {
+				return corpse;
 			} else {
 				ATIntrigueAvaliable(p);
-				return true;
+				return null;
 			}
 
 		}
@@ -160,11 +179,10 @@ public class Game {
 		}
 
 		// We didn't die
-		return true;
+		return null;
 	}
 
 	private int checkDiceIntigue(Player p) {
-		// TODO Auto-generated method stub
 		List<Keepers> tempList = new ArrayList<Keepers>();
 
 		for (Keepers k : p.getKeeperCards()) {
@@ -177,11 +195,24 @@ public class Game {
 
 		System.out.println(p.getMyName() + " has " + tempList
 				+ " intrigue cards avaliable to play");
+
 		if (tempList.size() != 0) {
-			// TODO needs to get input from player on whether to play the card
-			// or not
-			if (true) {
-				return 6;
+			while (true) {
+				Scanner sc = new Scanner(System.in);
+				System.out
+						.println("Would you like to add 6 to your dice roll? \"yes\" or \"no\"");
+
+				String data = sc.nextLine();
+				data = data.toLowerCase().trim(); // If they decided caps or
+													// whitespace would be fun
+				if (data.contains("yes")) {
+					return 6;
+				} else if (data.contains("no")) {
+					return 0;
+				} else {
+					System.out.println("Not a valid choice");
+				}
+
 			}
 		}
 		return 0;
@@ -193,7 +224,6 @@ public class Game {
 	 * checks if they can make ATI move, prompts and executes if available
 	 */
 	private void ATIntrigueAvaliable(Player p) {
-		// TODO Auto-generated method stub
 		List<Keepers> tempList = new ArrayList<Keepers>();
 
 		for (Keepers k : p.getKeeperCards()) {
@@ -203,24 +233,56 @@ public class Game {
 
 			}
 		}
-
 		System.out.println(p.getMyName() + " has " + tempList
 				+ " intrigue cards avaliable to play");
-
 		// TODO get input from player on which card to play if any
-		Keepers k = null; // change null to the card selected
-		if (k != null) {
-			k.apply(this, p);
+		if (tempList.size() == 0) {
+			// nothing to play.
+			return;
+		}
+
+		Keepers k = null;
+		while (true) {
+			Scanner sc = new Scanner(System.in);
+			System.out
+					.println("Type \"show card\" , \"move someone back\" , \"extra turn\" or \"no\"\n based on what you want to do from above.");
+			String data = sc.nextLine();
+			data = data.toLowerCase().trim(); // If they decided caps or extra
+												// whitespace would be fun
+			if (data.equals("show card")) {
+				k = new AfterTurnCard(
+						"Play at the end of your turn. The player on your right must show you a card.");
+			} else if (data.equals("move someone back")) {
+				k = new AfterTurnCard(
+						"Play at the end of your turn. Move anyone back to their start space.");
+			} else if (data.equals("extra turn")) {
+				k = new AfterTurnCard(
+						"Play at the end of your turn. Take another turn.");
+			} else if (data.equals("no")) {
+				// Nothing to do.
+				return;
+			}
+			// Picked a card and has it.
+			if (k != null && tempList.contains(k)) {
+				break;
+			}
+			System.out.println("Not a valid choice");
+
+		}
+		// Shouldn't ever be null.
+		String toKill = k.apply(this, p);
+		// Oh man, someone died!
+		if (toKill != null) {
+			killSomeone(toKill);
 		}
 
 	}
 
 	/**
-	 * @return false if dead
+	 * @return name of person who died (if they did)
 	 * @author Michael
 	 */
-	private boolean takeIntrigueTurn(Player p) {
-		// TODO Auto-generated method stub
+	private String takeIntrigueTurn(Player p) {
 		// pick up a card off the pile
 		Keepers c = intrigueCards.poll();
 
@@ -235,22 +297,22 @@ public class Game {
 				// it then goes back into the pile to kill more people.
 				// System.out.println("size: " + intrigueCards.size());
 				intrigueCards.add(c);
-				return false;
+				return p.getMyName();
 			}
-			return true;
+			return null;
 
 		}
 		System.out.println(c.toString());
 		p.getKeeperCards().add(c);
-		return true;
+		return null;
 	}
 
 	/**
-	 * Returns false if died.
+	 * Returns name of person who died if they did
 	 * 
 	 * @param p
 	 */
-	private boolean takeRoomTurn(Player p) {
+	private String takeRoomTurn(Player p) {
 		// If we're in the pool, we can make an accusation, otherwise we are
 		// making a suggestion
 		boolean canAccuse = inParticularRoomLocation(p.getLocation(), "PO");
@@ -273,7 +335,7 @@ public class Game {
 				if (possibleSol.equals(solution)) {
 					gameFinished = true;
 				} else {
-					return false;
+					return p.getMyName();
 				}
 			} else {
 
@@ -300,7 +362,7 @@ public class Game {
 
 			}
 		}
-		return true; // still alive.
+		return null; // still alive.
 	}
 
 	private boolean refute(Player originPlayer, Player nextPlayer, Solution sol) {
@@ -375,28 +437,6 @@ public class Game {
 	}
 
 	/**
-	 * Requests input for the player to move back to their start
-	 */
-	protected Character getCharcterInput() {
-		System.out.println("Type the character name to move back to start");
-		Scanner sc = new Scanner(System.in);
-		String data = sc.nextLine();
-
-		try {
-			// Trim them for a little leeway on typing
-			Character c = new Character(data.trim());
-
-			return c;
-		} catch (IllegalArgumentException e) {
-			System.out.println("Not valid: " + e.getMessage());
-		} finally {
-			sc.close();
-		}
-
-		return getCharcterInput();
-	}
-
-	/**
 	 * Requests input for the player to make an announcement and checks their
 	 * validity.
 	 * 
@@ -463,7 +503,7 @@ public class Game {
 
 		// should set up a map so players are reverse order
 		for (Entry<Player, Player> e : map.entrySet()) {
-			playerToPrevoiusPlayer.put(e.getValue(), e.getKey());
+			playerToPreviousPlayer.put(e.getValue(), e.getKey());
 		}
 
 		return map;
@@ -510,7 +550,7 @@ public class Game {
 		Player highestRollPlayer = null;
 		// Find who rolled the highest number
 		for (Player p : players.values()) {
-			int roll = die.getRoll();
+			int roll = new Dice().getRoll();
 			System.out.println(p.getMyName() + " rolled a " + roll + "!");
 			if (roll > highestRoll) {
 				highestRoll = roll;
@@ -635,10 +675,10 @@ public class Game {
 	}
 
 	/**
-	 * @return the playerToPrevoiusPlayer
+	 * @return the playerToPreviousPlayer
 	 */
 	public Map<Player, Player> getPlayerToPrevoiusPlayer() {
-		return playerToPrevoiusPlayer;
+		return playerToPreviousPlayer;
 	}
 
 	public Card playerShowCard(Player player) {
@@ -690,6 +730,10 @@ public class Game {
 
 	private boolean playerContainsCard(Player player, Card card) {
 		return player.getMyCards().contains(card);
+	}
+
+	public Player getPlayer(String string) {
+		return players.get(string);
 	}
 
 }

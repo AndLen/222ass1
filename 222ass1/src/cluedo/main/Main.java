@@ -6,9 +6,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import cluedo.cards.AfterTurnCard;
 import cluedo.cards.Card;
 import cluedo.cards.Character;
 import cluedo.cards.Clocks;
+import cluedo.cards.Keepers;
 import cluedo.cards.Room;
 import cluedo.cards.Weapon;
 import cluedo.structs.Location;

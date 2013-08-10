@@ -1,7 +1,6 @@
 package cluedo.cards;
 
 import cluedo.main.Game;
-import cluedo.main.Keepers;
 import cluedo.structs.Player;
 
 public class Clocks extends Keepers {
@@ -30,9 +29,9 @@ public class Clocks extends Keepers {
 
 
 	@Override
-	public boolean apply(Game game, Player player) {
+	public String apply(Game game, Player player) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 
@@ -40,5 +39,18 @@ public class Clocks extends Keepers {
 	public String getDescription() {
 	
 		return s;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		return obj != null & obj instanceof Clocks;
+	}
+
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
