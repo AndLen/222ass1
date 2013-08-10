@@ -48,11 +48,11 @@ public class Game {
 	private Map<Player, Player> playerToPrevoiusPlayer = new HashMap<Player, Player>();
 
 	private int clockCounter; // when this reaches 8 player is dead
-	private final Queue<Card> intrigueCards;
+	private final Queue<Keepers> intrigueCards;
 
 	public Game(Board b, Solution s, List<Card> cardsLeft,
-			List<Card> intrigueCards, List<Player> playersList) {
-		this.intrigueCards = new ArrayDeque<Card>();
+			List<Keepers> intrigueCards, List<Player> playersList) {
+		this.intrigueCards = new ArrayDeque<Keepers>();
 		gameBoard = b;
 		solution = s;
 		// All our leftover cards get put in the middle.
@@ -116,10 +116,12 @@ public class Game {
 	 * @param p
 	 * @return
 	 */
-	private boolean takeTurn(Player p) {
+	public boolean takeTurn(Player p) {
 		int roll = die.getRoll();
 		System.out
 				.println("It is " + p + "'s turn!\n" + p + " rolls a " + roll);
+
+		roll += checkDiceIntigue(p);
 
 		Move m;
 		boolean validMove = false;
@@ -161,6 +163,30 @@ public class Game {
 		return true;
 	}
 
+	private int checkDiceIntigue(Player p) {
+		// TODO Auto-generated method stub
+		List<Keepers> tempList = new ArrayList<Keepers>();
+
+		for (Keepers k : p.getKeeperCards()) {
+			if (k instanceof AfterRollCard) {
+				// player has an after turn card so play it
+				tempList.add(k);
+
+			}
+		}
+
+		System.out.println(p.getMyName() + " has " + tempList
+				+ " intrigue cards avaliable to play");
+		if (tempList.size() != 0) {
+			// TODO needs to get input from player on whether to play the card
+			// or not
+			if (true) {
+				return 6;
+			}
+		}
+		return 0;
+	}
+
 	/**
 	 * after turn intrigue - ATIntigue
 	 * 
@@ -172,7 +198,7 @@ public class Game {
 
 		for (Keepers k : p.getKeeperCards()) {
 			if (k instanceof AfterTurnCard) {
-				// player has an after trun card so play it
+				// player has an after turn card so play it
 				tempList.add(k);
 
 			}
@@ -182,8 +208,10 @@ public class Game {
 				+ " intrigue cards avaliable to play");
 
 		// TODO get input from player on which card to play if any
-		Keepers k = null; // change nul to the card selected
-		k.apply(this, p);
+		Keepers k = null; // change null to the card selected
+		if (k != null) {
+			k.apply(this, p);
+		}
 
 	}
 
@@ -194,7 +222,7 @@ public class Game {
 	private boolean takeIntrigueTurn(Player p) {
 		// TODO Auto-generated method stub
 		// pick up a card off the pile
-		Card c = intrigueCards.poll();
+		Keepers c = intrigueCards.poll();
 
 		if (c instanceof Clocks) {
 			// Print Tick or Tock
@@ -212,7 +240,8 @@ public class Game {
 			return true;
 
 		}
-		return false;
+		p.getKeeperCards().add(c);
+		return true;
 	}
 
 	/**
@@ -611,7 +640,7 @@ public class Game {
 		return playerToPrevoiusPlayer;
 	}
 
-	public String playerShowCard(Player player) {
+	public Card playerShowCard(Player player) {
 		while (true) {
 			Scanner sc = new Scanner(System.in);
 			System.out
@@ -619,13 +648,47 @@ public class Game {
 			String possCard = sc.nextLine();
 			possCard = possCard.trim();
 
-			// TODO need to check the player holds the card they are showing
-			return null;
-//			if(player.getMyCards().contains(new Weapon(possCard))){
-//				System.out.println(player + " shouwed you: " + possCard);
-//				return possCard;
-//			}
+			Card card = null;
+			try {
+				card = new Weapon(possCard);
+				if (playerContainsCard(player, card)) {
+					return card;
+				}
+			} catch (IllegalArgumentException e) {
+				// card is not a weapon
+				try {
+					card = new Character(possCard);
+
+					if (playerContainsCard(player, card)) {
+						return card;
+					}
+				} catch (IllegalArgumentException f) {
+					// card is not a character
+
+					try {
+						card = new Room(possCard);
+
+						if (playerContainsCard(player, card)) {
+							return card;
+						}
+					} catch (IllegalArgumentException g) {
+						// card is not a room
+						System.out.println("You do not have that card");
+						continue;
+					}
+				}
+
+			}
+
+			// if(player.getMyCards().contains(new Weapon(possCard))){
+			// System.out.println(player + " shouwed you: " + possCard);
+			// return possCard;
+			// }
 		}
+	}
+
+	private boolean playerContainsCard(Player player, Card card) {
+		return player.getMyCards().contains(card);
 	}
 
 }

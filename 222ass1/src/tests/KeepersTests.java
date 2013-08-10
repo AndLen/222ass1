@@ -45,11 +45,11 @@ public class KeepersTests {
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
 				Weapon.WEAPONS[1])), null, null, players);
 
-		String card = game.playerShowCard(players.get(0));
+		Card card = game.playerShowCard(players.get(0));
 
-		if (card.equals("Axe")) {
+		if (!card.toString().equals("Axe")) {
 
-			fail(Character.CHARACTERS[0] + " should have shown a the axe card");
+			fail(Character.CHARACTERS[0] + " should have shown the axe card");
 
 		}
 

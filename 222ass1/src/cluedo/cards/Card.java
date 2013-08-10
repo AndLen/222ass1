@@ -24,4 +24,6 @@ public interface Card {
 	 */
 	public boolean apply(Game game, Player player);
 
+	
+	
 }

@@ -1,6 +1,7 @@
 package cluedo.main;
 
 import cluedo.structs.Player;
+import cluedo.cards.Card;
 //import cluedo.cards.*;
 import cluedo.cards.Character;
 
@@ -17,20 +18,26 @@ public class AfterTurnCard extends Keepers {
 		// TODO Auto-generated method stub
 		return description;
 	}
+	
+	@Override
+	public String toString(){
+		return description;
+	}
 
 	@Override
 	public boolean apply(Game game, Player player) {
 
 		if (description.equals(Keepers.Cards[0])) {
 			// player on right show you card.
-			game.playerShowCard(game.getPlayerToPrevoiusPlayer().get(player));
+			Card card = game.playerShowCard(game.getPlayerToPrevoiusPlayer().get(player));
+			System.out.println(card.toString());
 			return true;
 		}
 		if (description.equals(Keepers.Cards[4])) {
 			// move anyone back to their starting position
 			Character c = game.getCharcterInput();
 
-			// gets the above player and moves back to their starting position
+			// gets the above Character and moves back to their starting position
 			game.getPlayers()
 					.get(game.getPlayers().indexOf(c.toString()))
 					.updateLocation(
@@ -42,6 +49,15 @@ public class AfterTurnCard extends Keepers {
 			return true;
 		}
 
+		if(description.equals(Keepers.Cards[7])){
+			//take another turn
+			
+			//TODO if player dies we need to kill them
+			return game.takeTurn(player);
+			
+			
+		}
+		
 		return false;
 	}
 

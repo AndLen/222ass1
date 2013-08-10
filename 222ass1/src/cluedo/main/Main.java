@@ -104,10 +104,8 @@ public class Main {
 			players.add(new Player(myStart, myName, mySymbol, myCards));
 		}
 
-		List<Card> intrigueCards = new ArrayList<Card>();
-		for (int i = 0; i < 8; i++) {
-			intrigueCards.add(new Clocks());
-		}
+		List<Keepers> intrigueCards = setUpKeeperCards();
+
 		Game newGame = new Game(board, sol, cardsLeft, intrigueCards, players);
 		return newGame;
 	}
@@ -155,6 +153,37 @@ public class Main {
 
 		Collections.shuffle(rooms);
 		return rooms;
+	}
+	
+	
+	/**
+	 * creates all the keeper cards and shuffles the pile
+	 * 
+	 * @return rooms the list to be returned
+	 */
+	private List<Keepers> setUpKeeperCards() {
+		List<Keepers> intrigueCards =  new ArrayList<Keepers>();
+		for (int i = 0; i < 8; i++) {
+			intrigueCards.add(new Clocks());
+		}
+		
+		// take another turn
+		intrigueCards.add(new AfterTurnCard(Keepers.Cards[7]));
+		intrigueCards.add(new AfterTurnCard(Keepers.Cards[7]));
+		intrigueCards.add(new AfterTurnCard(Keepers.Cards[7]));
+		intrigueCards.add(new AfterTurnCard(Keepers.Cards[7]));
+		
+		// move someone back to start
+		intrigueCards.add(new AfterTurnCard(Keepers.Cards[4]));
+		intrigueCards.add(new AfterTurnCard(Keepers.Cards[4]));
+		
+		// player on right show you card
+		intrigueCards.add(new AfterTurnCard(Keepers.Cards[0]));
+		
+		
+		
+		Collections.shuffle(intrigueCards);
+		return intrigueCards;
 	}
 
 	/**

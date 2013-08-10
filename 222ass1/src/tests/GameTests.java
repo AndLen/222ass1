@@ -18,6 +18,7 @@ import cluedo.cards.Room;
 import cluedo.cards.Weapon;
 import cluedo.main.Board;
 import cluedo.main.Game;
+import cluedo.main.Keepers;
 import cluedo.moves.Move;
 import cluedo.structs.Location;
 import cluedo.structs.Player;
@@ -35,7 +36,7 @@ public class GameTests {
 		players.add(new Player(new Location(6, 20), Character.CHARACTERS[0],
 				null, null));
 
-		List<Card> intrigueCards = new ArrayList<Card>();
+		List<Keepers> intrigueCards = new ArrayList<Keepers>();
 		for (int i = 0; i < 8; i++) {
 			intrigueCards.add(new Clocks());
 		}
