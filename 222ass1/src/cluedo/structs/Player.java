@@ -12,7 +12,7 @@ import cluedo.cards.Keepers;
  * as well as their own cards.
  * 
  * 
- * @author Andrew
+ * @author Andrew & Michael
  * 
  */
 public class Player {

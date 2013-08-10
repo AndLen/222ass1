@@ -11,7 +11,7 @@ import cluedo.cards.Weapon;
 
 /**
  * 
- * @author Michael
+ * @author Andrew & Michael
  * 
  */
 public class CardTests {

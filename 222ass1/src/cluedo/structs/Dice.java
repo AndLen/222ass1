@@ -6,7 +6,7 @@ import java.util.Random;
  * Used to get a random dice roll. Included for later extension with a GUI (e.g.
  * Showing the dice).
  * 
- * @author Andrew
+ * @author Andrew & Michael
  * 
  */
 public class Dice {

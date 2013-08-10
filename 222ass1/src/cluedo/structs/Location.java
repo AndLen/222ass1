@@ -7,7 +7,7 @@ import cluedo.main.Board;
  * 
  * bad encapsulation should make it easier to find where a player is at.
  * 
- * @author Michael
+ * @author Andrew & Michael
  * @param <T>
  * 
  */

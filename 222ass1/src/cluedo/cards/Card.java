@@ -5,7 +5,7 @@ import cluedo.structs.Player;
 
 /**
  * 
- * @author Michael
+ * @author Andrew & Michael
  * 
  */
 public interface Card {

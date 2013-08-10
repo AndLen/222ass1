@@ -3,7 +3,7 @@ package cluedo.tiles;
 /**
  * Tile which corresponds to a room.
  * 
- * @author Andrew
+ * @author Andrew & Michael
  * 
  */
 public class RoomTile extends Tile {

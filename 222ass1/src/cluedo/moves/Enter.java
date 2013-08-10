@@ -10,7 +10,7 @@ import cluedo.tiles.DoorTile;
 /**
  * when the player enters into a room
  * 
- * @author Michael
+ * @author Andrew & Michael
  * 
  */
 public class Enter extends Move {

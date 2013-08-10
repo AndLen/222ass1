@@ -28,7 +28,7 @@ import cluedo.tiles.Tile;
 /**
  * Responsible for managing and running the game.
  * 
- * @author Andrew
+ * @author Andrew & Michael
  * 
  */
 public class Game {
@@ -281,7 +281,7 @@ public class Game {
 
 	/**
 	 * @return name of person who died (if they did)
-	 * @author Michael
+	 * @author Andrew & Michael
 	 */
 	private String takeIntrigueTurn(Player p) {
 		// pick up a card off the pile

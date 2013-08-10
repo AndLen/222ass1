@@ -13,7 +13,7 @@ import cluedo.tiles.DoorTile;
 /**
  * when a user exits a room and enters a corridor
  * 
- * @author Michael
+ * @author Andrew & Michael
  * 
  */
 public class Exit extends Move {

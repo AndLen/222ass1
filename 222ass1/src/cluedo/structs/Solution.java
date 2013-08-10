@@ -8,7 +8,7 @@ import cluedo.cards.Weapon;
 /**
  * A set of cards believed to be the solution to the game!
  * 
- * @author Andrew
+ * @author Andrew & Michael
  * 
  */
 

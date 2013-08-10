@@ -17,7 +17,7 @@ import cluedo.structs.Solution;
 
 /**
  * 
- * @author Michael
+ * @author Andrew & Michael
  * 
  */
 public class BoardTests {

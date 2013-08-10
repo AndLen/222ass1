@@ -22,7 +22,7 @@ import cluedo.structs.Solution;
  * to update the intrigue cards just find and replace null, null with null, and
  * the list of cards. if needed
  * 
- * @author Michael
+ * @author Andrew & Michael
  * 
  */
 public class MoveTests {

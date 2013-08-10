@@ -11,7 +11,7 @@ import cluedo.structs.Player;
  * 
  * use to get where player may move to, enter room, walk along corridor...
  * 
- * @author Michael
+ * @author Andrew & Michael
  * 
  */
 public class Move implements MoveI {

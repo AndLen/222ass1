@@ -10,7 +10,7 @@ import cluedo.main.Game;
  * different types of moves are moving certain amount of spaces, moving into a
  * room, moving out of a room, moving through a secret passage e.t.c
  * 
- * @author Michael
+ * @author Andrew & Michael
  * 
  */
 public interface MoveI {

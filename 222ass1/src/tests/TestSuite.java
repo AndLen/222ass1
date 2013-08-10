@@ -10,7 +10,7 @@ import org.junit.runners.Suite;
  * needed at the end of each class (like in a list). now we can run all tests
  * class at once with ease
  * 
- * @author Michael
+ * @author Andrew & Michael
  * 
  */
 

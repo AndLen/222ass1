@@ -4,7 +4,7 @@ package cluedo.tiles;
  * A tile object is one which is drawable and has co-ordinates on the board - it
  * represents the physical 1x1 square on a board.
  * 
- * @author Andrew
+ * @author Andrew & Michael
  * 
  */
 public interface TileI {
