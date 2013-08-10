@@ -66,6 +66,7 @@ public class AfterTurnCard extends Keepers {
 			Card card = game.playerShowCard(game.getPlayerToPrevoiusPlayer()
 					.get(player));
 			System.out.println(card.toString());
+			player.getKeeperCards().remove(this);
 			return null;
 		}
 		if (description.equals(Keepers.Cards[4])) {
@@ -76,7 +77,7 @@ public class AfterTurnCard extends Keepers {
 			// position
 			Player p = game.getPlayer(c.toString());
 			game.changePlayerLocation(p.getLocation(), p.getStarting());
-
+			player.getKeeperCards().remove(this);
 			return null;
 		}
 
@@ -84,6 +85,7 @@ public class AfterTurnCard extends Keepers {
 			// take another turn
 
 			// TODO if player dies we need to kill them (i.e remove from turns list or whatever)
+			player.getKeeperCards().remove(this);
 			return game.takeTurn(player);
 
 		}

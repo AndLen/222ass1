@@ -187,7 +187,7 @@ public class Game {
 
 		for (Keepers k : p.getKeeperCards()) {
 			if (k instanceof AfterRollCard) {
-				// player has an after turn card so play it
+				// player has an after roll card so play it
 				tempList.add(k);
 
 			}
@@ -206,6 +206,7 @@ public class Game {
 				data = data.toLowerCase().trim(); // If they decided caps or
 													// whitespace would be fun
 				if (data.contains("yes")) {
+					tempList.get(0).apply(this, p);
 					return 6;
 				} else if (data.contains("no")) {
 					return 0;

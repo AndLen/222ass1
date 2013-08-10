@@ -52,6 +52,8 @@ public class AfterRollCard extends Keepers {
 	public String apply(Game game, Player player) {
 
 		// this card is applied in the game class
+		
+		player.getKeeperCards().remove(this);
 		return null;
 	}
 
