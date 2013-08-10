@@ -108,9 +108,7 @@ public class AfterTurnCard extends Keepers {
 			return c;
 		} catch (IllegalArgumentException e) {
 			System.out.println("Not valid: " + e.getMessage());
-		} finally {
-			sc.close();
-		}
+		} 
 
 		return getCharacterInput();
 	}
