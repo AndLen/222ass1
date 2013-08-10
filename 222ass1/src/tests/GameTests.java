@@ -61,11 +61,11 @@ public class GameTests {
 			// and off again
 			for (int i = 0; i < 7; i++) {
 
-				if (!(boolean) m.invoke(game, players.get(0))) {
+				if (m.invoke(game, players.get(0)) != null) {
 					fail("Premature death");
 				}
 			}
-			if ((boolean) m.invoke(game, players.get(0))) {
+			if (m.invoke(game, players.get(0)) == null) {
 				fail("should be dead");
 			}
 		} catch (IllegalAccessException e) {
