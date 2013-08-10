@@ -166,12 +166,11 @@ public class Game {
 			String corpse = takeIntrigueTurn(p);
 			if (corpse != null) {
 				return corpse;
-			} else {
-				ATIntrigueAvaliable(p);
-				return null;
-			}
+			} 
 
 		}
+		//After turn intrigue cards.
+		ATIntrigueAvaliable(p);
 
 		if (isRoomLocation(p.getLocation())) {
 			// If we're in a room, then we can do some other stuff...
@@ -192,11 +191,13 @@ public class Game {
 
 			}
 		}
-
+		if(tempList.size() == 0){
+			//No point going any further
+			return 0;
+		}
 		System.out.println(p.getMyName() + " has " + tempList
 				+ " intrigue cards avaliable to play");
 
-		if (tempList.size() != 0) {
 			while (true) {
 				Scanner sc = new Scanner(System.in);
 				System.out
@@ -215,8 +216,6 @@ public class Game {
 				}
 
 			}
-		}
-		return 0;
 	}
 
 	/**
@@ -234,14 +233,13 @@ public class Game {
 
 			}
 		}
-		System.out.println(p.getMyName() + " has " + tempList
-				+ " intrigue cards avaliable to play");
-		// TODO get input from player on which card to play if any
 		if (tempList.size() == 0) {
 			// nothing to play.
 			return;
 		}
-
+		System.out.println(p.getMyName() + " has " + tempList
+				+ " intrigue cards avaliable to play");
+		
 		Keepers k = null;
 		while (true) {
 			Scanner sc = new Scanner(System.in);

@@ -34,7 +34,8 @@ public abstract class Keepers implements Card {
 	
 	@Override
 	public abstract boolean equals(Object obj);
-
+	
+	@Override
 	public abstract int hashCode();
 
 	@Override
