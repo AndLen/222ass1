@@ -3,7 +3,6 @@ package cluedo.main;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -19,7 +18,7 @@ import cluedo.tiles.Tile;
  * Represents the current "physical" board. Essentially the main data structure
  * for our program.
  * 
- * @author lensenandr
+ * @author Andrew & Michael
  * 
  */
 public class Board {
@@ -92,6 +91,7 @@ public class Board {
 	}
 
 	/**
+	 * Is this location a player?
 	 * Inefficient...but only <=6 players, so less expensive than a map
 	 * probably.
 	 * 
@@ -110,6 +110,11 @@ public class Board {
 		return null;
 	}
 
+	/**
+	 * Formats a number.
+	 * @param i
+	 * @return
+	 */
 	private String digitToString(int i) {
 		// Needs additional space
 		if (i < 10) {
@@ -289,6 +294,12 @@ public class Board {
 		return listOfDoors;
 	}
 
+	/**
+	 * Finds the first free tile for this location (i.e. with no player in!).
+	 * @param players on the board
+	 * @param symbol of tile to find
+	 * @return free location or null if there's none.
+	 */
 	public Location getFreeTile(Collection<Player> players, String symbol) {
 		for(int i = 0; i < BOARD_WIDTH;i++){
 			for(int j = 0; j < BOARD_HEIGHT;j++){

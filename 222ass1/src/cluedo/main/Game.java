@@ -32,10 +32,6 @@ import cluedo.tiles.Tile;
  * @author Andrew & Michael
  * 
  */
-/**
- * @author Andrew
- *
- */
 public class Game {
 	private final Board gameBoard;
 	private boolean gameFinished = false;
@@ -85,9 +81,6 @@ public class Game {
 			players.put(p.getMyName(), p);
 		}
 		playerToNextPlayer = setUpMap();
-
-		// DEBUG - shows our mapping of next players.
-		// System.out.println(playerToNextPlayer.entrySet());
 	}
 
 	/**
@@ -403,10 +396,15 @@ public class Game {
 	}
 
 	/**
-	 * Sees if a player can refute a suggestion that's been made, and makes them do so if they can.
-	 * @param originPlayer who made the suggestion
-	 * @param nextPlayer whose turn it is to try to refute
-	 * @param sol what was suggested
+	 * Sees if a player can refute a suggestion that's been made, and makes them
+	 * do so if they can.
+	 * 
+	 * @param originPlayer
+	 *            who made the suggestion
+	 * @param nextPlayer
+	 *            whose turn it is to try to refute
+	 * @param sol
+	 *            what was suggested
 	 * @return if managed to refute
 	 */
 	private boolean refute(Player originPlayer, Player nextPlayer, Solution sol) {
@@ -444,9 +442,11 @@ public class Game {
 	}
 
 	/**
-	 * Requests input for the player to make an accusation or suggestion and checks their
-	 * validity.
-	 * @inPool true if in pool (accusation) , false if in other room (suggestion)
+	 * Requests input for the player to make an accusation or suggestion and
+	 * checks their validity.
+	 * 
+	 * @inPool true if in pool (accusation) , false if in other room
+	 *         (suggestion)
 	 * @return their accusation/suggestion
 	 */
 	private Solution getAccusationInput(boolean inPool, Player p) {
@@ -537,7 +537,9 @@ public class Game {
 	 * Next three methods are used to initialising the map of player to next
 	 * player - surprisingly hard to code!
 	 */
-	/** Map setup part 1
+	/**
+	 * Map setup part 1
+	 * 
 	 * @return
 	 */
 	private Map<Player, Player> setUpMap() {
@@ -557,6 +559,7 @@ public class Game {
 
 	/**
 	 * Map setup part 2
+	 * 
 	 * @param kas
 	 * @return
 	 */
@@ -573,6 +576,7 @@ public class Game {
 
 	/**
 	 * Map setup part 3
+	 * 
 	 * @param charName
 	 * @return
 	 */
@@ -642,6 +646,7 @@ public class Game {
 
 	/**
 	 * Returns player at location (duh)
+	 * 
 	 * @param oldL
 	 * @return
 	 */
@@ -667,6 +672,7 @@ public class Game {
 
 	/**
 	 * Moves diceRoll tiles away from oldPosition (in a straight/diagonal line)
+	 * 
 	 * @param oldPosition
 	 * @param diceRoll
 	 * @return
@@ -677,6 +683,7 @@ public class Game {
 
 	/**
 	 * True if location is corridor or intrigue tile
+	 * 
 	 * @param newPosition
 	 * @return
 	 */
@@ -686,6 +693,7 @@ public class Game {
 
 	/**
 	 * Only intrigue (Not corridor)
+	 * 
 	 * @param newPosition
 	 * @return
 	 */
@@ -749,6 +757,7 @@ public class Game {
 
 	/**
 	 * Gets map of players before previous player (reverse order)
+	 * 
 	 * @return the playerToPreviousPlayer
 	 */
 	public Map<Player, Player> getPlayerToPrevoiusPlayer() {
@@ -757,6 +766,7 @@ public class Game {
 
 	/**
 	 * Gets a player to show a card to the person on their left.
+	 * 
 	 * @param player
 	 * @return Card to show
 	 */
@@ -799,18 +809,16 @@ public class Game {
 				}
 
 			}
-
-			// if(player.getMyCards().contains(new Weapon(possCard))){
-			// System.out.println(player + " shouwed you: " + possCard);
-			// return possCard;
-			// }
 		}
 	}
 
 	/**
 	 * Checks if a given player has this card or not.
-	 * @param player to check.
-	 * @param card true if they do.
+	 * 
+	 * @param player
+	 *            to check.
+	 * @param card
+	 *            true if they do.
 	 * @return
 	 */
 	private boolean playerContainsCard(Player player, Card card) {
@@ -819,6 +827,7 @@ public class Game {
 
 	/**
 	 * Get the player from a given name.
+	 * 
 	 * @param string
 	 * @return
 	 */
