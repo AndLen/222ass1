@@ -6,7 +6,7 @@
     <position height="-1" width="-1" x="2186" y="917"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
       <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
@@ -24,7 +24,7 @@
     <position height="-1" width="-1" x="1164" y="1249"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
       <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
@@ -33,7 +33,7 @@
     <position height="-1" width="-1" x="1169" y="1352"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
       <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
@@ -57,11 +57,11 @@
   </interface>  
   <class id="7" language="java" name="cluedo.cards.Keepers" project="222ass1" 
     file="/222ass1/src/cluedo/cards/Keepers.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1400" y="1283"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+    <position height="156" width="158" x="1326" y="1242"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <operations public="false" package="true" protected="true" private="false" static="true"/>    
     </display>  
   </class>  
   <class id="8" language="java" name="cluedo.cards.Weapon" project="222ass1" 
@@ -69,7 +69,7 @@
     <position height="-1" width="-1" x="1785" y="874"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
       <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
@@ -78,7 +78,7 @@
     <position height="-1" width="-1" x="1107" y="1520"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="false" package="true" protected="true" private="false" static="true"/>      
       <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
@@ -87,7 +87,7 @@
     <position height="-1" width="-1" x="1953" y="975"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
       <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
@@ -96,7 +96,7 @@
     <position height="-1" width="-1" x="1445" y="1524"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
       <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
@@ -105,7 +105,7 @@
     <position height="-1" width="-1" x="1610" y="1532"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
       <operations public="false" package="true" protected="true" private="false" static="true"/>    
     </display>  
   </class>  
@@ -114,7 +114,7 @@
     <position height="-1" width="-1" x="1270" y="1516"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
@@ -187,7 +187,7 @@
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <operations public="true" package="true" protected="true" private="false" static="true"/>    
     </display>  
   </class>  
   <class id="22" language="java" name="cluedo.moves.Enter" project="222ass1" file="/222ass1/src/cluedo/moves/Enter.java" 
@@ -204,7 +204,7 @@
     <position height="-1" width="-1" x="951" y="787"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
@@ -222,7 +222,7 @@
     <position height="-1" width="-1" x="1430" y="802"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
@@ -231,7 +231,7 @@
     <position height="-1" width="-1" x="332" y="1340"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="true" package="false" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
@@ -285,8 +285,8 @@
     <position height="-1" width="-1" x="596" y="952"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="false" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
   <realization id="33">    
@@ -304,7 +304,8 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="37">    
-    <bendpoint x="1446" y="502"/>    
+    <bendpoint x="1492" y="510"/>    
+    <bendpoint x="1459" y="565"/>    
     <end type="SOURCE" refId="17" navigable="false">      
       <attribute id="38" name="playerToPreviousPlayer"/>      
       <multiplicity id="39" minimum="0" maximum="2147483647"/>    
@@ -321,6 +322,7 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="43">    
+    <bendpoint x="1561" y="515"/>    
     <end type="SOURCE" refId="17" navigable="false">      
       <attribute id="44" name="players"/>      
       <multiplicity id="45" minimum="0" maximum="2147483647"/>    
@@ -391,6 +393,9 @@
     <end type="TARGET" refId="14"/>  
   </nesting>  
   <realization id="62">    
+    <bendpoint x="458" y="285"/>    
+    <bendpoint x="469" y="242"/>    
+    <bendpoint x="473" y="225"/>    
     <end type="SOURCE" refId="21"/>    
     <end type="TARGET" refId="20"/>  
   </realization>  
@@ -441,8 +446,9 @@
   </association>  
   <association id="76">    
     <bendpoint x="1320" y="1010"/>    
-    <bendpoint x="1324" y="1043"/>    
-    <bendpoint x="1337" y="1086"/>    
+    <bendpoint x="1300" y="1050"/>    
+    <bendpoint x="1296" y="1090"/>    
+    <bendpoint x="1316" y="1170"/>    
     <end type="SOURCE" refId="25" navigable="false">      
       <attribute id="77" name="keeperCards"/>      
       <multiplicity id="78" minimum="0" maximum="2147483647"/>    
@@ -488,6 +494,7 @@
   <association id="90">    
     <bendpoint x="1622" y="621"/>    
     <bendpoint x="1614" y="922"/>    
+    <bendpoint x="1561" y="1092"/>    
     <end type="SOURCE" refId="17" navigable="false">      
       <attribute id="91" name="intrigueCards"/>      
       <multiplicity id="92" minimum="0" maximum="2147483647"/>    
@@ -507,6 +514,7 @@
   <association id="96">    
     <bendpoint x="1299" y="512"/>    
     <bendpoint x="1280" y="564"/>    
+    <bendpoint x="1294" y="606"/>    
     <end type="SOURCE" refId="17" navigable="false">      
       <attribute id="97" name="nextPlayer"/>      
       <multiplicity id="98" minimum="0" maximum="1"/>    
@@ -519,7 +527,7 @@
     <end type="TARGET" refId="7"/>  
   </generalization>  
   <association id="100">    
-    <bendpoint x="1586" y="544"/>    
+    <bendpoint x="1600" y="549"/>    
     <end type="SOURCE" refId="17" navigable="false">      
       <attribute id="101" name="playerToNextPlayer"/>      
       <multiplicity id="102" minimum="0" maximum="2147483647"/>    
