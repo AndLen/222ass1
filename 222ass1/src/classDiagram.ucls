@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="cluedo.cards.Character" project="222ass1" 
     file="/222ass1/src/cluedo/cards/Character.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="136" x="1978" y="1030"/>    
+    <position height="-1" width="-1" x="2186" y="917"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,16 +12,16 @@
   </class>  
   <enumeration id="2" language="java" name="cluedo.cards.Character.CHARACTERS" project="222ass1" 
     file="/222ass1/src/cluedo/cards/Character.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="192" x="2231" y="1313"/>    
+    <position height="-1" width="-1" x="2222" y="725"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
   <class id="3" language="java" name="cluedo.cards.BeforeTurnCard" project="222ass1" 
     file="/222ass1/src/cluedo/cards/BeforeTurnCard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="81" width="114" x="763" y="1313"/>    
+    <position height="-1" width="-1" x="1164" y="1249"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="cluedo.cards.BeforeRollCard" project="222ass1" 
     file="/222ass1/src/cluedo/cards/BeforeRollCard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="81" width="113" x="917" y="1313"/>    
+    <position height="-1" width="-1" x="1169" y="1352"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,10 +39,10 @@
   </class>  
   <enumeration id="5" language="java" name="cluedo.cards.Weapon.WEAPONS" project="222ass1" 
     file="/222ass1/src/cluedo/cards/Weapon.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="243" width="147" x="1868" y="1313"/>    
+    <position height="-1" width="-1" x="1761" y="724"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
@@ -57,7 +57,7 @@
   </interface>  
   <class id="7" language="java" name="cluedo.cards.Keepers" project="222ass1" 
     file="/222ass1/src/cluedo/cards/Keepers.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="156" x="1370" y="1030"/>    
+    <position height="-1" width="-1" x="1400" y="1283"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="cluedo.cards.Weapon" project="222ass1" 
     file="/222ass1/src/cluedo/cards/Weapon.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="118" x="1676" y="1030"/>    
+    <position height="-1" width="-1" x="1785" y="874"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="cluedo.cards.Clocks" project="222ass1" 
     file="/222ass1/src/cluedo/cards/Clocks.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="81" width="87" x="1070" y="1313"/>    
+    <position height="-1" width="-1" x="1107" y="1520"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="cluedo.cards.Room" project="222ass1" file="/222ass1/src/cluedo/cards/Room.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="104" x="1834" y="1030"/>    
+    <position height="-1" width="-1" x="1953" y="975"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="cluedo.cards.AfterRollCard" project="222ass1" 
     file="/222ass1/src/cluedo/cards/AfterRollCard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="81" width="113" x="1370" y="1313"/>    
+    <position height="-1" width="-1" x="1445" y="1524"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="cluedo.cards.AfterTurnCard" project="222ass1" 
     file="/222ass1/src/cluedo/cards/AfterTurnCard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="81" width="113" x="1523" y="1313"/>    
+    <position height="-1" width="-1" x="1610" y="1532"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="cluedo.cards.AnswerRumorCard" project="222ass1" 
     file="/222ass1/src/cluedo/cards/AnswerRumorCard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="81" width="133" x="1197" y="1313"/>    
+    <position height="-1" width="-1" x="1270" y="1516"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,16 +120,16 @@
   </class>  
   <enumeration id="14" language="java" name="cluedo.cards.Room.ROOMS" project="222ass1" 
     file="/222ass1/src/cluedo/cards/Room.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="243" width="136" x="2055" y="1313"/>    
+    <position height="-1" width="-1" x="2052" y="817"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
   <class id="15" language="java" name="cluedo.main.Board" project="222ass1" file="/222ass1/src/cluedo/main/Board.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="207" width="250" x="723" y="621"/>    
+    <position height="-1" width="-1" x="826" y="343"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +138,7 @@
   </class>  
   <class id="16" language="java" name="cluedo.main.Main" project="222ass1" file="/222ass1/src/cluedo/main/Main.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="113" x="1442" y="37"/>    
+    <position height="-1" width="-1" x="1198" y="146"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +147,7 @@
   </class>  
   <class id="17" language="java" name="cluedo.main.Game" project="222ass1" file="/222ass1/src/cluedo/main/Game.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="369" width="322" x="1442" y="212"/>    
+    <position height="-1" width="-1" x="1651" y="195"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="false" static="true"/>      
@@ -156,7 +156,7 @@
   </class>  
   <class id="18" language="java" name="cluedo.moves.Exit" project="222ass1" file="/222ass1/src/cluedo/moves/Exit.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="63" width="87" x="41" y="1030"/>    
+    <position height="-1" width="-1" x="278" y="685"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,7 +165,7 @@
   </class>  
   <class id="19" language="java" name="cluedo.moves.Passage" project="222ass1" 
     file="/222ass1/src/cluedo/moves/Passage.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="63" width="87" x="469" y="1030"/>    
+    <position height="-1" width="-1" x="485" y="696"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -174,7 +174,7 @@
   </class>  
   <interface id="20" language="java" name="cluedo.moves.MoveI" project="222ass1" 
     file="/222ass1/src/cluedo/moves/MoveI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="134" x="168" y="1030"/>    
+    <position height="-1" width="-1" x="414" y="162"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -183,7 +183,7 @@
   </interface>  
   <class id="21" language="java" name="cluedo.moves.Move" project="222ass1" file="/222ass1/src/cluedo/moves/Move.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="171" width="190" x="342" y="621"/>    
+    <position height="-1" width="-1" x="413" y="448"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -192,7 +192,7 @@
   </class>  
   <class id="22" language="java" name="cluedo.moves.Enter" project="222ass1" file="/222ass1/src/cluedo/moves/Enter.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="63" width="87" x="342" y="1030"/>    
+    <position height="-1" width="-1" x="383" y="690"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -201,7 +201,7 @@
   </class>  
   <class id="23" language="java" name="cluedo.structs.Location" project="222ass1" 
     file="/222ass1/src/cluedo/structs/Location.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="243" width="147" x="856" y="1030"/>    
+    <position height="-1" width="-1" x="951" y="787"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -210,7 +210,7 @@
   </class>  
   <class id="24" language="java" name="cluedo.structs.Solution" project="222ass1" 
     file="/222ass1/src/cluedo/structs/Solution.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="192" x="1732" y="621"/>    
+    <position height="-1" width="-1" x="1997" y="479"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -219,7 +219,7 @@
   </class>  
   <class id="25" language="java" name="cluedo.structs.Player" project="222ass1" 
     file="/222ass1/src/cluedo/structs/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="369" width="222" x="1370" y="621"/>    
+    <position height="-1" width="-1" x="1430" y="802"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -228,7 +228,7 @@
   </class>  
   <class id="26" language="java" name="cluedo.structs.Dice" project="222ass1" 
     file="/222ass1/src/cluedo/structs/Dice.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="87" x="678" y="37"/>    
+    <position height="-1" width="-1" x="332" y="1340"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -237,7 +237,7 @@
   </class>  
   <interface id="27" language="java" name="cluedo.tiles.TileI" project="222ass1" 
     file="/222ass1/src/cluedo/tiles/TileI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="103" x="599" y="1313"/>    
+    <position height="-1" width="-1" x="440" y="822"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -246,7 +246,7 @@
   </interface>  
   <class id="28" language="java" name="cluedo.tiles.DoorTile" project="222ass1" 
     file="/222ass1/src/cluedo/tiles/DoorTile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="107" x="723" y="1596"/>    
+    <position height="-1" width="-1" x="910" y="1286"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -255,7 +255,7 @@
   </class>  
   <class id="29" language="java" name="cluedo.tiles.CorridorTile" project="222ass1" 
     file="/222ass1/src/cluedo/tiles/CorridorTile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="63" width="91" x="341" y="1313"/>    
+    <position height="-1" width="-1" x="392" y="960"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -264,7 +264,7 @@
   </class>  
   <class id="30" language="java" name="cluedo.tiles.IntrigueTile" project="222ass1" 
     file="/222ass1/src/cluedo/tiles/IntrigueTile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="63" width="87" x="341" y="1596"/>    
+    <position height="-1" width="-1" x="395" y="1116"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -273,7 +273,7 @@
   </class>  
   <class id="31" language="java" name="cluedo.tiles.RoomTile" project="222ass1" 
     file="/222ass1/src/cluedo/tiles/RoomTile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="63" width="87" x="472" y="1313"/>    
+    <position height="-1" width="-1" x="613" y="1226"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="false" package="true" protected="true" private="true" static="true"/>      
@@ -282,7 +282,7 @@
   </class>  
   <class id="32" language="java" name="cluedo.tiles.Tile" project="222ass1" file="/222ass1/src/cluedo/tiles/Tile.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="171" width="106" x="596" y="1030"/>    
+    <position height="-1" width="-1" x="596" y="952"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="false" static="true"/>      
@@ -290,12 +290,12 @@
     </display>  
   </class>  
   <realization id="33">    
+    <bendpoint x="2041" y="1183"/>    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="6"/>  
   </realization>  
   <association id="34">    
-    <bendpoint x="732" y="1030"/>    
-    <bendpoint x="732" y="1313"/>    
+    <bendpoint x="739" y="848"/>    
     <end type="SOURCE" refId="15" navigable="false">      
       <attribute id="35" name="listOfDoors"/>      
       <multiplicity id="36" minimum="0" maximum="2147483647"/>    
@@ -304,6 +304,7 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="37">    
+    <bendpoint x="1446" y="502"/>    
     <end type="SOURCE" refId="17" navigable="false">      
       <attribute id="38" name="playerToPreviousPlayer"/>      
       <multiplicity id="39" minimum="0" maximum="2147483647"/>    
@@ -328,6 +329,8 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="46">    
+    <bendpoint x="723" y="540"/>    
+    <bendpoint x="794" y="600"/>    
     <end type="SOURCE" refId="21" navigable="false">      
       <attribute id="47" name="newPosition"/>      
       <multiplicity id="48" minimum="0" maximum="1"/>    
@@ -360,6 +363,10 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="56">    
+    <bendpoint x="696" y="475"/>    
+    <bendpoint x="685" y="508"/>    
+    <bendpoint x="671" y="572"/>    
+    <bendpoint x="633" y="728"/>    
     <end type="SOURCE" refId="15" navigable="false">      
       <attribute id="57" name="gameBoard"/>      
       <multiplicity id="58" minimum="0" maximum="2147483647"/>    
@@ -372,6 +379,10 @@
     <end type="TARGET" refId="7"/>  
   </generalization>  
   <realization id="60">    
+    <bendpoint x="1855" y="931"/>    
+    <bendpoint x="1850" y="953"/>    
+    <bendpoint x="1845" y="1006"/>    
+    <bendpoint x="1839" y="1110"/>    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="6"/>  
   </realization>  
@@ -392,8 +403,7 @@
     <end type="TARGET" refId="21"/>  
   </generalization>  
   <association id="65">    
-    <bendpoint x="1643" y="621"/>    
-    <bendpoint x="1643" y="1030"/>    
+    <bendpoint x="1682" y="1047"/>    
     <end type="SOURCE" refId="17" navigable="false">      
       <attribute id="66" name="cardsInPool"/>      
       <multiplicity id="67" minimum="0" maximum="2147483647"/>    
@@ -402,6 +412,10 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="68">    
+    <bendpoint x="1307" y="717"/>    
+    <bendpoint x="1281" y="716"/>    
+    <bendpoint x="1233" y="710"/>    
+    <bendpoint x="1056" y="698"/>    
     <end type="SOURCE" refId="25" navigable="false">      
       <attribute id="69" name="myPosition"/>      
       <multiplicity id="70" minimum="0" maximum="1"/>    
@@ -426,6 +440,9 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="76">    
+    <bendpoint x="1320" y="1010"/>    
+    <bendpoint x="1324" y="1043"/>    
+    <bendpoint x="1337" y="1086"/>    
     <end type="SOURCE" refId="25" navigable="false">      
       <attribute id="77" name="keeperCards"/>      
       <multiplicity id="78" minimum="0" maximum="2147483647"/>    
@@ -442,11 +459,13 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <realization id="82">    
+    <bendpoint x="1915" y="1184"/>    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="6"/>  
   </realization>  
   <association id="83">    
-    <bendpoint x="1556" y="1030"/>    
+    <bendpoint x="1472" y="1049"/>    
+    <bendpoint x="1529" y="1245"/>    
     <end type="SOURCE" refId="25" navigable="false">      
       <attribute id="84" name="myCards"/>      
       <multiplicity id="85" minimum="0" maximum="2147483647"/>    
@@ -468,6 +487,7 @@
   </association>  
   <association id="90">    
     <bendpoint x="1622" y="621"/>    
+    <bendpoint x="1614" y="922"/>    
     <end type="SOURCE" refId="17" navigable="false">      
       <attribute id="91" name="intrigueCards"/>      
       <multiplicity id="92" minimum="0" maximum="2147483647"/>    
@@ -476,6 +496,7 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="93">    
+    <bendpoint x="372" y="287"/>    
     <end type="SOURCE" refId="21" navigable="false">      
       <attribute id="94" name="move"/>      
       <multiplicity id="95" minimum="0" maximum="1"/>    
@@ -484,6 +505,8 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="96">    
+    <bendpoint x="1299" y="512"/>    
+    <bendpoint x="1280" y="564"/>    
     <end type="SOURCE" refId="17" navigable="false">      
       <attribute id="97" name="nextPlayer"/>      
       <multiplicity id="98" minimum="0" maximum="1"/>    
@@ -496,6 +519,7 @@
     <end type="TARGET" refId="7"/>  
   </generalization>  
   <association id="100">    
+    <bendpoint x="1586" y="544"/>    
     <end type="SOURCE" refId="17" navigable="false">      
       <attribute id="101" name="playerToNextPlayer"/>      
       <multiplicity id="102" minimum="0" maximum="2147483647"/>    
@@ -520,10 +544,15 @@
     <end type="TARGET" refId="31"/>  
   </generalization>  
   <realization id="107">    
+    <bendpoint x="1568" y="1393"/>    
+    <bendpoint x="1619" y="1408"/>    
+    <bendpoint x="1648" y="1418"/>    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="6"/>  
   </realization>  
   <association id="108">    
+    <bendpoint x="665" y="703"/>    
+    <bendpoint x="761" y="798"/>    
     <end type="SOURCE" refId="21" navigable="false">      
       <attribute id="109" name="oldPosition"/>      
       <multiplicity id="110" minimum="0" maximum="1"/>    
