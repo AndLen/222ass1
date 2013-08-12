@@ -16,6 +16,9 @@ import cluedo.cards.Weapon;
  */
 public class CardTests {
 
+	/**
+	 * tests correct symbols are returned
+	 */
 	@Test
 	public void testGetSymbol() {
 
@@ -25,16 +28,33 @@ public class CardTests {
 			fail("Jack Mustard Symbol should be: Jm was: " + card.getSymbol());
 		}
 
-		card = new Room(Room.ROOMS[1]);
+	}
+
+	/**
+	 * tests correct symbols are retruned
+	 */
+	@Test
+	public void testGetSymbol2() {
+
+		Card card = new Room(Room.ROOMS[1]);
 
 		if (!card.getSymbol().equals("TH")) {
 			fail("Theatre Symbol should be: TH was: " + card.getSymbol());
 		}
 
-		card = new Weapon(Weapon.WEAPONS[1]);
+	}
+
+	/**
+	 * tests correct symbols are retruned
+	 */
+	@Test
+	public void testGetSymbol3() {
+
+		Card card = new Weapon(Weapon.WEAPONS[1]);
 		if (!card.getSymbol().equals("cA")) {
 			fail("Candlestick Symbol should be: cA was: " + card.getSymbol());
 		}
 
 	}
+
 }

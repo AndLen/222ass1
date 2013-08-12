@@ -27,7 +27,7 @@ import cluedo.structs.Solution;
 public class GameTests {
 
 	/**
-	 * tests if die on the nth card (8th here)
+	 * tests if die on the 8th card
 	 * uses reflection to access private method inside Game
 	 */
 	@Test

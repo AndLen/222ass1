@@ -187,7 +187,7 @@ public class MoveTests {
 	@Test
 	/**
 	 * test if a player can exit a room into a corridor
-	 *  dianew white got stuck on 5,17 and couldnt exit
+	 *  diane white got stuck on 5,17 and couldnt exit
 	 */
 	public void testExitRoom2() {
 
@@ -395,7 +395,7 @@ public class MoveTests {
 
 	@Test
 	/**
-	 * test if a player is being landied on originating in the corridor and ending in the corridor
+	 * test if a player is being landed on originating in the corridor and ending in the corridor
 	 */
 	public void testLandOnPlayer() {
 
@@ -678,7 +678,7 @@ public class MoveTests {
 	}
 
 	
-	//TODO check exit onto intrigue tile
+	
 	@Test
 	/**
 	 * test if can  use a door, to exit onto a intrigue tile
