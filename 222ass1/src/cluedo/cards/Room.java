@@ -9,7 +9,7 @@ package cluedo.cards;
  * 
  */
 public class Room implements Card {
-	
+
 	public static enum ROOMS {
 		Spa, Theatre, Living_Room, Observatory, Patio, Hall, Kitchen, Dining_Room, Guest_House
 	};
@@ -23,7 +23,8 @@ public class Room implements Card {
 		// Check valid input.
 		for (String name : ROOMS) {
 			if (s.equalsIgnoreCase(name)) {
-				//Use our titlecase name as the variable, not their dodgy input.
+				// Use our titlecase name as the variable, not their dodgy
+				// input.
 				this.room = name;
 				return;
 			}
@@ -53,6 +54,7 @@ public class Room implements Card {
 		result = prime * result + ((room == null) ? 0 : room.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

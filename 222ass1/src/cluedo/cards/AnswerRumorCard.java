@@ -6,13 +6,15 @@ import cluedo.structs.Player;
 /**
  * this class is not used in the game
  * 
- * represents a keepers card that can be played when someone is answering a rumor
- * (lets 'player' see theat card)
- * @author Michael
- *
+ * represents a keepers card that can be played when someone is answering a
+ * rumor (lets 'player' see that card)
+ * 
+ * @author Andrew & Michael
+ * 
  */
 public class AnswerRumorCard extends Keepers {
 	String description;
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -41,13 +43,11 @@ public class AnswerRumorCard extends Keepers {
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String apply(Game game, Player player) {
-		// TODO Auto-generated method stub
 		player.getKeeperCards().remove(this);
 		return null;
 	}

@@ -1,8 +1,8 @@
 package cluedo.cards;
 
-
 /**
  * A physical weapon card in the board game.
+ * 
  * @author Andrew & Michael
  * 
  */
@@ -25,7 +25,8 @@ public class Weapon implements Card {
 		// Check valid input.
 		for (String name : WEAPONS) {
 			if (s.equalsIgnoreCase(name)) {
-				//Use our titlecase name as the variable, not their dodgy input.
+				// Use our titlecase name as the variable, not their dodgy
+				// input.
 				this.weapon = name;
 				return;
 			}
@@ -50,7 +51,9 @@ public class Weapon implements Card {
 				+ java.lang.Character.toUpperCase(weapon.charAt(1));
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -61,7 +64,9 @@ public class Weapon implements Card {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

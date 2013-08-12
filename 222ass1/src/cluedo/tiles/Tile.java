@@ -25,6 +25,7 @@ public abstract class Tile implements TileI {
 	/**
 	 * String rep of the tile
 	 */
+	@Override
 	public String toString() {
 		return stringRep;
 	}
@@ -32,6 +33,7 @@ public abstract class Tile implements TileI {
 	/**
 	 * @return the x
 	 */
+	@Override
 	public int getX() {
 		return x;
 	}
@@ -39,6 +41,7 @@ public abstract class Tile implements TileI {
 	/**
 	 * @return the y
 	 */
+	@Override
 	public int getY() {
 		return y;
 	}

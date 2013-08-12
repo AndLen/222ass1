@@ -1,17 +1,15 @@
 package cluedo.cards;
 
-//import java.util.List;
 import java.util.Scanner;
 
 import cluedo.main.Game;
 import cluedo.structs.Player;
-//import cluedo.cards.*;
-
 
 /**
  * represents a keepers card that can be played at the end of their turn
- * @author Michael
- *
+ * 
+ * @author Andrew & Michael
+ * 
  */
 public class AfterTurnCard extends Keepers {
 
@@ -29,7 +27,6 @@ public class AfterTurnCard extends Keepers {
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
 		return description;
 	}
 
@@ -95,7 +92,7 @@ public class AfterTurnCard extends Keepers {
 
 		return null;
 	}
-	
+
 	/**
 	 * Requests input for the player to move back to their start
 	 */
@@ -107,13 +104,13 @@ public class AfterTurnCard extends Keepers {
 		try {
 			// Trim them for a little leeway on typing
 			Character c = new Character(data.trim());
-			if(g.getPlayer(c.toString()) == null){
+			if (g.getPlayer(c.toString()) == null) {
 				throw new IllegalArgumentException("Player not in game");
 			}
 			return c;
 		} catch (IllegalArgumentException e) {
 			System.out.println("Not valid: " + e.getMessage());
-		} 
+		}
 
 		return getCharacterInput(g);
 	}

@@ -3,6 +3,13 @@ package cluedo.moves;
 import cluedo.main.Game;
 import cluedo.structs.Location;
 
+/**
+ * A secret passage from one room to another - can only be used if we're already
+ * in the room.
+ * 
+ * @author Andrew & Michael
+ * 
+ */
 public class Passage extends Move {
 
 	public Passage(Location oldPosition, Location newPosition, int diceRoll,
@@ -11,7 +18,7 @@ public class Passage extends Move {
 	}
 
 	@Override
-	public boolean isValid(Game game) /* throws CluedoException */{
+	public boolean isValid(Game game) {
 
 		if (game.isRoomLocation(oldPosition)) {
 			if (game.isRoomLocation(newPosition)) {

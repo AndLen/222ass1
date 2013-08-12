@@ -24,7 +24,8 @@ public class Character implements Card {
 		// Check valid input - gotta have one of our recognised names!
 		for (String name : CHARACTERS) {
 			if (charName.equalsIgnoreCase(name)) {
-				//Use our titlecase name as the variable, not their dodgy input.
+				// Use our titlecase name as the variable, not their dodgy
+				// input.
 				this.character = name;
 				return;
 			}

@@ -8,9 +8,9 @@ package cluedo.cards;
  */
 public interface Card {
 
-
 	/**
 	 * Get a representation of this card.
+	 * 
 	 * @return
 	 */
 	public String getSymbol();

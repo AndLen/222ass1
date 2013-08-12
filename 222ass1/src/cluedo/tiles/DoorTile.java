@@ -55,6 +55,7 @@ public class DoorTile extends RoomTile {
 	 * Room it belongs to - NOT the "#" rep for the door. Useful as Doors are
 	 * part of a room, so we want to know which room!
 	 */
+	@Override
 	public String roomRep() {
 		return roomInitial;
 	}

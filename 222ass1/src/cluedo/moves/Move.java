@@ -40,14 +40,9 @@ public class Move implements MoveI {
 	}
 
 	@Override
-	public boolean isValid(Game game) /* throws CluedoException */{
-		// TODO
-		// can we jump over a player? i know they can't when they are blocking a
-		// door, but can they if the are in hallway
+	public boolean isValid(Game game) {
 
 		// Possible locations the player can reach with his/her roll.
-	//	Set<Location> moves = game.getMovesTo(oldPosition, diceRoll);
-
 		for (Player p : game.getPlayers()) {
 			if (p.getLocation().equals(newPosition)) {
 
@@ -74,64 +69,17 @@ public class Move implements MoveI {
 				&& game.isRoomLocation(oldPosition)) {
 			// Must be leaving a room
 			move = new Exit(oldPosition, newPosition, diceRoll, game);
-			//printMoves(moves);
+			// printMoves(moves);
 			return move.isValid(game);
 		}
 		Set<Location> moves = game.getMovesTo(oldPosition, diceRoll);
-		 if (moves.contains(newPosition)) {
+		if (moves.contains(newPosition)) {
 			// Otherwise just a corridor move.
 
 			// a door should also counts as a roomlocation
-
-			// should check that path doesn't involve walking through walls
-			// if only one six sided dice can only occur when crossing the tip
-			// of the Living room
-			// or crossing the width of the theater. not entirely sure how to do
-			// this, will likley include keeping track of the path and checking
-			// that they are rooms or doors (when the newPos is a corridor) this
-			// may mean i need to reimplement the recursive getMovesTo trick
-			// List<Location> path = new ArrayList<Location>();
-
 			return true;
 		}
-		//printMoves(moves);
-		
-		// need to junit test moves that are off board
-		 // location class handles this
 		return false;
-	}
-
-	/**
-	 * TODO: Debugging?
-	 * 
-	 * @return the distance between the 2 points
-	 */
-	private int distanceBetween() {
-
-		return Math.abs(newPosition.getX() - oldPosition.getX())
-				+ Math.abs(newPosition.getY() - oldPosition.getY());
-	}
-
-	/**
-	 * Debugging
-	 * 
-	 * @param moves
-	 */
-	protected void printMoves(Set<Location> moves) {
-		boolean a[][] = new boolean[26][26];
-		for (Location l : moves) {
-			a[l.getY()][l.getX()] = true;
-		}
-		for (boolean[] ba : a) {
-			for (boolean b : ba) {
-				if (b) {
-					System.out.print("x");
-				} else {
-					System.out.print(" ");
-				}
-			}
-			System.out.print("\n");
-		}
 	}
 
 	@Override

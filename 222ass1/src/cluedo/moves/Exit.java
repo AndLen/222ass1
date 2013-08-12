@@ -22,7 +22,8 @@ public class Exit extends Move {
 	 * 
 	 * @param oldPosition
 	 * @param newPosition
-	 * @param diceRoll how many squares can the player move
+	 * @param diceRoll
+	 *            how many squares can the player move
 	 * @param game
 	 */
 	public Exit(Location oldPosition, Location newPosition, int diceRoll,
@@ -48,11 +49,9 @@ public class Exit extends Move {
 				moves.addAll(game.getMovesTo(loc, diceRoll - 1));
 			}
 		}
-	//	printMoves(moves);
 		if (moves.contains(newPosition)) {
 			return true;
 		}
-	//	printMoves(moves);
 		return false;
 	}
 

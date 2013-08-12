@@ -12,6 +12,7 @@ public interface TileI {
 	/**
 	 * String rep of the tile
 	 */
+	@Override
 	public String toString();
 
 	/**

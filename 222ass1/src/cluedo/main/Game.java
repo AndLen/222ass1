@@ -12,8 +12,14 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
 
-import cluedo.cards.*;
+import cluedo.cards.AfterRollCard;
+import cluedo.cards.AfterTurnCard;
+import cluedo.cards.Card;
 import cluedo.cards.Character;
+import cluedo.cards.Clocks;
+import cluedo.cards.Keepers;
+import cluedo.cards.Room;
+import cluedo.cards.Weapon;
 import cluedo.moves.Move;
 import cluedo.structs.Dice;
 import cluedo.structs.Location;

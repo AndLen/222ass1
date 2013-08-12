@@ -3,13 +3,13 @@ package cluedo.cards;
 import cluedo.main.Game;
 import cluedo.structs.Player;
 
-
 /**
  * this class is not used in the game
  * 
  * represents a keepers card that can be played before a turn
- * @author Michael
- *
+ * 
+ * @author Andrew & Michael
+ * 
  */
 public class BeforeTurnCard extends Keepers {
 	@Override
@@ -39,15 +39,14 @@ public class BeforeTurnCard extends Keepers {
 	}
 
 	String description;
+
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String apply(Game game, Player player) {
-		// TODO Auto-generated method stub
 		player.getKeeperCards().remove(this);
 		return null;
 	}

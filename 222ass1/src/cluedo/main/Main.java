@@ -57,7 +57,7 @@ public class Main {
 		game = setupGame();
 		System.out.print(game.boardToString());
 		game.runGame();
-		//Yay, it finished successfully. Let's get out of here.
+		// Yay, it finished successfully. Let's get out of here.
 		System.out.println("Thanks for playing!");
 	}
 
@@ -165,7 +165,7 @@ public class Main {
 	 */
 	private List<Keepers> setUpKeeperCards() {
 		List<Keepers> intrigueCards = new ArrayList<Keepers>();
-		//Add our 8 clock cards.
+		// Add our 8 clock cards.
 		for (int i = 0; i < 8; i++) {
 			intrigueCards.add(new Clocks());
 		}
@@ -183,11 +183,11 @@ public class Main {
 		// player on right show you card
 		intrigueCards.add(new AfterTurnCard(Keepers.Cards[0]));
 
-		//Dice roll cards.
+		// Dice roll cards.
 		intrigueCards.add(new AfterRollCard(Keepers.Cards[6]));
 		intrigueCards.add(new AfterRollCard(Keepers.Cards[6]));
-		
-		//Shuffle them to make the game more interesting :P
+
+		// Shuffle them to make the game more interesting :P
 		Collections.shuffle(intrigueCards);
 		return intrigueCards;
 	}
