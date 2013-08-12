@@ -1,11 +1,17 @@
 package cluedo.tiles;
 
+/**
+ * The special case where a RoomTile is a DoorTile - we can enter or exit the
+ * room through it, in certain directions!
+ * 
+ * @author Andrew & Michael
+ * 
+ */
 public class DoorTile extends RoomTile {
 
 	private int xDir;
 	private int yDir;
 	private String roomInitial;
-	
 
 	/**
 	 * 
@@ -44,13 +50,13 @@ public class DoorTile extends RoomTile {
 	public int getyDir() {
 		return yDir;
 	}
-	
+
 	/**
-	 * Room it belongs to - NOT the "#" rep for the door.
+	 * Room it belongs to - NOT the "#" rep for the door. Useful as Doors are
+	 * part of a room, so we want to know which room!
 	 */
-	public String roomRep(){
+	public String roomRep() {
 		return roomInitial;
 	}
-
 
 }

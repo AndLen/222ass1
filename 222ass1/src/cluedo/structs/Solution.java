@@ -1,6 +1,5 @@
 package cluedo.structs;
 
-import cluedo.cards.Card;
 import cluedo.cards.Character;
 import cluedo.cards.Room;
 import cluedo.cards.Weapon;

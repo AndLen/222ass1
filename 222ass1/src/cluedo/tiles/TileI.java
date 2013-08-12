@@ -8,11 +8,6 @@ package cluedo.tiles;
  * 
  */
 public interface TileI {
-	
-	/**
-	 * Draw the tile to System.out
-	 */
-	public void draw();
 
 	/**
 	 * String rep of the tile

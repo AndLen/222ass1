@@ -3,12 +3,11 @@ package cluedo.structs;
 import cluedo.main.Board;
 
 /**
- * a pair of x and y coordinates
+ * a pair of x and y coordinates, along with useful methods for checking their
+ * validity on the board.
  * 
- * bad encapsulation should make it easier to find where a player is at.
  * 
  * @author Andrew & Michael
- * @param <T>
  * 
  */
 public class Location implements Comparable<Location> {
@@ -24,7 +23,6 @@ public class Location implements Comparable<Location> {
 		this.x = x;
 		this.y = y;
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -96,33 +94,26 @@ public class Location implements Comparable<Location> {
 		if (getClass() != obj.getClass())
 			return 0;
 		Location other = obj;
-//		if (x * y <= other.x * other.y) { // Apparently to make the tests pass we
-//											// need <= instead of < (Fucking
-//											// amazing)
-//			return -1;
-//		}
 
-		if(x == other.x){
-			if(y == other.y){
+		if (x == other.x) {
+			if (y == other.y) {
 				return 0;
-			}
-			else if(y > other.y){
+			} else if (y > other.y) {
 				return 1;
-			}
-			else{
+			} else {
 				return -1;
 			}
-			
+
 		}
-		
-		if(x < other.x){
+
+		if (x < other.x) {
 			return -1;
-			
+
 		}
-		if(x > other.x){
+		if (x > other.x) {
 			return 1;
 		}
-		
+
 		return 1;
 	}
 }

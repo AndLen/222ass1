@@ -71,21 +71,9 @@ public class Player {
 		}
 		return s;
 	}
-
 	/**
-	 * String rep of the keeper cards.
-	 * @return
+	 * Start location of the player represented by that String. Constant as doesn't change across games.
 	 */
-	public String myKeeperCards(){
-		if(keeperCards.size() == 0){
-			return "no";
-		}
-		String s = "";
-		for(Card c: keeperCards){
-			s+=c.toString() + ", ";
-		}
-		return s;
-	}
 	public static Location startLocation(String charName) {
 		if (charName.equals("Kasandra Scarlett")) {
 			return new Location(18, 28);
@@ -133,19 +121,22 @@ public class Player {
 		return getMyName();
 	}
 
+	/**
+	 * Player's initial location when the game was setup.
+	 */
 	public Location getStarting() {
 		return starting;
 	}
 
 	/**
-	 * @return the keeperCards
+	 * @return the keeper cards this player holds.
 	 */
 	public List<Keepers> getKeeperCards() {
 		return keeperCards;
 	}
 	
 	/**
-	 * @return mycards
+	 * @return all the non-keeper/clocks cards this player holds
 	 */
 	public List<Card> getMyCards(){
 		return myCards;

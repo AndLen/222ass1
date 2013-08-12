@@ -1,9 +1,17 @@
 package cluedo.tiles;
 
+/**
+ * An implementation of the TileI interface that provides some common
+ * code/method implementations across all Tiles. Not a concrete class as we
+ * shouldn't have any old generic tile - each tile should be a certain type!
+ * 
+ * @author Andrew
+ * 
+ */
 public abstract class Tile implements TileI {
 	protected String stringRep;
 	/**
-	 * the positionon the board
+	 * the position on the board
 	 */
 	private int x;
 	private int y;
@@ -12,17 +20,12 @@ public abstract class Tile implements TileI {
 		stringRep = s;
 		this.x = x;
 		this.y = y;
-	}	
-
-	public void draw() {
-		System.out.print(stringRep);
-
 	}
-	
+
 	/**
-	 * String rep of the tile 
+	 * String rep of the tile
 	 */
-	public String toString(){
+	public String toString() {
 		return stringRep;
 	}
 
