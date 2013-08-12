@@ -22,10 +22,11 @@ import cluedo.tiles.Tile;
  * 
  */
 public class Board {
+	// Public as static and final -- who cares if other classes can see these!
+	// -- makes things easier.
 	public static final int BOARD_WIDTH = 24;
 	public static final int BOARD_HEIGHT = 29;
-	// This needs to stay private as it's not final. Not static anymore so
-	// should be easy to edit safely!
+	//Physical board.
 	private final Tile[][] gameBoard;
 
 	private List<DoorTile> listOfDoors;
@@ -79,21 +80,20 @@ public class Board {
 			sb.append("\n");
 		}
 		// Extra to compensate for shift due to vertical axis.
-				sb.append("   ");
+		sb.append("   ");
 		// Print x-coords across the bottom
-				for (int a = 0; a < BOARD_WIDTH; a++) {
-					sb.append(digitToString(a));
-				}
-				sb.append("\n");
+		for (int a = 0; a < BOARD_WIDTH; a++) {
+			sb.append(digitToString(a));
+		}
+		sb.append("\n");
 		// End of board.
 		sb.append("\n");
 		return sb.toString();
 	}
 
 	/**
-	 * Is this location a player?
-	 * Inefficient...but only <=6 players, so less expensive than a map
-	 * probably.
+	 * Is this location a player? Inefficient...but only <=6 players, so less
+	 * expensive than a map probably.
 	 * 
 	 * @param i
 	 * @param j
@@ -111,7 +111,8 @@ public class Board {
 	}
 
 	/**
-	 * Formats a number.
+	 * Formats a number for printing to the board.
+	 * 
 	 * @param i
 	 * @return
 	 */
@@ -124,20 +125,16 @@ public class Board {
 	}
 
 	/**
-	 * gets all moves that are on gameBoard ignoring walls and doors
+	 * gets all moves that are on gameBoard ignoring walls and doors given a
+	 * dice roll - i.e. a player can move in diceroll steps in x or y or a
+	 * combination of the two.
 	 * 
 	 * 
 	 * @param oldPosition
 	 * @param dice
-	 * @return a list of all poistions on gameBoard where a player may move
+	 * @return a list of all positions on gameBoard where a player may move
 	 */
 	public Set<Location> getMovesTo(Location oldPosition, int dice) {
-		// TODO need to implement it so not only the max amount of moves is
-		// possible(at the moment player must move dice squares and not back and
-		// forward)
-		// it allows straight, and L shaped moves, but only around one
-		// ;corner' this only becomes a problem when oldPos = a room and new pos
-		// = another room. need to check the code does actually check this now
 
 		Set<Location> list = new TreeSet<Location>();
 
@@ -147,6 +144,7 @@ public class Board {
 						oldPosition.getY() + j);
 
 				if (!Location.isValid(newPosition)) {
+					// Not valid, loop around again.
 					continue;
 				}
 				// this position is on the gameBoard
@@ -160,14 +158,8 @@ public class Board {
 				if (Math.abs(i) + Math.abs(j) > dice) {
 					continue;
 				}
+				// We got here, it must be valid!
 				list.add(new Location(newPosition));
-
-				// i think this should recursively get the positions to allow
-				// multiple turns/corners to be made
-				// no longer need to do this
-				// if (i + j < dice && i - j > -dice) {
-				// list.addAll(getMovesTo(newPosition, i + j));
-				// }
 
 			}
 		}
@@ -176,6 +168,9 @@ public class Board {
 
 	}
 
+	/**
+	 * Fills our board array with less code.
+	 */
 	private void fillRoom(int x, int y, int x2, int y2, String type,
 			String acronym) {
 		for (; x <= x2; x++) {
@@ -192,7 +187,7 @@ public class Board {
 	}
 
 	/**
-	 * Adds all our doors and rooms
+	 * Adds all our doors and rooms as well as intrigue tiles.
 	 */
 	private void populateBoard() {
 		// Fill everywhere with corridor to start with.
@@ -268,7 +263,7 @@ public class Board {
 	}
 
 	/**
-	 * adds Intrigue tiles to board
+	 * adds Intrigue tiles to board, replacing corridor tiles.
 	 */
 	private void setupIntrigueTiles() {
 		gameBoard[3][8] = new IntrigueTile(3, 8);
@@ -283,8 +278,7 @@ public class Board {
 		gameBoard[20][18] = new IntrigueTile(20, 18);
 		gameBoard[8][23] = new IntrigueTile(8, 23);
 		gameBoard[18][22] = new IntrigueTile(18, 22);
-		
-		
+
 	}
 
 	/**
@@ -296,27 +290,32 @@ public class Board {
 
 	/**
 	 * Finds the first free tile for this location (i.e. with no player in!).
-	 * @param players on the board
-	 * @param symbol of tile to find
+	 * 
+	 * @param players
+	 *            on the board
+	 * @param symbol
+	 *            of tile to find
 	 * @return free location or null if there's none.
 	 */
 	public Location getFreeTile(Collection<Player> players, String symbol) {
-		for(int i = 0; i < BOARD_WIDTH;i++){
-			for(int j = 0; j < BOARD_HEIGHT;j++){
-				if(gameBoard[i][j].toString().equals(symbol)){
+		for (int i = 0; i < BOARD_WIDTH; i++) {
+			for (int j = 0; j < BOARD_HEIGHT; j++) {
+				if (gameBoard[i][j].toString().equals(symbol)) {
 					boolean nobodyHere = true;
-					for(Player p: players){
-						if(p.getLocation().equals(new Location(i,j))){
+					for (Player p : players) {
+						if (p.getLocation().equals(new Location(i, j))) {
 							nobodyHere = false;
 							break;
 						}
 					}
-					if(nobodyHere){
-						return new Location(i,j);
+					if (nobodyHere) {
+						// Awesome, found a spot. That one will do fine.
+						return new Location(i, j);
 					}
 				}
 			}
 		}
+		// Drat. How did this happen!?
 		throw new IllegalArgumentException("No tile found!!");
 	}
 
