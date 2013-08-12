@@ -20,8 +20,7 @@ public class Player {
 	private final String myName;
 	private final String mySymbol;
 	private final Location starting;
-	
-	
+
 	private List<Keepers> keeperCards = new ArrayList<Keepers>();
 
 	private List<Card> myCards;
@@ -59,20 +58,23 @@ public class Player {
 	public Iterator<Card> myCardsIterator() {
 		return myCards.iterator();
 	}
-	
+
 	/**
 	 * String representation of the cards the player holds.
+	 * 
 	 * @return
 	 */
-	public String myCards(){
+	public String myCards() {
 		String s = "";
-		for(Card c: myCards){
-			s+=c.toString() + ", ";
+		for (Card c : myCards) {
+			s += c.toString() + ", ";
 		}
 		return s;
 	}
+
 	/**
-	 * Start location of the player represented by that String. Constant as doesn't change across games.
+	 * Start location of the player represented by that String. Constant as
+	 * doesn't change across games.
 	 */
 	public static Location startLocation(String charName) {
 		if (charName.equals("Kasandra Scarlett")) {
@@ -134,11 +136,11 @@ public class Player {
 	public List<Keepers> getKeeperCards() {
 		return keeperCards;
 	}
-	
+
 	/**
 	 * @return all the non-keeper/clocks cards this player holds
 	 */
-	public List<Card> getMyCards(){
+	public List<Card> getMyCards() {
 		return myCards;
 	}
 }

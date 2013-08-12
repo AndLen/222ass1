@@ -26,7 +26,7 @@ public class Board {
 	// -- makes things easier.
 	public static final int BOARD_WIDTH = 24;
 	public static final int BOARD_HEIGHT = 29;
-	//Physical board.
+	// Physical board.
 	private final Tile[][] gameBoard;
 
 	private List<DoorTile> listOfDoors;

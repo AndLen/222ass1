@@ -3,12 +3,12 @@ package cluedo.cards;
 import cluedo.main.Game;
 import cluedo.structs.Player;
 
-
 /**
  * represents a keepers card that can be played after a roll but before the move
  * (adding 6 to the dice)
- * @author Michael
- *
+ * 
+ * @author Andrew & Michael
+ * 
  */
 public class AfterRollCard extends Keepers {
 
@@ -17,9 +17,9 @@ public class AfterRollCard extends Keepers {
 	public AfterRollCard(String s) {
 		if (s.equalsIgnoreCase(Keepers.Cards[6])) {
 			this.description = s;
-		}
-		else {
-			throw new IllegalArgumentException(s + " is not the right card, should be: " + Keepers.Cards[6]);
+		} else {
+			throw new IllegalArgumentException(s
+					+ " is not the right card, should be: " + Keepers.Cards[6]);
 		}
 	}
 
@@ -51,7 +51,6 @@ public class AfterRollCard extends Keepers {
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
 		return description;
 	}
 
@@ -59,13 +58,13 @@ public class AfterRollCard extends Keepers {
 	public String apply(Game game, Player player) {
 
 		// this card is applied in the game class
-		
+
 		player.getKeeperCards().remove(this);
 		return null;
 	}
-	
+
 	@Override
-	public String toString(){
+	public String toString() {
 		return description;
 	}
 

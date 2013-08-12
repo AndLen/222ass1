@@ -1,6 +1,6 @@
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -9,9 +9,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-//import com.sun.java.util.jar.pack.*;
-
-import cluedo.cards.Card;
 import cluedo.cards.Character;
 import cluedo.cards.Clocks;
 import cluedo.cards.Keepers;
@@ -19,7 +16,6 @@ import cluedo.cards.Room;
 import cluedo.cards.Weapon;
 import cluedo.main.Board;
 import cluedo.main.Game;
-import cluedo.moves.Move;
 import cluedo.structs.Location;
 import cluedo.structs.Player;
 import cluedo.structs.Solution;
@@ -27,8 +23,8 @@ import cluedo.structs.Solution;
 public class GameTests {
 
 	/**
-	 * tests if die on the 8th card
-	 * uses reflection to access private method inside Game
+	 * tests if die on the 8th card uses reflection to access private method
+	 * inside Game
 	 */
 	@Test
 	public void testClocks() {
@@ -46,17 +42,14 @@ public class GameTests {
 				Weapon.WEAPONS[1])), null, intrigueCards, players);
 
 		Class<?> c = game.getClass();
-//		for (Method mt : c.getDeclaredMethods()) {
-//			System.out.println(mt);
-//		}
+		// for (Method mt : c.getDeclaredMethods()) {
+		// System.out.println(mt);
+		// }
 		try {
 
-			Method m = c
-					.getDeclaredMethod(
-							"addIntrigueCard",
-							Player.class);
+			Method m = c.getDeclaredMethod("addIntrigueCard", Player.class);
 			m.setAccessible(true);
-			
+
 			// move onto an intriguetile 7 times
 			// and off again
 			for (int i = 0; i < 7; i++) {

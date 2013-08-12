@@ -74,10 +74,10 @@ public class Solution {
 	}
 
 	public boolean containsCard(String cardS) {
-		//We have this card if it matches any of our cards.
+		// We have this card if it matches any of our cards.
 		return (cardS.equalsIgnoreCase(charSol.toString())
-				|| cardS.equalsIgnoreCase(roomSol.toString()) || cardS.equalsIgnoreCase(weaponSol
-				.toString()));
+				|| cardS.equalsIgnoreCase(roomSol.toString()) || cardS
+					.equalsIgnoreCase(weaponSol.toString()));
 	}
-	
+
 }

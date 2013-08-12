@@ -44,18 +44,11 @@ public class MoveTests {
 		Move move = new Move(players.get(0).getLocation(), new Location(2, 27),
 				2, game);
 
-		// try {
 		if (!move.isValid(game)) {
 			// move is invalid
 			fail("a Player can enter room");
 
 		}
-		// } catch (CluedoException e) {
-		// fail("exception thrown");
-		// e.printStackTrace();
-		// }
-		// TODO move one of the players so that they land on the other
-
 	}
 
 	@Test
@@ -677,8 +670,6 @@ public class MoveTests {
 
 	}
 
-	
-	
 	@Test
 	/**
 	 * test if can  use a door, to exit onto a intrigue tile
@@ -693,8 +684,8 @@ public class MoveTests {
 				Character.CHARACTERS[1]), new Room(Room.ROOMS[1]), new Weapon(
 				Weapon.WEAPONS[1])), null, null, players);
 
-		Move move = new Move(players.get(0).getLocation(),
-				new Location(8, 14), 3, game);
+		Move move = new Move(players.get(0).getLocation(), new Location(8, 14),
+				3, game);
 
 		if (!move.isValid(game)) {
 
@@ -703,9 +694,7 @@ public class MoveTests {
 		}
 
 	}
-	
-	
-	
+
 	/**
 	 * test if can use a door, to exit the south facing door of the patio
 	 */

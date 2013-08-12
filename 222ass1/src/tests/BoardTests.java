@@ -27,9 +27,6 @@ public class BoardTests {
 	 * checks the list of possible moves is correct
 	 */
 	public void testCorrectMoves() {
-		// TODO will need to change test for walls. AND needs to have the
-		// correct answers added
-
 		Board board = new Board();
 		List<Player> players = new ArrayList<Player>();
 		players.add(new Player(new Location(8, 8), Character.CHARACTERS[1],

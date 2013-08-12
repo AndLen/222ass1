@@ -8,66 +8,63 @@ import cluedo.structs.Location;
 
 public class LocationTests {
 
-	
-	
 	/**
 	 * test if to identical locations hash to the same thing
 	 */
 	@Test
-	public void testLocationCompareTo(){
-		
+	public void testLocationCompareTo() {
+
 		Location l1 = new Location(1, 2);
 		Location l2 = new Location(1, 2);
-		
-		if(l1.compareTo(l2) != 0){
+
+		if (l1.compareTo(l2) != 0) {
 			fail("l1 isnot equal to the int 3");
 		}
-		
+
 	}
 
 	/**
 	 * test if to identical locations hash to the same thing
 	 */
 	@Test
-	public void testLocationEquals(){
-		
+	public void testLocationEquals() {
+
 		Location l1 = new Location(1, 2);
 		Location l2 = null;
-		
-		if(l1.equals(l2)){
+
+		if (l1.equals(l2)) {
 			fail("l1 isnot equal to null");
 		}
-		
+
 	}
-	
+
 	/**
 	 * test if to identical locations hash to the same thing
 	 */
 	@Test
-	public void testLocationEquals2(){
-		
+	public void testLocationEquals2() {
+
 		Location l1 = new Location(1, 2);
-		
-		
-		if(l1.equals(3)){
+
+		if (l1.equals(3)) {
 			fail("l1 isnot equal to the int 3");
 		}
-		
-	}	
-	
+
+	}
+
 	/**
 	 * test if to identical locations hash to the same thing
 	 */
 	@Test
-	public void testLocationHash(){
-		
+	public void testLocationHash() {
+
 		Location l1 = new Location(1, 2);
 		Location l2 = new Location(1, 2);
-		
-		if(l1.hashCode() != l2.hashCode()){
+
+		if (l1.hashCode() != l2.hashCode()) {
 			fail("hashcodes not equal");
 		}
-		
-	}	
-	
+
+	}
+
 }
