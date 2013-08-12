@@ -53,7 +53,7 @@ public class GameTests {
 
 			Method m = c
 					.getDeclaredMethod(
-							"takeIntrigueTurn",
+							"addIntrigueCard",
 							Player.class);
 			m.setAccessible(true);
 			

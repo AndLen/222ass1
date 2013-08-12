@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import cluedo.cards.AfterRollCard;
 import cluedo.cards.AfterTurnCard;
 import cluedo.cards.Card;
 import cluedo.cards.Character;
@@ -18,7 +19,7 @@ import cluedo.structs.Player;
 import cluedo.structs.Solution;
 
 /**
- *Sets up and finishes the game, through the Game class.
+ * Sets up and finishes the game, through the Game class.
  * 
  * @author Andrew & Michael
  * 
@@ -155,33 +156,33 @@ public class Main {
 		Collections.shuffle(rooms);
 		return rooms;
 	}
-	
-	
+
 	/**
 	 * creates all the keeper cards and shuffles the pile
 	 * 
 	 * @return rooms the list to be returned
 	 */
 	private List<Keepers> setUpKeeperCards() {
-		List<Keepers> intrigueCards =  new ArrayList<Keepers>();
+		List<Keepers> intrigueCards = new ArrayList<Keepers>();
 		for (int i = 0; i < 8; i++) {
 			intrigueCards.add(new Clocks());
 		}
-		
+
 		// take another turn
 		intrigueCards.add(new AfterTurnCard(Keepers.Cards[7]));
 		intrigueCards.add(new AfterTurnCard(Keepers.Cards[7]));
 		intrigueCards.add(new AfterTurnCard(Keepers.Cards[7]));
 		intrigueCards.add(new AfterTurnCard(Keepers.Cards[7]));
-		
+
 		// move someone back to start
 		intrigueCards.add(new AfterTurnCard(Keepers.Cards[4]));
 		intrigueCards.add(new AfterTurnCard(Keepers.Cards[4]));
-		
+
 		// player on right show you card
 		intrigueCards.add(new AfterTurnCard(Keepers.Cards[0]));
-		
-		
+
+		intrigueCards.add(new AfterRollCard(Keepers.Cards[6]));
+		intrigueCards.add(new AfterRollCard(Keepers.Cards[6]));
 		
 		Collections.shuffle(intrigueCards);
 		return intrigueCards;

@@ -56,5 +56,10 @@ public class AfterRollCard extends Keepers {
 		player.getKeeperCards().remove(this);
 		return null;
 	}
+	
+	@Override
+	public String toString(){
+		return description;
+	}
 
 }

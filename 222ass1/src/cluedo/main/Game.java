@@ -72,7 +72,7 @@ public class Game {
 			// sometimes we dont care about these cards (alot of the movement
 			// tests) so it is null
 			this.intrigueCards.addAll(intrigueCards);
-			clockCounter = 8 - intrigueCards.size();
+			clockCounter = 0;
 		}
 
 		// Make maps.
@@ -158,8 +158,11 @@ public class Game {
 		System.out
 				.println("It is " + p + "'s turn!\n" + p + " rolls a " + roll);
 
-		roll += checkDiceIntigue(p);
-
+		int toAdd = checkDiceIntigue(p);
+		if (toAdd != 0) {
+			roll += toAdd;
+			System.out.println("Dice roll is now: " + roll);
+		}
 		Move m;
 		boolean validMove = false;
 		// Okay, let's get the player to make a move that's valid.
@@ -235,7 +238,8 @@ public class Game {
 			data = data.toLowerCase().trim(); // If they decided caps or
 												// whitespace would be fun
 			if (data.contains("yes")) {
-				tempList.get(0).apply(this, p);
+				// tempList.get(0).apply(this, p);
+				p.getKeeperCards().remove(tempList.get(0));
 				return 6;
 			} else if (data.contains("no")) {
 				return 0;
