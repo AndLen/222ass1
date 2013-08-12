@@ -793,8 +793,12 @@ public class Game {
 		while (true) {
 			// Get valid input
 			Scanner sc = new Scanner(System.in);
+
 			System.out
-					.println("Please enter the card you wish to show the player on your left:");
+					.println(player
+							+ "Your cards are: "
+							+ player.myCards()
+							+ "\nPlease enter the card you wish to show the player on your left:");
 			String possCard = sc.nextLine();
 			possCard = possCard.trim();
 

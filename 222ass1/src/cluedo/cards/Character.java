@@ -1,9 +1,10 @@
 package cluedo.cards;
 
-import cluedo.main.Game;
-import cluedo.structs.Player;
-
 /**
+ * A Character card. This is a card limited to representing the characters that
+ * are possible to be obtained. These are also the same as the possible player
+ * names, but the distinction should be made from the cluedo.structs.Player
+ * class.
  * 
  * @author Andrew & Michael
  * 
@@ -19,15 +20,16 @@ public class Character implements Card {
 
 	private String character;
 
-	public Character(String s) {
-		// Check valid input.
+	public Character(String charName) {
+		// Check valid input - gotta have one of our recognised names!
 		for (String name : CHARACTERS) {
-			if (s.equalsIgnoreCase(name)) {
+			if (charName.equalsIgnoreCase(name)) {
+				//Use our titlecase name as the variable, not their dodgy input.
 				this.character = name;
 				return;
 			}
 		}
-		throw new IllegalArgumentException(s + " is not a character");
+		throw new IllegalArgumentException(charName + " is not a character");
 	}
 
 	@Override
@@ -44,12 +46,6 @@ public class Character implements Card {
 				+ ""
 				+ java.lang.Character.toLowerCase(character.charAt(character
 						.lastIndexOf(" ") + 1));
-	}
-
-	@Override
-	public String apply(Game game, Player player) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	/*

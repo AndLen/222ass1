@@ -1,19 +1,15 @@
 package cluedo.cards;
 
-import cluedo.main.Game;
-import cluedo.structs.Player;
-
 /**
+ * The physical room cards in the cluedo game. These are distinct from the
+ * RoomTiles, although one must be on the correct RoomTile to suggest the
+ * corresponding room card!
  * 
  * @author Andrew & Michael
  * 
  */
 public class Room implements Card {
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-
-
+	
 	public static enum ROOMS {
 		Spa, Theatre, Living_Room, Observatory, Patio, Hall, Kitchen, Dining_Room, Guest_House
 	};
@@ -24,9 +20,10 @@ public class Room implements Card {
 	private String room;
 
 	public Room(String s) {
-		//Check valid input.
+		// Check valid input.
 		for (String name : ROOMS) {
 			if (s.equalsIgnoreCase(name)) {
+				//Use our titlecase name as the variable, not their dodgy input.
 				this.room = name;
 				return;
 			}
@@ -50,22 +47,12 @@ public class Room implements Card {
 	}
 
 	@Override
-	public String apply(Game game, Player player) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((room == null) ? 0 : room.hashCode());
 		return result;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -81,6 +68,6 @@ public class Room implements Card {
 		} else if (!room.equals(other.room))
 			return false;
 		return true;
-	}	
+	}
 
 }

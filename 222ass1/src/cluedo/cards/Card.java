@@ -1,29 +1,18 @@
 package cluedo.cards;
 
-import cluedo.main.Game;
-import cluedo.structs.Player;
-
 /**
+ * Represents the physical card one would use to play the cluedo game.
  * 
  * @author Andrew & Michael
  * 
  */
 public interface Card {
 
+
 	/**
-	 * 
-	 * @return symbolic representation of the ascii board
+	 * Get a representation of this card.
+	 * @return
 	 */
 	public String getSymbol();
 
-	/**
-	 * 
-	 * @param player TODO
-	 * @return false if card cannot be applied(at the current time or applying
-	 *         does nothing). true if successfully applied.
-	 */
-	public String apply(Game game, Player player);
-
-	
-	
 }
