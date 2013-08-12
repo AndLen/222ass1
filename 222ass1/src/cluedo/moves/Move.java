@@ -97,6 +97,7 @@ public class Move implements MoveI {
 		//printMoves(moves);
 		
 		// need to junit test moves that are off board
+		 // location class handles this
 		return false;
 	}
 

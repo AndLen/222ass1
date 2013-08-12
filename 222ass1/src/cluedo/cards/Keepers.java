@@ -4,8 +4,10 @@ import cluedo.main.Game;
 import cluedo.structs.Player;
 
 /**
- * 0,4, 6, 7 done
  * 
+ * represents the keepers intrigue cards (i.e. not clocks)
+ * 
+ *0,4, 6, 7 done
  * @author Andrew & Michael
  * 
  */
@@ -26,6 +28,10 @@ public abstract class Keepers implements Card {
 		return "Kc";
 	}
 
+	/**
+	 * 
+	 * @return  string representation of the description
+	 */
 	public abstract String getDescription();
 
 	@Override

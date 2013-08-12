@@ -3,6 +3,13 @@ package cluedo.cards;
 import cluedo.main.Game;
 import cluedo.structs.Player;
 
+
+/**
+ * represents a keepers card that can be played after a roll but before the move
+ * (adding 6 to the dice)
+ * @author Michael
+ *
+ */
 public class AfterRollCard extends Keepers {
 
 	private String description;
