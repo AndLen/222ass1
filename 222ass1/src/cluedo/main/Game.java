@@ -49,7 +49,7 @@ public class Game {
 	private Player nextPlayer;
 
 	// Used to find who the next person clockwise to go is!
-	private final Map<Player, Player> playerToNextPlayer;
+	private Map<Player, Player> playerToNextPlayer;
 	// and anticlockwise
 	private Map<Player, Player> playerToPreviousPlayer = new HashMap<Player, Player>();
 
@@ -86,7 +86,7 @@ public class Game {
 		for (Player p : playersList) {
 			players.put(p.getMyName(), p);
 		}
-		playerToNextPlayer = setUpMap();
+		setUpMap();
 	}
 
 	/**
@@ -559,21 +559,19 @@ public class Game {
 	 * 
 	 * @return
 	 */
-	private Map<Player, Player> setUpMap() {
-		Map<Player, Player> map = new HashMap<Player, Player>();
+	private void setUpMap() {
+		playerToNextPlayer = new HashMap<Player, Player>();
 		for (Player p : players.values()) {
 			// For each player find the player that should be on their left
 			// (clockwise)
 			Player next = nextPlayerSetup(p);
-			map.put(p, next);
+			playerToNextPlayer.put(p, next);
 		}
 
 		// should set up a map so players are reverse order
-		for (Entry<Player, Player> e : map.entrySet()) {
+		for (Entry<Player, Player> e : playerToNextPlayer.entrySet()) {
 			playerToPreviousPlayer.put(e.getValue(), e.getKey());
 		}
-
-		return map;
 	}
 
 	/**
