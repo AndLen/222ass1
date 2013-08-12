@@ -326,9 +326,8 @@ public class Game {
 			clockCounter++;
 			// System.out.println(clockCounter);
 			if (clockCounter >= 8) {
-				// player dies when the eigth clock card has been picked up
+				// player dies when the eighth clock card has been picked up
 				// it then goes back into the pile to kill more people.
-				// System.out.println("size: " + intrigueCards.size());
 				intrigueCards.offer(c);
 				return p.getMyName();
 			}
@@ -363,7 +362,8 @@ public class Game {
 			}
 		}
 		boolean wantsToSpeak = wantsToSuggest(canAccuse);
-
+		// If they do want to actually say something do some more stuff,
+		// otherwise just return.
 		if (wantsToSpeak) {
 			Solution possibleSol = getAccusationInput(canAccuse, p);
 			if (canAccuse) {
@@ -380,12 +380,12 @@ public class Game {
 				if (toMove != null) {
 					Location newLocation = gameBoard.getFreeTile(players
 							.values(), possibleSol.getRoomSol().getSymbol());
-					// Found them a spot, move them.
+					// Found them a spot in the room, move them.
 					changePlayerLocation(toMove.getLocation(), newLocation);
 					System.out.print(toMove + " was moved to the "
 							+ possibleSol.getRoomSol() + " !\n");
 				}
-
+				// Print out their suggestion and get someone to refute it!
 				System.out.println(p + " suggests " + possibleSol.getCharSol()
 						+ " in " + possibleSol.getRoomSol() + " with the "
 						+ possibleSol.getWeaponSol());
@@ -417,6 +417,7 @@ public class Game {
 		}
 		Iterator<Card> cards = nextPlayer.myCardsIterator();
 		boolean canRefute = false;
+		// Can't actually refute unless they have a card in the solution.
 		while (cards.hasNext()) {
 			if (sol.containsCard(cards.next().toString())) {
 				canRefute = true;
@@ -424,11 +425,13 @@ public class Game {
 			}
 		}
 		if (canRefute) {
+			// They do have at least 1 card, let them pick which one
 			System.out.print(nextPlayer + ": please refute " + originPlayer
 					+ "'s accusation\n");
 			System.out.print(nextPlayer + ", your cards are:\n");
 			System.out.println(nextPlayer.myCards());
 			while (true) {
+				// get valid input.
 				Scanner sc = new Scanner(System.in);
 				System.out
 						.println("Please enter the card you wish to refute with:");
@@ -437,11 +440,13 @@ public class Game {
 				if (sol.containsCard(possCard)) {
 					System.out.println(nextPlayer + " refuted with: "
 							+ possCard);
+					// they refuted, so we're done here
 					return true;
 				}
 
 			}
 		}
+		// Okay, this player can't refute so try the next one.
 		return refute(originPlayer, playerToNextPlayer.get(nextPlayer), sol);
 	}
 
@@ -502,6 +507,7 @@ public class Game {
 			return false;
 		} else {
 			System.out.println("Not a valid choice");
+			// Try again!
 			return wantsToSuggest(inPool);
 		}
 	}
@@ -516,6 +522,7 @@ public class Game {
 		System.out
 				.println("Please enter the x,y co-ordinates to move to in the form x,y:");
 		try {
+			// Go until we get a valid co-ordinate (you have to move!).
 			Scanner sc = new Scanner(System.in);
 			String data = sc.nextLine();
 			// Split by the comma
@@ -549,6 +556,8 @@ public class Game {
 	private Map<Player, Player> setUpMap() {
 		Map<Player, Player> map = new HashMap<Player, Player>();
 		for (Player p : players.values()) {
+			// For each player find the player that should be on their left
+			// (clockwise)
 			Player next = nextPlayerSetup(p);
 			map.put(p, next);
 		}
@@ -571,6 +580,9 @@ public class Game {
 		Player next = null;
 		String nextString = kas.getMyName();
 		do {
+			// Get the next player's name while there isn't a person on their
+			// left (i.e. find the first person on the left who is actually in
+			// the game.)
 			nextString = nextPlayerString(nextString);
 
 		} while (players.get(nextString) == null);
@@ -606,7 +618,9 @@ public class Game {
 	 */
 
 	/**
-	 * Constructs the order in which players take turns by rolling a die.
+	 * Constructs the order in which players take turns by rolling a die. In the
+	 * case of a draw, the person who rolled the highest number first gets to go
+	 * first.
 	 * 
 	 */
 	private Player getOrder() {
@@ -645,6 +659,7 @@ public class Game {
 	public void changePlayerLocation(Location oldL, Location newL) {
 		Player p = findPlayerAt(oldL);
 		p.updateLocation(newL);
+		// Print the board since someone has moved.
 		System.out.print(boardToString());
 	}
 
@@ -764,7 +779,7 @@ public class Game {
 	 * 
 	 * @return the playerToPreviousPlayer
 	 */
-	public Map<Player, Player> getPlayerToPrevoiusPlayer() {
+	public Map<Player, Player> getPlayerToPreviousPlayer() {
 		return playerToPreviousPlayer;
 	}
 
@@ -776,6 +791,7 @@ public class Game {
 	 */
 	public Card playerShowCard(Player player) {
 		while (true) {
+			// Get valid input
 			Scanner sc = new Scanner(System.in);
 			System.out
 					.println("Please enter the card you wish to show the player on your left:");

@@ -61,7 +61,7 @@ public class AfterTurnCard extends Keepers {
 
 		if (description.equals(Keepers.Cards[0])) {
 			// player on right show you card.
-			Card card = game.playerShowCard(game.getPlayerToPrevoiusPlayer()
+			Card card = game.playerShowCard(game.getPlayerToPreviousPlayer()
 					.get(player));
 			System.out.println(card.toString());
 			player.getKeeperCards().remove(this);
