@@ -125,7 +125,7 @@ public class CardTests {
 		
 		Card card = new Weapon(Weapon.WEAPONS[1]);
 		
-		if (card.equals(card)) {
+		if (!card.equals(card)) {
 			fail("a weapon is equal to iteself");
 		}
 		
