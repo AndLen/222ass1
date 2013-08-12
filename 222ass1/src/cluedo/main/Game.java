@@ -297,7 +297,7 @@ public class Game {
 				// player dies when the eigth clock card has been picked up
 				// it then goes back into the pile to kill more people.
 				// System.out.println("size: " + intrigueCards.size());
-				intrigueCards.add(c);
+				intrigueCards.offer(c);
 				return p.getMyName();
 			}
 			return null;
