@@ -4,6 +4,9 @@ import cluedo.main.Game;
 import cluedo.structs.Player;
 
 /**
+ * 
+ * represents the keepers intrigue cards (i.e. not clocks)
+ * 
  *0,4, 6, 7 done
  * @author Andrew & Michael
  *
@@ -20,13 +23,7 @@ public abstract class Keepers implements Card {
 		,"Play after you roll the dice but before you move. Add 6 to your dice roll."
 		,"Play at the end of your turn. Take another turn."
 	};
-	
-//	public Keepers(String s){
-//		description = s;
-//	}
-	
-	
-	
+		
 	
 	@Override
 	public String getSymbol() {
@@ -34,6 +31,10 @@ public abstract class Keepers implements Card {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @return  string representation of the description
+	 */
 	public abstract String getDescription();
 	//	return description;
 	
