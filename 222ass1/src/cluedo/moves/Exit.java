@@ -18,17 +18,19 @@ import cluedo.tiles.DoorTile;
  */
 public class Exit extends Move {
 
+	/**
+	 * 
+	 * @param oldPosition
+	 * @param newPosition
+	 * @param diceRoll how many squares can the player move
+	 * @param game
+	 */
 	public Exit(Location oldPosition, Location newPosition, int diceRoll,
 			Game game) {
 		super(oldPosition, newPosition, diceRoll, game);
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see cluedo.moves.MoveI#isValid(cluedo.main.Game)
-	 */
 	@Override
 	public boolean isValid(Game game) {
 
