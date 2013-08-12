@@ -1,12 +1,18 @@
 package cluedo.cards;
 
-import java.util.List;
+//import java.util.List;
 import java.util.Scanner;
 
 import cluedo.main.Game;
 import cluedo.structs.Player;
 //import cluedo.cards.*;
 
+
+/**
+ * represents a keepers card that can be played at the end of their turn
+ * @author Michael
+ *
+ */
 public class AfterTurnCard extends Keepers {
 
 	private String description;

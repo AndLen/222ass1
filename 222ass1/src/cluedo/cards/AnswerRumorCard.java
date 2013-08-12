@@ -3,6 +3,14 @@ package cluedo.cards;
 import cluedo.main.Game;
 import cluedo.structs.Player;
 
+/**
+ * this class is not used in the game
+ * 
+ * represents a keepers card that can be played when someone is answering a rumor
+ * (lets 'player' see theat card)
+ * @author Michael
+ *
+ */
 public class AnswerRumorCard extends Keepers {
 	String description;
 	@Override

@@ -3,6 +3,14 @@ package cluedo.cards;
 import cluedo.main.Game;
 import cluedo.structs.Player;
 
+
+/**
+ * this class is not used in the game
+ * 
+ * represents a keepers card that can be played before a turn
+ * @author Michael
+ *
+ */
 public class BeforeTurnCard extends Keepers {
 	@Override
 	public int hashCode() {
