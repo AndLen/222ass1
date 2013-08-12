@@ -26,7 +26,8 @@ import cluedo.tiles.RoomTile;
 import cluedo.tiles.Tile;
 
 /**
- * Responsible for managing and running the game.
+ * Responsible for managing and running the game, including the turn logic and
+ * maintaining the needed data structures.
  * 
  * @author Andrew & Michael
  * 
@@ -49,6 +50,16 @@ public class Game {
 	private int clockCounter; // when this reaches 8 player is dead
 	private final Queue<Keepers> intrigueCards;
 
+	/**
+	 * Each of the parameters should be relevant to this instance of the game.
+	 * 
+	 * @param b
+	 * @param s
+	 * @param cardsLeft
+	 * @param intrigueCards
+	 *            can be null if not included.
+	 * @param playersList
+	 */
 	public Game(Board b, Solution s, List<Card> cardsLeft,
 			List<Keepers> intrigueCards, List<Player> playersList) {
 		this.intrigueCards = new ArrayDeque<Keepers>();
@@ -70,11 +81,12 @@ public class Game {
 			players.put(p.getMyName(), p);
 		}
 		playerToNextPlayer = setUpMap();
-
-		// DEBUG - shows our mapping of next players.
-		// System.out.println(playerToNextPlayer.entrySet());
 	}
 
+	/**
+	 * To actually start the game - seperated from the constructor for easier
+	 * management.
+	 */
 	public void runGame() {
 		nextPlayer = getOrder();
 		while (true) {
@@ -104,6 +116,12 @@ public class Game {
 				+ "! You have won the game.");
 	}
 
+	/**
+	 * Removes the given player from the game and renews the player order.
+	 * 
+	 * @param corpse
+	 *            player name to remove
+	 */
 	private void killSomeone(String corpse) {
 		// Sanity check..shouldn't happen.
 		if (corpse == null) {
@@ -118,23 +136,23 @@ public class Game {
 	}
 
 	/**
-	 * Returns player name if they died
+	 * Runs a turn for the given player - rolls the dice, gets a move and
+	 * processes it etc.
 	 * 
 	 * @param p
-	 * @return
+	 * @return player name if they died, null otherwise
 	 */
 	public String takeTurn(Player p) {
 		int roll1 = new Dice().getRoll();
 		int roll2 = new Dice().getRoll();
 		int roll;
-		if(roll2 == 1){
-			//Rolled a '?' so they get an intrigue card.
-			System.out.println(p + "rolled a ?, they get an intrigue card.");
-			takeIntrigueTurn(p);
-			//only first dice gives any moves.
+		if (roll2 == 1) {
+			// Rolled a '?' so they get an intrigue card.
+			System.out.println(p + " rolled a ?, they get an intrigue card.");
+			addIntrigueCard(p);
+			// only first dice gives any moves.
 			roll = roll1;
-		}
-		else{
+		} else {
 			roll = roll1 + roll2;
 		}
 		System.out
@@ -155,7 +173,6 @@ public class Game {
 		} while (!validMove);
 		// Cool, we got a valid move.
 		m.apply(this);
-		System.out.print(gameBoard.toString(this));
 
 		// Print what cards you have
 		System.out.print("Your cards: ");
@@ -163,25 +180,35 @@ public class Game {
 
 		if (isIntrigueLocation(p.getLocation())) {
 			// return takeIntrigueTurn(p);
-			String corpse = takeIntrigueTurn(p);
+			String corpse = addIntrigueCard(p);
 			if (corpse != null) {
 				return corpse;
-			} else {
-				ATIntrigueAvaliable(p);
-				return null;
 			}
 
 		}
 
 		if (isRoomLocation(p.getLocation())) {
 			// If we're in a room, then we can do some other stuff...
-			return takeRoomTurn(p);
+			String dead = takeRoomTurn(p);
+			// if we didn't die in that room, we can use special cards.
+			if (dead == null)
+				ATIntrigueAvaliable(p);
+			else
+				return dead;
+		} else {
+			ATIntrigueAvaliable(p);
 		}
 
 		// We didn't die
 		return null;
 	}
 
+	/**
+	 * Check for the card adding 6 to the dice.
+	 * 
+	 * @param p
+	 * @return the amount to add (0 or 6!)
+	 */
 	private int checkDiceIntigue(Player p) {
 		List<Keepers> tempList = new ArrayList<Keepers>();
 
@@ -192,31 +219,31 @@ public class Game {
 
 			}
 		}
-
+		if (tempList.size() == 0) {
+			// No point going any further
+			return 0;
+		}
 		System.out.println(p.getMyName() + " has " + tempList
 				+ " intrigue cards avaliable to play");
 
-		if (tempList.size() != 0) {
-			while (true) {
-				Scanner sc = new Scanner(System.in);
-				System.out
-						.println("Would you like to add 6 to your dice roll? \"yes\" or \"no\"");
+		while (true) {
+			Scanner sc = new Scanner(System.in);
+			System.out
+					.println("Would you like to add 6 to your dice roll? \"yes\" or \"no\"");
 
-				String data = sc.nextLine();
-				data = data.toLowerCase().trim(); // If they decided caps or
-													// whitespace would be fun
-				if (data.contains("yes")) {
-					tempList.get(0).apply(this, p);
-					return 6;
-				} else if (data.contains("no")) {
-					return 0;
-				} else {
-					System.out.println("Not a valid choice");
-				}
-
+			String data = sc.nextLine();
+			data = data.toLowerCase().trim(); // If they decided caps or
+												// whitespace would be fun
+			if (data.contains("yes")) {
+				tempList.get(0).apply(this, p);
+				return 6;
+			} else if (data.contains("no")) {
+				return 0;
+			} else {
+				System.out.println("Not a valid choice");
 			}
+
 		}
-		return 0;
 	}
 
 	/**
@@ -234,13 +261,12 @@ public class Game {
 
 			}
 		}
-		System.out.println(p.getMyName() + " has " + tempList
-				+ " intrigue cards avaliable to play");
-		// TODO get input from player on which card to play if any
 		if (tempList.size() == 0) {
 			// nothing to play.
 			return;
 		}
+		System.out.println(p.getMyName() + " has " + tempList
+				+ " intrigue cards avaliable to play");
 
 		Keepers k = null;
 		while (true) {
@@ -280,10 +306,12 @@ public class Game {
 	}
 
 	/**
+	 * Processes adding an intrigue card to a player's hand.
+	 * 
 	 * @return name of person who died (if they did)
 	 * @author Andrew & Michael
 	 */
-	private String takeIntrigueTurn(Player p) {
+	private String addIntrigueCard(Player p) {
 		// pick up a card off the pile
 		Keepers c = intrigueCards.poll();
 
@@ -309,7 +337,9 @@ public class Game {
 	}
 
 	/**
-	 * Returns name of person who died if they did
+	 * If a player is in a room, takes a room turn - processing what room
+	 * they're in and what they can do (e.g. Pool can accuse, Patio can
+	 * suggest.) Returns name of person who died if they did
 	 * 
 	 * @param p
 	 */
@@ -328,7 +358,7 @@ public class Game {
 				System.out.println();
 			}
 		}
-		boolean wantsToSpeak = getAnnounceInput(canAccuse);
+		boolean wantsToSpeak = wantsToSuggest(canAccuse);
 
 		if (wantsToSpeak) {
 			Solution possibleSol = getAccusationInput(canAccuse, p);
@@ -346,9 +376,8 @@ public class Game {
 				if (toMove != null) {
 					Location newLocation = gameBoard.getFreeTile(players
 							.values(), possibleSol.getRoomSol().getSymbol());
-					// Found them a spot, move them and re-draw.
+					// Found them a spot, move them.
 					changePlayerLocation(toMove.getLocation(), newLocation);
-					System.out.print(boardToString());
 					System.out.print(toMove + " was moved to the "
 							+ possibleSol.getRoomSol() + " !\n");
 				}
@@ -366,6 +395,18 @@ public class Game {
 		return null; // still alive.
 	}
 
+	/**
+	 * Sees if a player can refute a suggestion that's been made, and makes them
+	 * do so if they can.
+	 * 
+	 * @param originPlayer
+	 *            who made the suggestion
+	 * @param nextPlayer
+	 *            whose turn it is to try to refute
+	 * @param sol
+	 *            what was suggested
+	 * @return if managed to refute
+	 */
 	private boolean refute(Player originPlayer, Player nextPlayer, Solution sol) {
 		if (originPlayer.equals(nextPlayer)) {
 			return false;
@@ -401,10 +442,12 @@ public class Game {
 	}
 
 	/**
-	 * Requests input for the player to make an accusation and checks their
-	 * validity.
+	 * Requests input for the player to make an accusation or suggestion and
+	 * checks their validity.
 	 * 
-	 * @return
+	 * @inPool true if in pool (accusation) , false if in other room
+	 *         (suggestion)
+	 * @return their accusation/suggestion
 	 */
 	private Solution getAccusationInput(boolean inPool, Player p) {
 		System.out
@@ -438,12 +481,11 @@ public class Game {
 	}
 
 	/**
-	 * Requests input for the player to make an announcement and checks their
-	 * validity.
+	 * Sees if the player wants to make a suggestion/accusation or not.
 	 * 
 	 * @return
 	 */
-	private boolean getAnnounceInput(boolean inPool) {
+	private boolean wantsToSuggest(boolean inPool) {
 		System.out.printf(
 				"Would you like to make an %s? Type \"yes\" or \"no\"\n",
 				inPool ? "accusation" : "suggestion");
@@ -456,7 +498,7 @@ public class Game {
 			return false;
 		} else {
 			System.out.println("Not a valid choice");
-			return getAnnounceInput(inPool);
+			return wantsToSuggest(inPool);
 		}
 	}
 
@@ -495,6 +537,11 @@ public class Game {
 	 * Next three methods are used to initialising the map of player to next
 	 * player - surprisingly hard to code!
 	 */
+	/**
+	 * Map setup part 1
+	 * 
+	 * @return
+	 */
 	private Map<Player, Player> setUpMap() {
 		Map<Player, Player> map = new HashMap<Player, Player>();
 		for (Player p : players.values()) {
@@ -510,6 +557,12 @@ public class Game {
 		return map;
 	}
 
+	/**
+	 * Map setup part 2
+	 * 
+	 * @param kas
+	 * @return
+	 */
 	private Player nextPlayerSetup(Player kas) {
 		Player next = null;
 		String nextString = kas.getMyName();
@@ -521,6 +574,12 @@ public class Game {
 		return next;
 	}
 
+	/**
+	 * Map setup part 3
+	 * 
+	 * @param charName
+	 * @return
+	 */
 	private String nextPlayerString(String charName) {
 		if (charName.equals("Kasandra Scarlett")) {
 			return "Jack Mustard";
@@ -543,7 +602,7 @@ public class Game {
 	 */
 
 	/**
-	 * Constructs the order in which players take turns.
+	 * Constructs the order in which players take turns by rolling a die.
 	 * 
 	 */
 	private Player getOrder() {
@@ -582,9 +641,11 @@ public class Game {
 	public void changePlayerLocation(Location oldL, Location newL) {
 		Player p = findPlayerAt(oldL);
 		p.updateLocation(newL);
+		System.out.print(boardToString());
 	}
 
 	/**
+	 * Returns player at location (duh)
 	 * 
 	 * @param oldL
 	 * @return
@@ -609,14 +670,33 @@ public class Game {
 				.values()));
 	}
 
+	/**
+	 * Moves diceRoll tiles away from oldPosition (in a straight/diagonal line)
+	 * 
+	 * @param oldPosition
+	 * @param diceRoll
+	 * @return
+	 */
 	public Set<Location> getMovesTo(Location oldPosition, int diceRoll) {
 		return gameBoard.getMovesTo(oldPosition, diceRoll);
 	}
 
+	/**
+	 * True if location is corridor or intrigue tile
+	 * 
+	 * @param newPosition
+	 * @return
+	 */
 	public boolean isCorridorLocation(Location newPosition) {
 		return (gameBoard.tileAtLocation(newPosition) instanceof CorridorTile);
 	}
 
+	/**
+	 * Only intrigue (Not corridor)
+	 * 
+	 * @param newPosition
+	 * @return
+	 */
 	public boolean isIntrigueLocation(Location newPosition) {
 		return (gameBoard.tileAtLocation(newPosition) instanceof IntrigueTile);
 	}
@@ -676,12 +756,20 @@ public class Game {
 	}
 
 	/**
+	 * Gets map of players before previous player (reverse order)
+	 * 
 	 * @return the playerToPreviousPlayer
 	 */
 	public Map<Player, Player> getPlayerToPrevoiusPlayer() {
 		return playerToPreviousPlayer;
 	}
 
+	/**
+	 * Gets a player to show a card to the person on their left.
+	 * 
+	 * @param player
+	 * @return Card to show
+	 */
 	public Card playerShowCard(Player player) {
 		while (true) {
 			Scanner sc = new Scanner(System.in);
@@ -721,18 +809,28 @@ public class Game {
 				}
 
 			}
-
-			// if(player.getMyCards().contains(new Weapon(possCard))){
-			// System.out.println(player + " shouwed you: " + possCard);
-			// return possCard;
-			// }
 		}
 	}
 
+	/**
+	 * Checks if a given player has this card or not.
+	 * 
+	 * @param player
+	 *            to check.
+	 * @param card
+	 *            true if they do.
+	 * @return
+	 */
 	private boolean playerContainsCard(Player player, Card card) {
 		return player.getMyCards().contains(card);
 	}
 
+	/**
+	 * Get the player from a given name.
+	 * 
+	 * @param string
+	 * @return
+	 */
 	public Player getPlayer(String string) {
 		return players.get(string);
 	}

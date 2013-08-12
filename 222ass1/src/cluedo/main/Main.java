@@ -18,8 +18,7 @@ import cluedo.structs.Player;
 import cluedo.structs.Solution;
 
 /**
- * Controls the running of the game, including the main data structures and
- * drawing of our board in ASCII representation on the command-line.
+ *Sets up and finishes the game, through the Game class.
  * 
  * @author Andrew & Michael
  * 

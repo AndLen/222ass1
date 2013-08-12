@@ -5,7 +5,7 @@ import cluedo.structs.Player;
 
 public class Clocks extends Keepers {
 
-	public static String s = "Tock";
+	public static String s = "TOCK";
 	
 	@Override
 	public String getSymbol() {
@@ -17,11 +17,11 @@ public class Clocks extends Keepers {
 	
 	@Override
 	public String toString() {
-		if(s.equals("Tick")){
-			s = "Tock";
+		if(s.equals("TICK")){
+			s = "TOCK";
 		}
 		else {
-			s = "Tick";
+			s = "TICK";
 		}
 		
 		return s;

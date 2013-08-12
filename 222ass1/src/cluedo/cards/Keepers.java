@@ -3,6 +3,11 @@ package cluedo.cards;
 import cluedo.main.Game;
 import cluedo.structs.Player;
 
+/**
+ *0,4, 6, 7 done
+ * @author Andrew & Michael
+ *
+ */
 public abstract class Keepers implements Card {
 
 	//private final String description;
@@ -34,7 +39,8 @@ public abstract class Keepers implements Card {
 	
 	@Override
 	public abstract boolean equals(Object obj);
-
+	
+	@Override
 	public abstract int hashCode();
 
 	@Override
